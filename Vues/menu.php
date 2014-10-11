@@ -31,6 +31,9 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <a href="sign-up.php">Sign Up</a>
+            </li>
+            <li>
                 <a href="log-in.php">Login</a>
             </li>
         </ul>
