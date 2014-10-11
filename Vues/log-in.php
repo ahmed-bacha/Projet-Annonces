@@ -13,7 +13,7 @@ require_once("header.php");
 	    <label for="mail">Adresse email</label>
 	    <div class="input-group">
 	      <div class="input-group-addon">@</div>
-	      <input class="form-control" type="email" placeholder="sam@hotmail.com">
+	      <input name="email" class="form-control" type="email" placeholder="sam@hotmail.com">
 	    </div>
 	  </div>
 
@@ -23,7 +23,7 @@ require_once("header.php");
 	      <div class="input-group-addon">
 	      	<span class="glyphicon glyphicon-lock"></span>
 	      </div>
-	      <input type="password" class="form-control" id="password" placeholder="*********">
+	      <input name="password" type="password" class="form-control" id="password" placeholder="*********">
 	    </div>
 	    
 	  </div>

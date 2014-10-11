@@ -19,9 +19,6 @@
             <li class="active">
                 <a href="#">Home</a>
             </li>
-            <li>
-                <a href="#">Profile</a>
-            </li>
         </ul>
 
         <form role="search" class="navbar-form navbar-left">
@@ -30,6 +27,9 @@
             </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="profile.php">Profile</a>
+            </li>
             <li>
                 <a href="sign-up.php">Sign Up</a>
             </li>
