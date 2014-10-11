@@ -31,7 +31,7 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="#">Login</a>
+                <a href="log-in.php">Login</a>
             </li>
         </ul>
     </div>
