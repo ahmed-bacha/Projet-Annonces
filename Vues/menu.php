@@ -28,6 +28,9 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
             <li>
+                <a href="single-annonce.php">Annonce</a>
+            </li>
+            <li>
                 <a href="profile.php">Profile</a>
             </li>
             <li>
