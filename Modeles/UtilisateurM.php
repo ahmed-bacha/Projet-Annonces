@@ -101,18 +101,15 @@ class UtilisateurM extends spdo implements ModelInterface
 		}
 	}
 
-	public function delete($id)
-	{
+	public function delete($id){
 
 	}
 
-	public function update($id)
-	{
+	public function update($id){
 
 	}
 
-	public function check($id)
-	{
+	public function check($id){
 
 	}
 
@@ -123,11 +120,9 @@ class UtilisateurM extends spdo implements ModelInterface
 	* $user = UtilisateurM($donnees);
 	* $user->nom = 'Pierre';
 	*/
-	public function __set($name, $value)
-	{
+	public function __set($name, $value){
 		// si la proprieté existe dans la classe
-		if (property_exists($this, $name)) 
-		{
+		if (property_exists($this, $name)){
 	    	$this->$name = $value;
 	    }else{
 	    	trigger_error("Variable $name non modifiee", E_USER_WARNING);
@@ -141,8 +136,7 @@ class UtilisateurM extends spdo implements ModelInterface
 	* $user->nom; // retourne le nom;
 	* @return champs de la classe
 	*/
-	public function __get($name)
-	{
+	public function __get($name){
 		// si la proprieté existe dans la classe
 	    if (property_exists($this, $name)) {
 	        return $this->$name;

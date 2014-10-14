@@ -58,13 +58,15 @@ class UtilisateurC
 	*/
 	function controlAndSave($utilisateurM)
 	{
-		if (!empty($utilisateurM->nom)) 
+		// to do email,pass
+		if (!empty($utilisateurM->nom) ) 
 		{
 			$valide = false;
 
 			if (self::validatePassword($utilisateurM->mdp) && self::validateEmail($utilisateurM->email))	
 			{
 				$valide = true;
+				// to do SAVE
 			}
 
 			return $valide;
