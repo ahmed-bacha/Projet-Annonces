@@ -13,11 +13,11 @@ interface ModelInterface
 	
 	public function add();
 
-	public function delete($id);
+	public function delete();
 
-	public function update($id);
+	public function update();
 
-	public function check($id);
+	public function check();
 
 }
 

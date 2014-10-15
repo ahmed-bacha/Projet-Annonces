@@ -101,16 +101,84 @@ class UtilisateurM extends spdo implements ModelInterface
 		}
 	}
 
-	public function delete($id){
 
+	/**
+	* Supprime un utilisateur de la BDD 
+	* @return bool 	: true "success" , false "failure"
+	*/
+	public function delete(){
+
+		// on récupère l'instance PDO
+		$db  = SPDO::getInstance();
+
+		try {
+			// preparation de la requete
+			$q = $db->prepare(
+					'DELETE FROM 
+					 UtilisateurM 
+					 WHERE nom = (:nom) AND email = (:email) AND mdp = (:mdp)'
+	 				);
+
+			// on remplace avec les vraies valeurs
+	 		$q->bindValue(':nom',   $this->nom);
+	 		$q->bindValue(':email', $this->email);
+	 		$q->bindValue(':mdp',   $this->mdp);
+
+		 	// execution de la requete
+		 	$q->execute();
+		 	return true;
+		}catch (PDOException $e) {
+			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+			return false;
+		}
 	}
 
-	public function update($id){
 
+	public function update(){
+		# code here ....
 	}
 
-	public function check($id){
 
+	/**
+	* Teste si un utilisateur existe déjà dans la BDD 
+	* @return bool 	: true "utilisateur existe" , false "utilisateur inexistant"
+	*/
+	public function check(){
+
+		// on récupère l'instance PDO
+		$db  = SPDO::getInstance();
+
+		try {
+			// preparation de la requete
+			$q = $db->prepare(
+					'SELECT id FROM  
+					 UtilisateurM 
+					 WHERE nom = (:nom) AND email = (:email) AND mdp = (:mdp)'
+	 				);
+
+			// on remplace avec les vraies valeurs
+			$q->bindValue(':nom',   $this->nom);
+	 		$q->bindValue(':email', $this->email);
+	 		$q->bindValue(':mdp',   $this->mdp);
+
+		 	// execution de la requete
+		 	$q->execute();
+
+		 	// on compte le nombre de ligne provenant du résultat de la requête
+		 	$result = $q->rowCount();
+			$q->closeCursor();
+
+			// Teste si le résultat de la requête est vide
+			if (empty($result)) {
+				return false;
+			}
+			else{
+				return true;
+			}
+		 		
+		}catch (PDOException $e) {
+			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+		}
 	}
 
 
