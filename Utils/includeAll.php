@@ -1,7 +1,10 @@
 <?php 
 
+$dir = dirname(__DIR__);
+
 // Chemin absolut 
-define("LOCAL_PATH", "/Applications/MAMP/htdocs/Projet-Annonces/");
+define("LOCAL_PATH", $dir."/");
+//echo LOCAL_PATH;
 
 
 /* include MODELES*/
