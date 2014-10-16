@@ -144,15 +144,19 @@ class UtilisateurM extends spdo implements ModelInterface
 		$db  = SPDO::getInstance();
 
 		try {
-                $req=$db->prepare('update UtilisateurM set nom= :nom, mdp= :mdp, email= :email where id= :id'); 
-               
-                $req->bindValue(':id',    $this->id);
-                $req->bindValue(':nom',   $this->nom);
-		 		$req->bindValue(':mdp',   $this->mdp);
-		 		$req->bindValue(':email', $this->email);
+            $req=$db->prepare('UPDATE UtilisateurM 
+            					SET nom = :nom,
+            					mdp = :mdp, 
+            					email = :email 
+            					WHERE id = :id'); 
+           
+            $req->bindValue(':id',    $this->id);
+            $req->bindValue(':nom',   $this->nom);
+	 		$req->bindValue(':mdp',   $this->mdp);
+	 		$req->bindValue(':email', $this->email);
 
-		 		$req->execute();
-		 		return true;
+	 		$req->execute();
+	 		return true;
 
 		}catch (PDOException $e) {
 			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
@@ -209,6 +213,7 @@ class UtilisateurM extends spdo implements ModelInterface
 	* @return UtilisateurM : o_UtilisateurM "utilisateur existe" , bool : false "utilisateur inexistant"
 	*/
 	public function getUser($_email, $_password){
+
 		if (self::check($_email, $_password)) {
 			// on récupère l'instance PDO
 			$db  = SPDO::getInstance();
@@ -219,7 +224,7 @@ class UtilisateurM extends spdo implements ModelInterface
 				$q = $db->prepare(
 						'SELECT * FROM  
 						 UtilisateurM 
-						 WHERE email=:email AND mdp=:mdp'
+						 WHERE email = :email AND mdp = :mdp'
 		 				);
 
 				// on remplace avec les vraies valeurs

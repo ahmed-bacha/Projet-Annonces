@@ -29,8 +29,34 @@ echo 'mot de passe de l\'utilisateur : '.$o_utilisateurM->mdp.'<br />';
 echo 'email de l\'utilisateur : '.$o_utilisateurM->email.'<br />';
 echo '<br />';
 
+// utilisateurC validateEmail TEST
+echo "EMAIL VALIDE (utilisateur_TSE_2@univ-st-etienne.fr) : ";
+var_dump(UtilisateurC::validateEmail('utilisateur_TSE_2@univ-st-etienne.fr'));
+echo "<br>";
+echo "EMAIL VALIDE (utilisateur_TSE_2univ-st-etienne.fr) : ";
+var_dump(UtilisateurC::validateEmail('utilisateur_TSE_2univ-st-etienne.fr'));
+
+// utilisateurC validatePassword TEST
+echo "<br>";
+echo "utilisateurC validatePassword  :: ";
+var_dump(UtilisateurC::validatePassword($o_utilisateurM->mdp));
+
+echo "<br>";
+echo "utilisateurC validatePassword  LOL :: ";
+var_dump(UtilisateurC::validatePassword("lol"));
+
+/*-- Test accesseur -------------------*/
+echo "<br>";
+echo "<br>";
+echo 'nom de l\'utilisateur : '.$o_utilisateurM->nom.'<br />';
+echo 'mot de passe de l\'utilisateur : '.$o_utilisateurM->mdp.'<br />';
+echo 'email de l\'utilisateur : '.$o_utilisateurM->email.'<br />';
+
+// utilisateurC controlAndSave TEST
 $utilisateurC = new UtilisateurC();
-$utilisateurC->controlAndSave($o_utilisateurM);
+echo "<br>";
+echo "utilisateurC controlAndSave :: ";
+var_dump($utilisateurC->controlAndSave($o_utilisateurM));
 
 
 /*-- Création controleur --------------

@@ -15,18 +15,17 @@ class UtilisateurC
 	* @param 	email			: email à valider
 	* @return 	bool 			: true "success" , false "failure"
 	*/
-	function validateEmail($email)
+	static function validateEmail($email)
 	{
-		if (!empty($email)) 
-		{
-			if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-				return true;
+		if (!empty($email)){
+			if (!empty(filter_var($email, FILTER_VALIDATE_EMAIL))) {
+				$result =  true;
 			}else{
-				return false;
+				$result =  false;
 			}
-		}else{
-			return false;
 		}
+
+		return $result;
 	}
 
 
@@ -35,7 +34,7 @@ class UtilisateurC
 	* @param 	pass			: mot de passe à valider
 	* @return 	bool 			: true "success" , false "failure"
 	*/
-	function validatePassword($pass)
+	static function validatePassword($pass)
 	{
 		if (!empty($pass)) 
 		{
@@ -58,21 +57,19 @@ class UtilisateurC
 	*/
 	function controlAndSave($utilisateurM)
 	{
-		// to do email,pass
-		if (!empty($utilisateurM->nom) ) 
-		{
-			$valide = false;
+		$valide = false;
 
+		// to do email,pass
+		if (($utilisateurM->nom)) 
+		{
 			if (self::validatePassword($utilisateurM->mdp) && self::validateEmail($utilisateurM->email))	
 			{
+				$utilisateurM->add();
 				$valide = true;
-				// to do SAVE
 			}
-
 			return $valide;
-	
 		}else{
-			return false;
+			return $valide;
 		}
 	}
 
