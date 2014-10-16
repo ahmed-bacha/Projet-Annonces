@@ -58,6 +58,29 @@ echo "<br>";
 echo "utilisateurC controlAndSave :: ";
 var_dump($utilisateurC->controlAndSave($o_utilisateurM));
 
+// utilisateurC checkUser TEST
+echo "<br>";
+echo "utilisateurC checkUser :: ";
+var_dump($utilisateurC->checkUser($o_utilisateurM->email,$o_utilisateurM->mdp));
+
+// utilisateurC getUser TEST
+echo "<br>";
+echo "utilisateurC getUser :: ";
+$o_utilisateurM = $utilisateurC->getUser($o_utilisateurM->email,$o_utilisateurM->mdp);
+var_dump($o_utilisateurM);
+
+/*-- Test accesseur -------------------*/
+echo "<br>";
+echo "<br>";
+echo 'id de l\'utilisateur : '.$o_utilisateurM->id.'<br />';
+echo 'nom de l\'utilisateur : '.$o_utilisateurM->nom.'<br />';
+echo 'mot de passe de l\'utilisateur : '.$o_utilisateurM->mdp.'<br />';
+echo 'email de l\'utilisateur : '.$o_utilisateurM->email.'<br />';
+
+// utilisateurC getUser TEST
+echo "<br>";
+echo "utilisateurC getUser :: ";
+var_dump($utilisateurC->deleteUser($o_utilisateurM));
 
 /*-- Création controleur --------------
 $o_utilisateurC = new UtilisateurC($bdd);

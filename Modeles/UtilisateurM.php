@@ -120,13 +120,11 @@ class UtilisateurM extends spdo implements ModelInterface
 			$q = $db->prepare(
 					'DELETE FROM 
 					 UtilisateurM 
-					 WHERE nom = (:nom) AND email = (:email) AND mdp = (:mdp)'
+					 WHERE id = (:id)'
 	 				);
 
 			// on remplace avec les vraies valeurs
-	 		$q->bindValue(':nom',   $this->nom);
-	 		$q->bindValue(':email', $this->email);
-	 		$q->bindValue(':mdp',   $this->mdp);
+	 		$q->bindValue(':id',   $this->id);
 
 		 	// execution de la requete
 		 	$q->execute();
@@ -180,12 +178,12 @@ class UtilisateurM extends spdo implements ModelInterface
 			$q = $db->prepare(
 					'SELECT id FROM  
 					 UtilisateurM 
-					 WHERE email = (:email) AND mdp = (:mdp)'
+					 WHERE email = (:email) AND mdp = (:pass)'
 	 				);
 
 			// on remplace avec les vraies valeurs
 	 		$q->bindValue(':email', $email);
-	 		$q->bindValue(':mdp',   $mdp);
+	 		$q->bindValue(':pass',   $pass);
 
 		 	// execution de la requete
 		 	$q->execute();
@@ -212,9 +210,10 @@ class UtilisateurM extends spdo implements ModelInterface
 	* Retourne un utilisateur par son mail
 	* @return UtilisateurM : o_UtilisateurM "utilisateur existe" , bool : false "utilisateur inexistant"
 	*/
-	public function getUser($_email, $_password){
+	public static function getUser($_email, $_password){
 
 		if (self::check($_email, $_password)) {
+
 			// on récupère l'instance PDO
 			$db  = SPDO::getInstance();
 
@@ -224,7 +223,8 @@ class UtilisateurM extends spdo implements ModelInterface
 				$q = $db->prepare(
 						'SELECT * FROM  
 						 UtilisateurM 
-						 WHERE email = :email AND mdp = :mdp'
+						 WHERE email = :email AND mdp = :mdp
+						 LIMIT 1'
 		 				);
 
 				// on remplace avec les vraies valeurs
@@ -244,7 +244,7 @@ class UtilisateurM extends spdo implements ModelInterface
 				echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
 			}
 		} else {
-			return false;
+			return null;
 		}	
 	}
 

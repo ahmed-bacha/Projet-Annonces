@@ -73,6 +73,39 @@ class UtilisateurC
 		}
 	}
 
+	/**
+	* Vérifie si l'email et le mdp existent en BDD
+	* @param  string email   	:  email de l'utilisateur
+	* @param  string password 	:  mdp de l'utilisateur
+	* @return 	bool 			: true "success" , false "failure"
+	*/
+	function checkUser($email,$password)
+	{
+		return utilisateurM::check($email,$password);
+	}
+
+	/**
+	* Recupère un objet utilisateur dans la BDD si (email,password) existent
+	* sinon NULL
+	* @param  string email   	:  email de l'utilisateur
+	* @param  string password 	:  mdp de l'utilisateur
+	* @return 	utilisateurM 	:  objet utilisateur ou NULL
+	*/
+	function getUser($email,$password)
+	{
+		return utilisateurM::getUser($email,$password);
+	}
+
+	/**
+	* Supprime un utilisateur de la BDD 
+	* @param 	utilisateurM	: objet utilisateurM
+	* @return 	bool 			: true "success" , false "failure"
+	*/
+	function deleteUser($utilisateurM)
+	{
+		return $utilisateurM->delete();
+	}
+
 
 }
 
