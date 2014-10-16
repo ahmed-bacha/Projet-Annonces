@@ -55,6 +55,10 @@ class UtilisateurM extends spdo implements ModelInterface
 	* 			);	
 	*/
 	public function hydrate($donnees){
+		
+		if (isset($donnees['id'])){
+    		$this->id = $donnees['id'];
+  		}
 
     	if (isset($donnees['nom'])){
     		$this->nom = $donnees['nom'];
