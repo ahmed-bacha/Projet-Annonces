@@ -147,7 +147,7 @@ class UtilisateurM extends spdo implements ModelInterface
 	* Teste si un utilisateur existe déjà dans la BDD 
 	* @return bool 	: true "utilisateur existe" , false "utilisateur inexistant"
 	*/
-	public function check(){
+	public static function check($email,$pass){
 
 		// on récupère l'instance PDO
 		$db  = SPDO::getInstance();
@@ -157,13 +157,12 @@ class UtilisateurM extends spdo implements ModelInterface
 			$q = $db->prepare(
 					'SELECT id FROM  
 					 UtilisateurM 
-					 WHERE nom = (:nom) AND email = (:email) AND mdp = (:mdp)'
+					 WHERE email = (:email) AND mdp = (:mdp)'
 	 				);
 
 			// on remplace avec les vraies valeurs
-			$q->bindValue(':nom',   $this->nom);
-	 		$q->bindValue(':email', $this->email);
-	 		$q->bindValue(':mdp',   $this->mdp);
+	 		$q->bindValue(':email', $email);
+	 		$q->bindValue(':mdp',   $mdp);
 
 		 	// execution de la requete
 		 	$q->execute();
