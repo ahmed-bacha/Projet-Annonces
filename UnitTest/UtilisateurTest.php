@@ -77,10 +77,17 @@ echo 'nom de l\'utilisateur : '.$o_utilisateurM->nom.'<br />';
 echo 'mot de passe de l\'utilisateur : '.$o_utilisateurM->mdp.'<br />';
 echo 'email de l\'utilisateur : '.$o_utilisateurM->email.'<br />';
 
-// utilisateurC getUser TEST
+// utilisateurC deleteUser TEST
 echo "<br>";
-echo "utilisateurC getUser :: ";
-var_dump($utilisateurC->deleteUser($o_utilisateurM));
+echo "utilisateurC deleteUser :: ";
+//var_dump($utilisateurC->deleteUser($o_utilisateurM));
+
+// utilisateurC updateUser TEST
+echo "<br>";
+echo "utilisateurC updateUser :: ";
+$o_utilisateurM->nom = "FrameWork";
+$o_utilisateurM->mdp = "CakePHP";
+var_dump($utilisateurC->updateUser($o_utilisateurM));
 
 /*-- Création controleur --------------
 $o_utilisateurC = new UtilisateurC($bdd);

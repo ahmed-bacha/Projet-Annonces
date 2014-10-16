@@ -106,6 +106,16 @@ class UtilisateurC
 		return $utilisateurM->delete();
 	}
 
+	/**
+	* Update les champs d'un utilisateur en BDD 
+	* @param 	utilisateurM	: objet utilisateurM
+	* @return 	bool 			: true "success" , false "failure"
+	*/
+	function updateUser($utilisateurM)
+	{
+		return $utilisateurM->update();
+	}
+
 
 }
 
