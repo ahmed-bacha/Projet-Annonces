@@ -186,6 +186,45 @@ class UtilisateurM extends spdo implements ModelInterface
 
 
 	/**
+	* Retourne un utilisateur par son mail
+	* @return UtilisateurM : o_UtilisateurM "utilisateur existe" , bool : false "utilisateur inexistant"
+	*/
+	public function getUser($_email, $_password){
+		if (self::check($_email, $_password)) {
+			// on récupère l'instance PDO
+			$db  = SPDO::getInstance();
+
+			//Connexion à la base de données
+			try {
+				// preparation de la requete
+				$q = $db->prepare(
+						'SELECT * FROM  
+						 UtilisateurM 
+						 WHERE email=:email AND mdp=:mdp'
+		 				);
+
+				// on remplace avec les vraies valeurs
+		 		$q->bindValue(':email', $_email);
+		 		$q->bindValue(':mdp',   $_password);
+
+			 	// execution de la requete
+			 	$q->execute();
+
+			 	// on compte le nombre de ligne provenant du résultat de la requête
+			 	$_donnees = $q->fetch(PDO::FETCH_ASSOC);
+
+				//Création nouvelle utilisateur et renvoie
+				$o_UtilisateurM = new UtilisateurM($_donnees);
+				return $o_UtilisateurM;
+			}catch (PDOException $e) {
+				echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+			}
+		} else {
+			return false;
+		}	
+	}
+
+	/**
 	* Setter pour tous les champs de la classe
 	* Exemple d'utilisation : 
 	* $user = UtilisateurM($donnees);
