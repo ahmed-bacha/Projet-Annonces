@@ -139,7 +139,26 @@ class UtilisateurM extends spdo implements ModelInterface
 
 
 	public function update(){
-		# code here ....
+			
+	{
+		$db  = SPDO::getInstance();
+
+		try {
+                $req=$db->prepare('update UtilisateurM set nom= :nom, mdp= :mdp, email= :email where id= :id'); 
+               
+                $req->bindValue(':id',    $this->id);
+                $req->bindValue(':nom',   $this->nom);
+		 		$req->bindValue(':mdp',   $this->mdp);
+		 		$req->bindValue(':email', $this->email);
+
+		 		$req->execute();
+		 		return true;
+
+		}catch (PDOException $e) {
+			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+			return false;
+		}
+	}
 	}
 
 

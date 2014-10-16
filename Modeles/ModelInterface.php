@@ -17,7 +17,7 @@ interface ModelInterface
 
 	public function update();
 
-	public function check();
+	public static function check($email,$pass);
 
 }
 
