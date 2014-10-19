@@ -73,14 +73,15 @@ if ($form_ok) {
 	if (!$exist) {
 
 		$result = $userC->controlAndSave($userM);
+		header("Location: single-annonce.php");
 
 	}
 	else {
 		$erreur[] = " l'utilisateur existe dans la base de données";
-		header("Location : sign-up.php");
+		header("Location: sign-up.php?err=".json_encode($erreur));
 	}
 }else {
-	header("Location : sign-up.php");
+		header("Location: sign-up.php?err=".json_encode($erreur));
 }
 
  ?>

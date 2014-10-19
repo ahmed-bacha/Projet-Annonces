@@ -8,12 +8,16 @@ require_once("header.php");
 <div class="well col-lg-5 col-lg-offset-3">
 
 <?php 
-	 if(isset($erreur) && !empty($erreur)){
+	
+	 if(isset($_GET['err']) && !empty($_GET['err'])){
+		$erreur = json_decode($_GET['err']);
 
 ?>
    <div class="alert alert-danger" role="alert">
    	<?php 
-   	print_r($erreur);
+   		foreach ($erreur as $value){
+    		echo "<p>$value</p>";
+		}
    	 ?>
 	</div>				
 <?php 				
