@@ -7,7 +7,19 @@ require_once("header.php");
 <!-- Page Content -->
 <div class="well col-lg-5 col-lg-offset-3">
 
-	<form role="form" method="POST" action="sign-up-traitement.php">
+<?php 
+	 if(isset($erreur) && !empty($erreur)){
+
+?>
+   <div class="alert alert-danger" role="alert">
+   	<?php 
+   	print_r($erreur);
+   	 ?>
+	</div>				
+<?php 				
+	 }
+ ?>
+    <form role="form" method="POST" action="sign-up-traitement.php">
 
 		<div class="form-group">
 			<label for="nom">Nom</label>

@@ -9,14 +9,19 @@ extract($_POST);
 // traitement des données
 $form_ok = true;
 
+$erreur = array(); 
+
 // verification du nom
 if(empty($nom)){
 	$form_ok = false;
+	$erreur[] = "Le champ nom est vide"; 
 }
 
 // verification email
 if(!UtilisateurC::validateEmail($email)){
 	$form_ok = false;
+	$erreur[] = " Le champ email est invalide";
+
 }
 
 // verification password
@@ -24,25 +29,33 @@ if(!empty($password) && !empty($password_confirme)){
 
 	if(!UtilisateurC::validatePassword($password)){
 		$form_ok = false;
+		$erreur[] = " Le champ password est invalide";
+
 	}
 
-	if(!UtilisateurC::validatePassword($password)){
+	if(!UtilisateurC::validatePassword($password_confirme)){
 		$form_ok = false;
+		$erreur[] = " Le champ password confirmé est invalide";
+
 	}
 
 }else{
 	$form_ok = false;
+	$erreur[] = " Les champs password et password confirmé sont vides";
+
+
 }
 
 
 // verification password identiques
 if($password != $password_confirme){
 	$form_ok = false;
+	$erreur[] = " Le champ password et password confirmé ne sont pas identiques ";
+
 }
 
 if ($form_ok) {
 
-	echo "<br> formulaire OK ! <br>";
 
 	$userM 	= new UtilisateurM(array(
 					'nom' 	=> $nom,
@@ -50,24 +63,24 @@ if ($form_ok) {
 					'email' => $email
 				));
 
-	var_dump($userM);
 
 	$userC 	= new UtilisateurC();
 
 	$exist  = $userC->checkUser($userM->email, $userM->mdp);
 
-	echo "<br> exist : ";
-	var_dump($exist);
-	echo "<br>";
+	
 
 	if (!$exist) {
 
 		$result = $userC->controlAndSave($userM);
 
-		echo "<br> result : ";
-		var_dump($result);
-		echo "<br>";
 	}
+	else {
+		$erreur[] = " l'utilisateur existe dans la base de données";
+		header("Location : sign-up.php");
+	}
+}else {
+	header("Location : sign-up.php");
 }
 
  ?>
