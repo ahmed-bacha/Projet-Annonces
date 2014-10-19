@@ -7,7 +7,7 @@ require_once("header.php");
 <!-- Page Content -->
 <div class="well col-lg-5 col-lg-offset-3">
 
-	<form role="form">
+	<form role="form" method="POST" action="sign-up-traitement.php">
 
 		<div class="form-group">
 			<label for="nom">Nom</label>
@@ -41,7 +41,7 @@ require_once("header.php");
 		  		<div class="input-group-addon">
 		  			<span class="glyphicon glyphicon-lock"></span>
 		 		 </div>
-		  		<input type="password" class="form-control" id="password" placeholder="*********">
+		  		<input name="password_confirme" type="password" class="form-control" id="password" placeholder="*********">
 			</div>
 		</div>
 

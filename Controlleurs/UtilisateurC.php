@@ -17,6 +17,8 @@ class UtilisateurC
 	*/
 	static function validateEmail($email)
 	{
+		$result =  false;
+
 		if (!empty($email)){
 			if (!empty(filter_var($email, FILTER_VALIDATE_EMAIL))) {
 				$result =  true;
