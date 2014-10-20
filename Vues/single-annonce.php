@@ -4,26 +4,19 @@ require_once("../Utils/includeAll.php");
 // On démarre la session 
 session_start();
 
-
-if (isset($_GET['id'])) {
-    $utilisateurC = new UtilisateurC();
-    $user = $utilisateurC->getUserById($_GET['id']);
-     
-    // On  crée les variables de session dans $_SESSION
-    $_SESSION['id']    = $user->id;
-    $_SESSION['email'] = $user->email;
-    $_SESSION['nom']   = $user->nom;
-
+if(isset($_SESSION['utilisateurM'])){
+	$userM = $_SESSION['utilisateurM'];
 }
+
 
 ?>
 
-
 <!-- Header -->
-<?php 
+<?php
 
 $title = "Exemple d'une annonce";
 require_once("header.php");
+
 
  ?>
 

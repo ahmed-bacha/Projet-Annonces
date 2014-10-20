@@ -32,10 +32,10 @@
             </li>
             
             <?php 
-            if (isset($_SESSION['nom'])) {
+            if (isset($userM)) {
                 ?>
                 <li>
-                    <?php echo '<a href="profile.php?id='.$_SESSION['id'].'">' ."Bonjour : ". $_SESSION['nom'] .'</a>'; ?>
+                    <?php echo '<a href="profile.php?id='.$userM->id.'">' ."Bonjour : ".$userM->nom.'</a>'; ?>
                 </li>
                 <li>
                     <a href="log-out.php">Logout</a>

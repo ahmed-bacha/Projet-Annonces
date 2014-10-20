@@ -8,8 +8,12 @@
  * @package 	Modeles
  */
 
-class UtilisateurM extends spdo implements ModelInterface  
+class UtilisateurM implements ModelInterface  
 {
+	/**
+ 	* @var objet PDO
+ 	*/
+	private static $db;
 	
 	/**
  	* @var int

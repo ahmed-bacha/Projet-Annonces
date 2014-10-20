@@ -12,22 +12,26 @@ if (isset($email) && isset($password)) {
 	// Création controlleur
 	$utilisateurC = new UtilisateurC();
 
-
 	// Test si l'utilisateur est présent dans la BDD
 	if ($utilisateurC->checkUser($email,$password)) {
 
-		// Récupération du User
-		$user = $utilisateurC->getUser($email,$password);
+		//demarrage de la session
+		session_start();
 
-		header("Location: single-annonce.php?id=".$user->id);
+		// Récupération du User
+		$utilisateurM = $utilisateurC->getUser($email,$password);
+
+	    // On  crée les variables de session dans $_SESSION
+		$_SESSION['utilisateurM']    = $utilisateurM;
+
+		header("Location: single-annonce.php");
 
 	}
 
 }else{
 
 	header("Location: single-annonce.php");
+
 }
 
-
-
- ?>
+?>
