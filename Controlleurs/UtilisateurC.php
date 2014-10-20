@@ -87,6 +87,15 @@ class UtilisateurC
 	}
 
 	/**
+	* Teste si un utilisateur existe déjà dans la BDD 
+	* @return bool 	: true "utilisateur existe" , false "utilisateur inexistant"
+	*/
+	public static function checkById($_id){
+		return utilisateur::checkById($_id);
+	}
+
+
+	/**
 	* Recupère un objet utilisateur dans la BDD si (email,password) existent
 	* sinon NULL
 	* @param  string email   	:  email de l'utilisateur
@@ -96,6 +105,19 @@ class UtilisateurC
 	function getUser($email,$password)
 	{
 		return utilisateurM::getUser($email,$password);
+	}
+
+
+	/**
+	* Recupère un objet utilisateur dans la BDD si (email,password) existent
+	* sinon NULL
+	* @param  string email   	:  email de l'utilisateur
+	* @param  string password 	:  mdp de l'utilisateur
+	* @return 	utilisateurM 	:  objet utilisateur ou NULL
+	*/
+	function getUserById($id)
+	{
+		return utilisateurM::getUserById($id);
 	}
 
 	/**

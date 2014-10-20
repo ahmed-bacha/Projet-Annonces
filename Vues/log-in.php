@@ -7,9 +7,9 @@ require_once("header.php");
 <!-- Page Content -->
 <div class="well col-lg-5 col-lg-offset-3">
 
-	<form role="form">
+	<form role="form" method="POST" action="log-in-traitement.php">
 
-	  <div class="form-group">
+	  <div class="form-group" >
 	    <label for="mail">Adresse email</label>
 	    <div class="input-group">
 	      <div class="input-group-addon">@</div>

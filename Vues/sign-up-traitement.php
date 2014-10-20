@@ -73,7 +73,7 @@ if ($form_ok) {
 	if (!$exist) {
 
 		$result = $userC->controlAndSave($userM);
-		header("Location: single-annonce.php");
+		header("Location: log-in.php");
 
 	}
 	else {

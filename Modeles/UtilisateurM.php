@@ -206,6 +206,50 @@ class UtilisateurM extends spdo implements ModelInterface
 	}
 
 
+
+	/**
+	* Teste si un utilisateur existe déjà dans la BDD 
+	* @return bool 	: true "utilisateur existe" , false "utilisateur inexistant"
+	*/
+	public static function checkById($_id){
+
+		// on récupère l'instance PDO
+		$db  = SPDO::getInstance();
+
+		try {
+			// preparation de la requete
+			$q = $db->prepare(
+					'SELECT id FROM  
+					 UtilisateurM 
+					 WHERE id = (:id) '
+	 				);
+
+			// on remplace avec les vraies valeurs
+	 		$q->bindValue(':id', $_id);
+
+
+		 	// execution de la requete
+		 	$q->execute();
+
+		 	// on compte le nombre de ligne provenant du résultat de la requête
+		 	$result = $q->rowCount();
+			$q->closeCursor();
+
+			// Teste si le résultat de la requête est vide
+			if (empty($result)) {
+				return false;
+			}
+			else{
+				return true;
+			}
+		 		
+		}catch (PDOException $e) {
+			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+		}
+	}
+
+
+
 	/**
 	* Retourne un utilisateur par son mail
 	* @return UtilisateurM : o_UtilisateurM "utilisateur existe" , bool : false "utilisateur inexistant"
@@ -247,6 +291,49 @@ class UtilisateurM extends spdo implements ModelInterface
 			return null;
 		}	
 	}
+
+
+
+	/**
+	* Retourne un utilisateur par son id
+	* @return UtilisateurM : o_UtilisateurM "utilisateur existe" , bool : false "utilisateur inexistant"
+	*/
+	public static function getUserById($_id){
+
+		if (self::checkById($_id)) {
+
+			// on récupère l'instance PDO
+			$db  = SPDO::getInstance();
+
+			//Connexion à la base de données
+			try {
+				// preparation de la requete
+				$q = $db->prepare(
+						'SELECT * FROM  
+						 UtilisateurM 
+						 WHERE id = :id' 
+		 				);
+
+				// on remplace avec les vraies valeurs
+		 		$q->bindValue(':id', $_id);
+
+			 	// execution de la requete
+			 	$q->execute();
+
+			 	// on compte le nombre de ligne provenant du résultat de la requête
+			 	$_donnees = $q->fetch(PDO::FETCH_ASSOC);
+
+				//Création nouvelle utilisateur et renvoie
+				$o_UtilisateurM = new UtilisateurM($_donnees);
+				return $o_UtilisateurM;
+			}catch (PDOException $e) {
+				echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+			}
+		} else {
+			return null;
+		}	
+	}
+
 
 	/**
 	* Setter pour tous les champs de la classe

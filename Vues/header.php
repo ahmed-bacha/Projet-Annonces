@@ -1,3 +1,4 @@
+
 <html>
 <!-- debut head -->
 <head>
@@ -37,6 +38,7 @@
 
 <!-- Menu -->
 <?php 
+
 require_once("menu.php"); 
 ?>	
 

@@ -30,15 +30,29 @@
             <li>
                 <a href="single-annonce.php">Annonce</a>
             </li>
-            <li>
-                <a href="profile.php">Profile</a>
-            </li>
-            <li>
-                <a href="sign-up.php">Sign Up</a>
-            </li>
-            <li>
-                <a href="log-in.php">Login</a>
-            </li>
+            
+            <?php 
+            if (isset($_SESSION['nom'])) {
+                ?>
+                <li>
+                    <?php echo '<a href="profile.php?id='.$_SESSION['id'].'">' ."Bonjour : ". $_SESSION['nom'] .'</a>'; ?>
+                </li>
+                <li>
+                    <a href="log-out.php">Logout</a>
+                </li>
+            <?php
+
+            }else{
+                ?>
+                <li>
+                    <a href="sign-up.php">Sign Up</a>
+                </li>
+                <li>
+                    <a href="log-in.php">Login</a>
+                </li>
+            <?php
+            }
+             ?>
         </ul>
     </div>
 </nav>

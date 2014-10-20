@@ -1,7 +1,17 @@
 <!-- Header -->
 <?php 
-$title = "Home Page";
+session_start();
+
 require_once("header.php");
+require_once("../Utils/includeAll.php");
+
+
+$title = "Home Page";
+
+
+$utilisateurC = new UtilisateurC();
+$user = $utilisateurC->getUserById($_SESSION['id']);
+
  ?>
 
 <!-- Page Content -->
@@ -11,12 +21,12 @@ require_once("header.php");
 
 	  <div class="form-group">
 	    <label for="nom">Nom</label>
-	    <p><strong>SAM</strong></p>
+	    <p><strong><?php echo $user->nom; ?></strong></p>
 	  </div>
 
 	  <div class="form-group">
 	    <label for="email">Email</label>
-	    <p><strong>sam@gmail.com</strong></p>
+	    <p><strong><?php echo $user->email ?></strong></p>
 	  </div>
 
 	  <div class="form-group col-lg-6 col-lg-offset-3">
