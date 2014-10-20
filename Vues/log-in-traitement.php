@@ -6,8 +6,13 @@ require_once("../Utils/includeAll.php");
 // Extraction des variables POST
 extract($_POST);
 
+
+$erreur = array(); 
+
+
+
 // Test variables POST
-if (isset($email) && isset($password)) {
+if (UtilisateurC::validateEmail($email) && UtilisateurC::validatePassword($password)) {
 
 	// Création controlleur
 	$utilisateurC = new UtilisateurC();
@@ -27,10 +32,19 @@ if (isset($email) && isset($password)) {
 		header("Location: single-annonce.php");
 
 	}
+	else{
+
+		$erreur[] = "Email ou mot de passe incorrects";
+		header("Location: log-in.php?err=".json_encode($erreur));
+
+
+	}
 
 }else{
 
-	header("Location: single-annonce.php");
+	$erreur[] = "Email ou mot de passe incorrects";
+	header("Location: log-in.php?err=".json_encode($erreur));
+
 
 }
 
