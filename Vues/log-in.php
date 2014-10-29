@@ -34,23 +34,6 @@ require_once("header.php");
 	 
 	</form>
 
-     <?php 
-
-			if(isset($_POST['mail'], $_POST['password'])){
-				
-
-			}
-
-
-
-
-
-
-       ?>
-
-
-
-
 </div>
 
 <!-- Footer -->
