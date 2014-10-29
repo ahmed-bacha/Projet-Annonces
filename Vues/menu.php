@@ -44,6 +44,7 @@
             <li>
                 <a href="single-annonce.php">Annonces</a>
                 <a href="reponse-annonce.php">Reponse annonce</a>
+                <a href="add-annonce.php">Add annonce</a>
             </li>
           </ul>
         </li>
