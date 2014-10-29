@@ -1,12 +1,13 @@
 <!-- Header -->
 <?php 
+
 $title = "Home Page";
 require_once("header.php");
+
  ?>
 
 <!-- Page Content -->
 <div class="well col-lg-5 col-lg-offset-3">
-
 
 	<?php 
 	

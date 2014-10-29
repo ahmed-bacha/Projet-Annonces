@@ -4,22 +4,22 @@ require_once("../Utils/includeAll.php");
 // On démarre la session 
 session_start();
 
+
 if(isset($_SESSION['utilisateurM'])){
 	$userM = $_SESSION['utilisateurM'];
 }
 
-
 ?>
 
+
 <!-- Header -->
-<?php
+<?php 
 
 $title = "Exemple d'une annonce";
 require_once("header.php");
 
-
  ?>
-
+ 
 <!-- Page Content -->
 
 <!-- ligne  -->

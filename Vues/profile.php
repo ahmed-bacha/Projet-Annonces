@@ -1,17 +1,19 @@
+<!-- Header -->
 <?php 
-require_once("../Utils/includeAll.php");
 session_start();
+session
 
-
-if(isset($_SESSION['utilisateurM'])){
-	$userM = $_SESSION['utilisateurM'];
-}
-
-// titre de la page obligatoire à mettre avant l'import du header
-$title = "Home Page";
 require_once("header.php");
+require_once("../Utils/includeAll.php");
 
-?>
+
+$title = "Home Page";
+
+
+$utilisateurC = new UtilisateurC();
+$user = $utilisateurC->getUserById($_SESSION['id']);
+
+ ?>
 
 <!-- Page Content -->
 <div class="well col-lg-5 col-lg-offset-3">
@@ -20,12 +22,12 @@ require_once("header.php");
 
 	  <div class="form-group">
 	    <label for="nom">Nom</label>
-	    <p><strong><?php echo $userM->nom; ?></strong></p>
+	    <p><strong><?php echo $user->nom; ?></strong></p>
 	  </div>
 
 	  <div class="form-group">
 	    <label for="email">Email</label>
-	    <p><strong><?php echo $userM->email ?></strong></p>
+	    <p><strong><?php echo $user->email ?></strong></p>
 	  </div>
 
 	  <div class="form-group col-lg-6 col-lg-offset-3">
