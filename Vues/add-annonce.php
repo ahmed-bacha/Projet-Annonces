@@ -110,7 +110,7 @@ require_once("header.php");
 					      	<img data-src="holder.js/300x300" alt="...">  	
 					    	<div class="caption">
 					    		<p>
-					        		<button type="button" class="btn btn-primary btn-lg btn-block">Ajouter une image</button>
+					        		<button type="button" class="btn btn-primary">Ajouter une image</button>
 					    		</p>
 					    	</div>
 					    </div>
@@ -120,7 +120,7 @@ require_once("header.php");
 					      	<img data-src="holder.js/300x300" alt="...">  	
 					    	<div class="caption">
 					    		<p>
-					        		<button type="button" class="btn btn-primary btn-lg btn-block">Ajouter une image</button>
+					        		<button type="button" class="btn btn-primary">Ajouter une image</button>
 					    		</p>
 					    	</div>
 					    </div>
@@ -130,7 +130,7 @@ require_once("header.php");
 					      	<img data-src="holder.js/300x300" alt="...">  	
 					    	<div class="caption">
 					    		<p>
-					        		<button type="button" class="btn btn-primary btn-lg btn-block">Ajouter une image</button>
+					        		<button type="button" class="btn btn-primary">Ajouter une image</button>
 					    		</p>
 					    	</div>
 					    </div>
@@ -144,12 +144,10 @@ require_once("header.php");
   			   	</h4>
 		   	</blockquote>
 
-			<div class="row">
-				<div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">	
-					<p>
-					    <button type="button" class="btn btn-primary btn-lg btn-block">Soumettre</button>
-					</p>
-				</div>
+			<div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">	
+				<p>
+				    <button type="button" class="btn btn-primary">Soumettre</button>
+				</p>
 			</div>
 		</form>
 	</div>

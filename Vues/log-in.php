@@ -7,9 +7,27 @@ require_once("header.php");
 <!-- Page Content -->
 <div class="well col-lg-5 col-lg-offset-3">
 
-	<form role="form", methode= "post">
 
-	  <div class="form-group">
+	<?php 
+	
+	 if(isset($_GET['err']) && !empty($_GET['err'])){
+		$erreur = json_decode($_GET['err']);
+
+	?>
+	   <div class="alert alert-danger" role="alert">
+	   	<?php 
+	   		foreach ($erreur as $value){
+	    		echo "<p>$value</p>";
+			}
+	   	 ?>
+		</div>				
+	<?php 				
+		 }
+	 ?>
+
+	<form role="form" method="POST" action="log-in-traitement.php">
+
+	  <div class="form-group" >
 	    <label for="mail">Adresse email</label>
 	    <div class="input-group">
 	      <div class="input-group-addon">@</div>
