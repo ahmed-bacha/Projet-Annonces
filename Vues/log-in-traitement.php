@@ -36,8 +36,6 @@ if (UtilisateurC::validateEmail($email) && UtilisateurC::validatePassword($passw
 
 		$erreur[] = "Email ou mot de passe incorrects";
 		header("Location: log-in.php?err=".json_encode($erreur));
-
-
 	}
 
 }else{

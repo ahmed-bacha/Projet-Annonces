@@ -3,8 +3,29 @@
 $title = "Home Page";
 require_once("header.php");
  ?>
+	<?php 
 
+	 if(isset($_GET['err']) && !empty($_GET['err'])){
+		$erreur = json_decode($_GET['err']);
+	?>  
+       <div class="row">
+       <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-12 col-lg-offset-2 col-lg-4">
+	   <div class="alert alert-danger" role="alert">
+	   	<?php 
+	   		foreach ($erreur as $value){
+	    		echo "<p>$value</p>";
+			}
+	   	 ?>
+		</div>	
+        </div>
+        </div>			
+	<?php 				
+		 }
+	 ?>
+	 
 <!-- Page Content -->
+<form role="form" method="POST" action="mail-traitement.php">
+
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-12 col-lg-offset-2 col-lg-8">
 		    <blockquote>
@@ -12,34 +33,22 @@ require_once("header.php");
 		   	</blockquote>
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">		   	
-		<form role="form">
 		  <div class="form-group">
 		    <label for="exampleInputNom">Nom</label>
 		    <div class="input-group">
 			  <span class="input-group-addon"><span class="glyphicon  glyphicon-pencil"></span></span>
-			  <input type="text" class="form-control" placeholder="Votre nom">
+			  <input name ="nom" type="text" class="form-control" placeholder="Votre nom">
 			</div>
 		  </div>
 		</div>
 	</div>
-<div class="row">
-	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">				  
-		  <div class="form-group">
-		    <label for="exampleInputTeleph">Téléphone</label>
-		    <div class="input-group">
-			  <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span></span>
-			  <input type="text" class="form-control" placeholder="Votre numéro de téléphone">
-			</div>
-		  </div>
-	</div>
-</div>
 <div class="row">
 	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">			  
 		 <div class="form-group">
 		    <label for="exampleInputEmail">Email</label>
 		    <div class="input-group">
 			  <span class="input-group-addon"><span class="glyphicon  glyphicon-envelope"></span></span>
-			  <input type="text" class="form-control" placeholder="Votre email">
+			  <input name="email" type="email" class="form-control" placeholder="Votre email">
 			</div>
 		  </div>
 	</div>
@@ -48,7 +57,7 @@ require_once("header.php");
 	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">			  
 		  <div class="form-group">
 		  	<label for="exampleInputText">Texte</label>
-		  	<textarea class="form-control" placeholder="Votre texte" rows="2"></textarea>
+		  	<textarea name="text" class="form-control" placeholder="Votre texte" rows="2"></textarea>
 		  </div>
 	</div>
 </div>
@@ -56,14 +65,13 @@ require_once("header.php");
 	<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">			  
           <div class="form-group">
           	<div class="checkbox">
-              <label> <input type="checkbox"> Recevoir une copie de cet email </label>
+              <label> <input type="checkbox"name="check" value="true"> Recevoir une copie de cet email </label>
              </div>
-			<button type="button" class="btn btn-default active">Envoyer</button>
+			<button type="submit" class="btn btn-default active">Envoyer</button>
           </div>
-		</form>
 	</div>
 </div>
-
+</form>
 <!-- Footer -->
 <?php 
 require_once("footer.php"); 

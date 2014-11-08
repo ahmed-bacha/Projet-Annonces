@@ -3,11 +3,29 @@
 $title = "Home Page";
 require_once("header.php");
  ?>
+	<?php 
 
+	 if(isset($_GET['err']) && !empty($_GET['err'])){
+		$erreur = json_decode($_GET['err']);
+	?>  
+       <div class="row">
+       <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-12 col-lg-offset-2 col-lg-4">
+	   <div class="alert alert-danger" role="alert">
+	   	<?php 
+	   		foreach ($erreur as $value){
+	    		echo "<p>$value</p>";
+			}
+	   	 ?>
+		</div>	
+        </div>
+        </div>			
+	<?php 				
+		 }
+	 ?>
 <!-- Page Content -->
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-12 col-lg-offset-2 col-lg-8">
-		<form role="form">
+		<form role="form" method="POST" action= "add-annonce-traitement.php">
 		   
 		  	<!-- Champs pour les informations sur l'utilisateur -->
 		   	<blockquote>
@@ -24,7 +42,7 @@ require_once("header.php");
 					  		<span class="input-group-addon">
 					  			<span class="glyphicon glyphicon-user"></span>
 					  		</span>
-					  		<input type="text" class="form-control" placeholder="Nom">
+					  		<input type="text" name="nom" class="form-control" placeholder="Nom">
 						</div>
 				   	</div>
 				</div>
@@ -40,7 +58,7 @@ require_once("header.php");
 					  		<span class="input-group-addon">
 					  			<span class="glyphicon glyphicon-user"></span>
 					  		</span>
-					  		<input type="text" class="form-control" placeholder="Prénom">
+					  		<input type="text" name="prenom" class="form-control" placeholder="Prénom">
 						</div>
 				   	</div>
 				</div>
@@ -56,7 +74,7 @@ require_once("header.php");
 					  		<span class="input-group-addon">
 					  			<span class="glyphicon glyphicon-earphone"></span>
 					  		</span>
-					  		<input type="text" class="form-control" placeholder="Téléphone">
+					  		<input type="tel" name="telephone" class="form-control" placeholder="Téléphone">
 						</div>
 				   	</div>
 				</div>
@@ -75,7 +93,7 @@ require_once("header.php");
 				    	<label for="exampleInputEmail1">Titre de l'annonce</label>
 				    	<div class="input-group">
 					  		<span class="input-group-addon"><span class="glyphicon  glyphicon-pencil"></span></span>
-					  	<input type="text" class="form-control" placeholder="Titre de l'annonce">
+					  	<input type="text" name="titre" class="form-control" placeholder="Titre de l'annonce">
 						</div>
 				  	</div>
 				</div>
@@ -87,7 +105,7 @@ require_once("header.php");
 				    	<label for="exampleInputPassword1">Prix de l'annonce</label>
 				    	<div class="input-group">
 					  		<span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
-					  		<input type="text" class="form-control" placeholder="Prix de l'annonce">
+					  		<input type="text" name="prix" class="form-control" placeholder="Prix de l'annonce">
 						</div>
 				  	</div>
 				</div>
@@ -97,7 +115,7 @@ require_once("header.php");
 		  		<label for="exampleInputEmail1">
 		  			Description de l'annonce
 		  		</label>
-		  		<textarea class="form-control" placeholder="Saisir une description de l'annonce" rows="3"></textarea>
+		  		<textarea class="form-control" name="description" placeholder="Saisir une description de l'annonce" rows="3"></textarea>
 		 	 </div>
 		  	
 		  	<div class="form-group">
@@ -147,7 +165,7 @@ require_once("header.php");
 			<div class="row">
 				<div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">	
 					<p>
-					    <button type="button" class="btn btn-primary btn-lg btn-block">Soumettre</button>
+					    <button type="submit" class="btn btn-primary btn-lg btn-block">Soumettre</button>
 					</p>
 				</div>
 			</div>
