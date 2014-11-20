@@ -198,32 +198,34 @@ class AnnonceM implements ModelInterface{
 
 
 	public function update(){		
-		
+
 		$db  = SPDO::getInstance();
 
 		try {
             $req=$db->prepare('UPDATE annonceM 
-            					idUtilisateur, statut, nom, prenom, telephone, titre, prix, description, images
+            					
             					SET idUtilisateur 	= :idUtilisateur,
             						statut 			= :statut, 
             						nom 			= :nom,
             						prenom 			= :prenom,
             						telephone 		= :telephone, 
             						titre 			= :titre,
-            						prix 			= :prix
-            						description 	= :description
+            						prix 			= :prix,
+            						description 	= :description,
             						images 			= :images
             					
             					WHERE id = :id'); 
            
-	 		$q->bindValue(':idUtilisateur'	, 	$this->idUtilisateur);
-	 		$q->bindValue(':statut'			, 	$this->statut);
-	 		$q->bindValue(':nom'			, 	$this->nom);
-		 	$q->bindValue(':prenom'			, 	$this->prenom);
-		 	$q->bindValue(':telephone'		, 	$this->telephone);
-		 	$q->bindValue(':prix'			, 	$this->prix);
-		 	$q->bindValue(':description'	, 	$this->description);
-		 	$q->bindValue(':images'			, 	$this->images);
+	 		$req->bindValue(':idUtilisateur'	, 	$this->idUtilisateur);
+	 		$req->bindValue(':statut'			, 	$this->statut);
+	 		$req->bindValue(':nom'				, 	$this->nom);
+		 	$req->bindValue(':prenom'			, 	$this->prenom);
+		 	$req->bindValue(':telephone'		, 	$this->telephone);
+		 	$req->bindValue(':titre'			, 	$this->titre);
+		 	$req->bindValue(':prix'				, 	$this->prix);
+		 	$req->bindValue(':description'		, 	$this->description);
+		 	$req->bindValue(':images'			, 	$this->images);
+		 	$req->bindValue(':id'				, 	$this->id);
 
 	 		$req->execute();
 	 		return true;
@@ -254,7 +256,7 @@ class AnnonceM implements ModelInterface{
 		try {
 			// preparation de la requete
 			$q = $db->prepare(
-					'SELECT (idUtilisateur, statut, nom, prenom, telephone, titre, prix, description, images) 
+					'SELECT * 
 					FROM annonceM 
 					WHERE id = :id' 
 		 		);

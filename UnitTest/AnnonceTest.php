@@ -38,6 +38,49 @@ print_r($o_annonceM);
 echo "</pre>";
 
 
+/*-- Test ADD --*/
+
+$response 	= false;
+
+$o_annonceC = new AnnonceC();
+//$response  = $o_annonceC->addAnnonce($o_annonceM);
+
+var_dump("ADD Annonce : $response");
+
+/*-- Test UPDATE --*/
+
+$o_annonceC = new AnnonceC();
+
+$o_annonceM->id     = 18;
+
+$o_annonceM->prix   = 340;
+
+$o_annonceM->titre  = "F1 Place Carnot";
+
+
+$response  	= $o_annonceC->updateAnnonce($o_annonceM);
+
+echo "<br/>";
+var_dump("UP-DATE Annonce : $response");
+
+
+/*-- Test GET --*/
+
+$response  = $o_annonceC->getAnnonceById(18);
+
+echo "<br/>";
+
+echo "<pre>";
+var_dump($response);
+echo "</pre>";
+
+
+/*-- Test DELETE --*/
+
+$response  = $o_annonceC->getAnnonceById(18);
+
+
+
 
 
  ?>

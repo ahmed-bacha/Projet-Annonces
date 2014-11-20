@@ -22,8 +22,19 @@ class AnnonceC
 		return AnnonceM::getAnnonceById($id);
 	}
 
+
 	/**
-	* Supprime un annonce de la BDD 
+	* Ajoute une annonce de la BDD 
+	* @param 	AnnonceM		: objet annonceM
+	* @return 	bool 			: true "success" , false "failure"
+	*/
+	function addAnnonce($o_AnnonceM){
+		return $o_AnnonceM->add();
+	}
+
+
+	/**
+	* Supprime une annonce de la BDD 
 	* @param 	AnnonceM		: objet annonceM
 	* @return 	bool 			: true "success" , false "failure"
 	*/
@@ -32,11 +43,11 @@ class AnnonceC
 	}
 
 	/**
-	* Update les champs d'un utilisateur en BDD 
-	* @param 	utilisateurM	: objet utilisateurM
+	* Update les champs d'une annonce dans la BDD
+	* @param 	AnnonceM		: objet AnnonceM
 	* @return 	bool 			: true "success" , false "failure"
 	*/
-	function updateUser($o_AnnonceM)
+	function updateAnnonce($o_AnnonceM)
 	{
 		return $o_AnnonceM->update();
 	}
