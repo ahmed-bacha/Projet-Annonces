@@ -66,21 +66,41 @@ var_dump("UP-DATE Annonce : $response");
 
 /*-- Test GET --*/
 
-$response  = $o_annonceC->getAnnonceById(18);
+$o_annonceM  = $o_annonceC->getAnnonceById(21);
+
+echo "<br/>";
+
+echo "<pre>";
+var_dump($o_annonceM);
+echo "</pre>";
+
+
+/*-- Test DELETE --*/
+
+// $response  = $o_annonceC->deleteAnnonce($o_annonceM);
+
+// echo "<br/>";
+// var_dump("SUPPRIMER Annonce : $response");
+
+
+/*-- Test concatImageNames --*/
+
+$response  = AnnonceC::concatImagesNames("image_1.jpg", "iron_man.png", "wordline.png");
+
+$o_annonceM->images = $response;
+
+echo "<br/>";
+var_dump($response);
+
+/*-- Test deConcatImageNames --*/
+
+$response  = $o_annonceC->deConcatImagesNames($o_annonceM);
 
 echo "<br/>";
 
 echo "<pre>";
 var_dump($response);
 echo "</pre>";
-
-
-/*-- Test DELETE --*/
-
-$response  = $o_annonceC->getAnnonceById(18);
-
-
-
 
 
  ?>

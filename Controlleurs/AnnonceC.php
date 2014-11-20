@@ -55,6 +55,30 @@ class AnnonceC
 	function changeState($nouveau_statut, $o_AnnonceM){
 		$o_AnnonceM->changeState($nouveau_statut);
 	}
+
+	/**
+	* Mets en forme de string les 3 liens des images (séparés par ;)
+	* 
+	* @param  STRING link 1 : 1er lien image
+	* @param  STRING link 2 : 1er lien image
+	* @param  STRING link 3 : 1er lien image
+	* 
+	* @return STRING : les 3 liens concatener 
+	*/
+	public static function concatImagesNames($link1 = "", $link2 = "", $link3 = ""){
+		
+		return implode(";", array($link1, $link2, $link3));
+	}
+
+	/**
+	* 
+	* @return ARRAY : les 3 liens concatener 
+	*/
+	public function deConcatImagesNames($o_AnnonceM){
+		
+		return explode(";", $o_AnnonceM->images);
+
+	}
 }
 
 ?>

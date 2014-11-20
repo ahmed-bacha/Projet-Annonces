@@ -278,7 +278,6 @@ class AnnonceM implements ModelInterface{
 		}
 	}
 
-
 	/**
 	* Setter pour tous les champs de la classe
 	* Exemple d'utilisation : 
