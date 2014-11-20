@@ -73,15 +73,8 @@ class AnnonceM implements ModelInterface{
 	*			'email' => 'user10@telecom-st-etienne.fr'
 	* 			);	
 	*/
-
-	public function __construct(){
-		echo 'salut';
-	}
-
 	public function __construct($donnees){
-		echo 'l\'annonce est en cours de dceation';
 		$this->hydrate($donnees);
-		echo 'l\'annonce a bien ete cree ! ';
 	}
 
 
@@ -204,8 +197,8 @@ class AnnonceM implements ModelInterface{
 	}
 
 
-	public function update(){			
-	{
+	public function update(){		
+		
 		$db  = SPDO::getInstance();
 
 		try {
