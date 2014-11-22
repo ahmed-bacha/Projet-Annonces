@@ -3,44 +3,57 @@
 // inclure les controlleurs et les modeles
 require_once("../Utils/includeAll.php");
 
-$maxsize = 5048576;
+$maxsize = 995048576;
 $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
 
 $erreur = array();
 
-//var_dump( $_FILES);    //Le nom original du fichier, comme sur le disque du visiteur (ex
+print_r($_FILES['image']);
+//echo "<br>";
+
+//var_dump(sizeof($_FILES['image']['name']);
+
+for ($i=0; $i < sizeof($_FILES['image']['name']); $i++) {
+
+  if (!empty($_FILES['image']['name']["$i"])) {
+    echo "salut";
+    if ($_FILES['image']['error']["$i"] == 0) {
 
 
-if ($_FILES['icone']['error'] == 0) {
+      if ($_FILES['image']['size']["$i"] < $maxsize) {
 
-  if ($_FILES['icone']['size'] < $maxsize) {
+        //1. strrchr renvoie l'extension avec le point (« . »).
+        //2. substr(chaine,1) ignore le premier caractère de chaine.
+        //3. strtolower met l'extension en minuscules.
+        $extension_upload = strtolower(  substr(  strrchr($_FILES['image']['name']["$i"], '.')  ,1)  );
 
-    //1. strrchr renvoie l'extension avec le point (« . »).
-    //2. substr(chaine,1) ignore le premier caractère de chaine.
-    //3. strtolower met l'extension en minuscules.
-    $extension_upload = strtolower(  substr(  strrchr($_FILES['icone']['name'], '.')  ,1)  );
+        if ( in_array($extension_upload,$extensions_valides) ){
+          //echo "salut";
+          $resultat = move_uploaded_file($_FILES['image']['tmp_name']["$i"] , "../Vues/images/image".rand(0,9999999)."-".rand(0,9999999).".". $extension_upload);
 
-    if ( in_array($extension_upload,$extensions_valides) ){
+          if ($resultat) {
 
-      $resultat = move_uploaded_file($_FILES['icone']['tmp_name'] , "../Vues/images/image".rand(0,9999999)."-".rand(0,9999999).".". $extension_upload);
+            echo "Transfert réussi";
+          }
 
-      if ($resultat) {
-        echo "Transfert réussi";
+        } else{
+
+          $erreur = "Extension incorrecte";
+        }
+
+      }else{
+
+        $erreur = "Le fichier est trop gros";
       }
 
-    } else{
-      $erreur = "Extension correcte";
+    }else{
+
+      $erreur = "Erreur lors du transfert";
     }
 
-  }else{
-    $erreur = "Le fichier est trop gros";
   }
 
-}else{
-  $erreur = "Erreur lors du transfert";
 }
-
-
 
 
 ?>

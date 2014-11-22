@@ -19,7 +19,7 @@
             <li class="active">
                 <a href="#">
                     <span class="glyphicon glyphicon-home">
-                    </span>                    
+                    </span>
                 </a>
             </li>
         </ul>
@@ -37,7 +37,7 @@
 
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Vues 
+                Vues
                 <span class="caret"></span>
             </a>
           <ul class="dropdown-menu" role="menu">
@@ -46,6 +46,7 @@
                 <a href="reponse-annonce.php">Reponse annonce</a>
                 <a href="add-annonce.php">Add annonce</a>
                 <a href="detail-annonce.php">Detail annonce</a>
+                <a href="test-upload-image.php">Test Upload image</a>
             </li>
           </ul>
         </li>
@@ -56,8 +57,8 @@
         </script>
 
         <!-- END BLOC DES VUES  -->
-            
-        <?php 
+
+        <?php
         if (isset($userM)) {
             ?>
             <li>
