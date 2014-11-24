@@ -17,6 +17,12 @@ require_once("header.php");
       <div class="row">
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <div class="thumbnail">
+
+              <!-- element croix  -->
+              <div class="delete-icon">
+                <span id="delete-icon-1" class="glyphicon glyphicon-remove-sign"></span>
+              </div>
+
               <img id="img1" data-src="holder.js/300x300" alt="...">
             <div class="caption">
               <p>
@@ -27,6 +33,12 @@ require_once("header.php");
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <div class="thumbnail">
+
+
+            <!-- element croix  -->
+            <div class="delete-icon">
+              <span id="delete-icon-2" class="glyphicon glyphicon-remove-sign"></span>
+            </div>
               <img id="img2" data-src="holder.js/300x300" alt="...">
             <div class="caption">
               <p>
@@ -37,6 +49,12 @@ require_once("header.php");
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
           <div class="thumbnail">
+
+
+            <!-- element croix  -->
+            <div class="delete-icon">
+              <span id="delete-icon-3" class="glyphicon glyphicon-remove-sign"></span>
+            </div>
               <img id="img3" data-src="holder.js/300x300" alt="...">
             <div class="caption">
               <p>

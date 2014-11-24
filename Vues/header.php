@@ -9,13 +9,17 @@
 
 	<!-- **************
 		 	CSS
-		 **************	 
+		 **************
 	-->
 
 		<!-- Bootstrap css -->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<!-- Flat UI -->
 	<link href="css/flat-ui.min.css" rel="stylesheet">
+
+	<!-- custom CSS Style  -->
+	<link href="css/custom.css" rel="stylesheet">
+
 
 	<!-- **************
 				JS
@@ -37,9 +41,9 @@
 <body>
 
 <!-- Menu -->
-<?php 
+<?php
 
-require_once("menu.php"); 
-?>	
+require_once("menu.php");
+?>
 
 <div class="container">
