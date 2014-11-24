@@ -60,144 +60,152 @@ require_once("header.php");
               <p>
                   <input type="file" class="filestyle" data-badge="false" name="image[]" id="file3">
               </p>
+
             </div>
-          </div>
+        </div>
       </div>
-    </div>
-   </div>
-
-   <blockquote>
-          <h4>
-            Soumettre votre annonce
-          </h4>
-   </blockquote>
-
-   <div class="row">
-     <div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
-       <p>
-           <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block">Soumettre</button>
-       </p>
      </div>
-   </div>
 
- </form>
+     <blockquote>
+            <h4>
+              Soumettre votre annonce
+            </h4>
+     </blockquote>
 
-</div>
+     <div class="row">
+       <div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
+         <p>
+             <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block">Soumettre</button>
+         </p>
+       </div>
+     </div>
 
+   </form>
 
-
-<script charset="utf-8">
-
-  $("form#uploadimage").submit(function(event){
-
-    //disable the default form submission
-    event.preventDefault();
-
-    var formData = new FormData($(this)[0]);
-
-    $.ajax({
-      url: 'traitement-image.php',
-      type: 'POST',
-      data: formData,
-      async: false,
-      cache: false,
-      contentType: false,
-      processData: false,
-      success: function (returndata) {
-
-      }
-    });
-
-    return false;
-  });
+  </div>
 
 
-    $("#file1").change(function() {
 
+  <script charset="utf-8">
 
-      var file = this.files[0];
-      console.log(file);
-      var imagefile = file.type;
-      //alert(imagefile);
-      var match= ["image/jpeg","image/png","image/jpg"];
-      if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
-      {
-        return false;
-      }
-      else
-      {
-        var reader = new FileReader();
-        reader.onload = imageIsLoaded1;
+    $("form#uploadimage").submit(function(event){
 
-        reader.readAsDataURL(this.files[0]);
+      //disable the default form submission
+      event.preventDefault();
 
-      }
+      var formData = new FormData($(this)[0]);
+
+      $.ajax({
+        url: 'traitement-image.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (returndata) {
+
+        }
       });
 
-      function imageIsLoaded1(e) {
+      return false;
+    });
 
-          $('#img1').attr('src', e.target.result);
+
+      $("#file1").change(function() {
+
+
+        var file = this.files[0];
+        console.log(file);
+        var imagefile = file.type;
+        //alert(imagefile);
+        var match= ["image/jpeg","image/png","image/jpg"];
+        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+        {
+          return false;
+        }
+        else
+        {
+          var reader = new FileReader();
+          reader.onload = imageIsLoaded1;
+
+          reader.readAsDataURL(this.files[0]);
+
+        }
+        });
+
+        function imageIsLoaded1(e) {
+
+            $('#img1').attr('src', e.target.result);
+
+          };
+
+        $("#file2").change(function() {
+
+
+          var file = this.files[0];
+          console.log(file);
+          var imagefile = file.type;
+          //alert(imagefile);
+          var match= ["image/jpeg","image/png","image/jpg"];
+          if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+          {
+            return false;
+          }
+          else
+          {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded2;
+
+            reader.readAsDataURL(this.files[0]);
+
+          }
+          });
+
+      function imageIsLoaded2(e) {
+
+          $('#img2').attr('src', e.target.result);
 
         };
 
-      $("#file2").change(function() {
+        $("#file3").change(function() {
 
 
-        var file = this.files[0];
-        console.log(file);
-        var imagefile = file.type;
-        //alert(imagefile);
-        var match= ["image/jpeg","image/png","image/jpg"];
-        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
-        {
-          return false;
-        }
-        else
-        {
-          var reader = new FileReader();
-          reader.onload = imageIsLoaded2;
+          var file = this.files[0];
+          console.log(file);
+          var imagefile = file.type;
+          //alert(imagefile);
+          var match= ["image/jpeg","image/png","image/jpg"];
+          if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+          {
+            return false;
+          }
+          else
+          {
+            var reader = new FileReader();
+            reader.onload = imageIsLoaded3;
 
-          reader.readAsDataURL(this.files[0]);
+            reader.readAsDataURL(this.files[0]);
 
-        }
-        });
+          }
+          });
 
-    function imageIsLoaded2(e) {
+      function imageIsLoaded3(e) {
 
-        $('#img2').attr('src', e.target.result);
-
-      };
-
-      $("#file3").change(function() {
+          $('#img3').attr('src', e.target.result);
+        };
 
 
-        var file = this.files[0];
-        console.log(file);
-        var imagefile = file.type;
-        //alert(imagefile);
-        var match= ["image/jpeg","image/png","image/jpg"];
-        if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
-        {
-          return false;
-        }
-        else
-        {
-          var reader = new FileReader();
-          reader.onload = imageIsLoaded3;
 
-          reader.readAsDataURL(this.files[0]);
+          $("#button").click(function() {
+            $('#file1').val('');
+            $('#img1').attr('src',"http://www.henley.fr/images/err404.jpg");
 
-        }
-        });
+          });
 
-    function imageIsLoaded3(e) {
+  </script>
 
-        $('#img3').attr('src', e.target.result);
-      };
-
-</script>
-
-<!-- Footer -->
-<?php
-require_once("footer.php");
-?>
+  <!-- Footer -->
+  <?php
+  require_once("footer.php");
+  ?>
