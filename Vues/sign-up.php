@@ -1,5 +1,5 @@
 <!-- Header -->
-<?php 
+<?php
 $title = "Home Page";
 require_once("header.php");
  ?>
@@ -7,20 +7,20 @@ require_once("header.php");
 <!-- Page Content -->
 <div class="well col-lg-5 col-lg-offset-3">
 
-<?php 
-	
+<?php
+
 	 if(isset($_GET['err']) && !empty($_GET['err'])){
 		$erreur = json_decode($_GET['err']);
 
 ?>
    <div class="alert alert-danger" role="alert">
-   	<?php 
+   	<?php
    		foreach ($erreur as $value){
     		echo "<p>$value</p>";
 		}
    	 ?>
-	</div>				
-<?php 				
+	</div>
+<?php
 	 }
  ?>
     <form role="form" method="POST" action="sign-up-traitement.php">
@@ -64,12 +64,12 @@ require_once("header.php");
 	  <div class="form-group col-lg-6 col-lg-offset-3">
 	  	 <button type="submit" class="btn btn-primary btn-block">Valider</button>
 	  </div>
-	 
+
 	</form>
 
 </div>
 
 <!-- Footer -->
-<?php 
-require_once("footer.php"); 
+<?php
+require_once("footer.php");
 ?>

@@ -24,11 +24,11 @@
             </li>
         </ul>
 
-        <form role="search" class="navbar-form navbar-left">
+        <!-- <form role="search" class="navbar-form navbar-left">
             <div class="form-group">
                 <input type="text" placeholder="Search" class="form-control">
             </div>
-        </form>
+        </form> -->
 
         <ul class="nav navbar-nav navbar-right">
 
