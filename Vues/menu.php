@@ -8,21 +8,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a href="#" class="navbar-brand">TSE Annonces</a>
+
+
+        <a href="#" class="text-center navbar-brand">TSE Annonces</a>
+
     </div>
 
 
     <!-- Collection of nav links, forms, and other content for toggling -->
     <div id="navbarCollapse" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-
-            <li class="active">
-                <a href="#">
-                    <span class="glyphicon glyphicon-home">
-                    </span>
-                </a>
-            </li>
-        </ul>
 
         <!-- <form role="search" class="navbar-form navbar-left">
             <div class="form-group">
@@ -51,19 +45,26 @@
           </ul>
         </li>
 
-        <!-- Activation de la fonction DropDown du menu -->
-        <script type="text/javascript">
-            $('.dropdown-toggle').dropdown();
-        </script>
-
         <!-- END BLOC DES VUES  -->
 
         <?php
         if (isset($userM)) {
             ?>
-            <li>
-                <?php echo '<a href="profile.php?id='.$userM->id.'">' ."Bonjour : ".$userM->nom.'</a>'; ?>
+
+            <li class="dropdown">
+              <a href="<?php echo 'profile.php?id='.$userM->id?>" class="dropdown-toggle" data-toggle="dropdown">
+                <?php  echo 'Bonjour : <i>'.$userM->nom.'</i>'; ?>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="profile.php">Mon profile</a>
+                  <a href="liste-mes-annonces.php">Liste de mes annonces</a>
+                  <a href="ajouter-annonce.php">Ajouter une annonce</a>
+                </li>
+              </ul>
             </li>
+
             <li>
                 <a href="log-out.php">Logout</a>
             </li>
@@ -82,4 +83,10 @@
          ?>
         </ul>
     </div>
+
+    <!-- Activation de la fonction DropDown du menu -->
+    <script type="text/javascript">
+    $('.dropdown-toggle').dropdown();
+    </script>
+
 </nav>

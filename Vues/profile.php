@@ -1,19 +1,24 @@
-<!-- Header -->
-<?php 
-session_start();
-session
-
-require_once("header.php");
+<?php
 require_once("../Utils/includeAll.php");
 
+// On démarre la session
+session_start();
 
-$title = "Home Page";
+
+if(isset($_SESSION['utilisateurM'])){
+  $userM = $_SESSION['utilisateurM'];
+}
+
+?>
 
 
-$utilisateurC = new UtilisateurC();
-$user = $utilisateurC->getUserById($_SESSION['id']);
+<!-- Header -->
+<?php
 
- ?>
+$title = "Exemple d'une annonce";
+require_once("header.php");
+
+?>
 
 <!-- Page Content -->
 <div class="well col-lg-5 col-lg-offset-3">
@@ -22,23 +27,23 @@ $user = $utilisateurC->getUserById($_SESSION['id']);
 
 	  <div class="form-group">
 	    <label for="nom">Nom</label>
-	    <p><strong><?php echo $user->nom; ?></strong></p>
+	    <p><strong><?php echo $userM->nom; ?></strong></p>
 	  </div>
 
 	  <div class="form-group">
 	    <label for="email">Email</label>
-	    <p><strong><?php echo $user->email ?></strong></p>
+	    <p><strong><?php echo $userM->email ?></strong></p>
 	  </div>
 
 	  <div class="form-group col-lg-6 col-lg-offset-3">
 	  	 <button type="submit" class="btn btn-primary btn-block">Modifier le mot de passe</button>
 	  </div>
-	 
+
 	</form>
 
 </div>
 
 <!-- Footer -->
-<?php 
-require_once("footer.php"); 
+<?php
+require_once("footer.php");
 ?>
