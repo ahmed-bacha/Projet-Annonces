@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 /**
  * Classe utilisateur Controlleur
- * 
+ *
  * @version 	1.00
  * @license 	http://www.gnu.org/copyleft/gpl.html GPL
- * @package 	Controlleurs	
+ * @package 	Controlleurs
  */
 class UtilisateurC
 {
@@ -38,7 +38,7 @@ class UtilisateurC
 	*/
 	static function validatePassword($pass)
 	{
-		if (!empty($pass)) 
+		if (!empty($pass))
 		{
 			if (strlen($pass) >= 6) {
 				return true;
@@ -62,9 +62,9 @@ class UtilisateurC
 		$valide = false;
 
 		// to do email,pass
-		if (($utilisateurM->nom)) 
+		if (($utilisateurM->nom))
 		{
-			if (self::validatePassword($utilisateurM->mdp) && self::validateEmail($utilisateurM->email))	
+			if (self::validatePassword($utilisateurM->mdp) && self::validateEmail($utilisateurM->email))
 			{
 				$utilisateurM->add();
 				$valide = true;
@@ -87,7 +87,7 @@ class UtilisateurC
 	}
 
 	/**
-	* Teste si un utilisateur existe déjà dans la BDD 
+	* Teste si un utilisateur existe déjà dans la BDD
 	* @return bool 	: true "utilisateur existe" , false "utilisateur inexistant"
 	*/
 	public static function checkById($_id){
@@ -121,7 +121,7 @@ class UtilisateurC
 	}
 
 	/**
-	* Supprime un utilisateur de la BDD 
+	* Supprime un utilisateur de la BDD
 	* @param 	utilisateurM	: objet utilisateurM
 	* @return 	bool 			: true "success" , false "failure"
 	*/
@@ -131,7 +131,7 @@ class UtilisateurC
 	}
 
 	/**
-	* Update les champs d'un utilisateur en BDD 
+	* Update les champs d'un utilisateur en BDD
 	* @param 	utilisateurM	: objet utilisateurM
 	* @return 	bool 			: true "success" , false "failure"
 	*/

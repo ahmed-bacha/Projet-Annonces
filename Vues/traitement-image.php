@@ -3,57 +3,142 @@
 // inclure les controlleurs et les modeles
 require_once("../Utils/includeAll.php");
 
-$maxsize = 995048576;
+// On démarre la session
+session_start();
+
+$maxsize = 5048576;
 $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
 
 $erreur = array();
 
-print_r($_FILES['image']);
-//echo "<br>";
+extract($_POST);
 
-//var_dump(sizeof($_FILES['image']['name']);
-
-for ($i=0; $i < sizeof($_FILES['image']['name']); $i++) {
-
-  if (!empty($_FILES['image']['name']["$i"])) {
-    echo "salut";
-    if ($_FILES['image']['error']["$i"] == 0) {
+$form_ok = true;
 
 
-      if ($_FILES['image']['size']["$i"] < $maxsize) {
+if(isset($_SESSION['utilisateurM'])){
 
-        //1. strrchr renvoie l'extension avec le point (« . »).
-        //2. substr(chaine,1) ignore le premier caractère de chaine.
-        //3. strtolower met l'extension en minuscules.
-        $extension_upload = strtolower(  substr(  strrchr($_FILES['image']['name']["$i"], '.')  ,1)  );
+  $userM = $_SESSION['utilisateurM'];
 
-        if ( in_array($extension_upload,$extensions_valides) ){
-          //echo "salut";
-          $resultat = move_uploaded_file($_FILES['image']['tmp_name']["$i"] , "../Vues/images/image".rand(0,9999999)."-".rand(0,9999999).".". $extension_upload);
 
-          if ($resultat) {
+  // verification du nom
+  if(empty($nom)){
 
-            echo "Transfert réussi";
+    $form_ok = false;
+    $erreur[] = "Le champ nom est vide";
+  }
+
+  // verification du prenom
+  if(empty($prenom)){
+
+    $form_ok = false;
+    $erreur[] = "Le champ prenom est vide";
+  }
+
+  // verification du telephone
+  if(empty($telephone) || AnnonceC::verifTelFr($telephone) == false){
+
+    $form_ok = false;
+    $erreur[] = "Champ telephone non valide";
+  }
+
+  // verification du titre
+  if(empty($titre)){
+
+    $form_ok = false;
+    $erreur[] = "Le champ titre est vide";
+  }
+
+  // verification du prix
+  if(empty($prix)){
+
+    $form_ok = false;
+    $erreur[] = "Le champ prix est vide";
+  }
+
+  // verification du description
+  if(empty($description)){
+
+    $form_ok = false;
+    $erreur[] = "Le champ description est vide";
+  }
+
+
+  if ($form_ok) {
+
+    for ($i=0; $i < sizeof($_FILES['image']['name']); $i++) {
+
+      if (!empty($_FILES['image']['name']["$i"])) {
+        //echo "salut";
+        if ($_FILES['image']['error']["$i"] == 0) {
+
+
+          if ($_FILES['image']['size']["$i"] < $maxsize) {
+
+            //1. strrchr renvoie l'extension avec le point (« . »).
+            //2. substr(chaine,1) ignore le premier caractère de chaine.
+            //3. strtolower met l'extension en minuscules.
+            $extension_upload = strtolower(  substr(  strrchr($_FILES['image']['name']["$i"], '.')  ,1)  );
+
+            if ( in_array($extension_upload,$extensions_valides) ){
+              //echo "salut";
+              $resultat = move_uploaded_file($_FILES['image']['tmp_name']["$i"] , "../Vues/images/image". $userM->id ."-".rand(0,9999999).".". $extension_upload);
+
+              if ($resultat) {
+
+                //echo "Transfert réussi";
+              }
+
+            } else{
+
+              $erreur[] = "Extension incorrecte";
+            }
+
+          }else{
+
+            $erreur[] = "Le fichier est trop gros";
           }
 
-        } else{
+        }else{
 
-          $erreur = "Extension incorrecte";
+          $erreur[] = "Erreur lors du transfert";
         }
 
-      }else{
-
-        $erreur = "Le fichier est trop gros";
       }
 
-    }else{
-
-      $erreur = "Erreur lors du transfert";
     }
+
+
+    $annonceM = new AnnonceM(
+    array(
+    'idUtilisateur' => $userM->id,
+    'nom' 	        => $nom,
+    'prenom'      	=> $prenom,
+    'telephone'     => $telephone,
+    'titre'       	=> $titre,
+    'prix'        	=> $prix,
+    'description'   => $description
+    ));
+
+    $annonceC = new AnnonceC();
+    $annonceC->addAnnonce($annonceM);
 
   }
 
+
+
+}else{
+
+  $form_ok = false;
+  $erreur[] = "Utilisateur non connecté";
 }
+
+
+for ($i=0; $i < sizeof($erreur); $i++) {
+  echo $erreur["$i"]."<br>";
+}
+
+
 
 
 ?>

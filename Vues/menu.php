@@ -60,7 +60,7 @@
                 <li>
                   <a href="profile.php">Mon profile</a>
                   <a href="liste-mes-annonces.php">Liste de mes annonces</a>
-                  <a href="ajouter-annonce.php">Ajouter une annonce</a>
+                  <a href="add-annonce.php">Ajouter une annonce</a>
                 </li>
               </ul>
             </li>
