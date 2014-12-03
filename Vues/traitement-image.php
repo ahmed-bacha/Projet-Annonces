@@ -10,6 +10,8 @@ $maxsize = 5048576;
 $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
 
 $erreur = array();
+$image_names = array();
+
 
 extract($_POST);
 
@@ -82,7 +84,8 @@ if(isset($_SESSION['utilisateurM'])){
 
             if ( in_array($extension_upload,$extensions_valides) ){
               //echo "salut";
-              $resultat = move_uploaded_file($_FILES['image']['tmp_name']["$i"] , "../Vues/images/image". $userM->id ."-".rand(0,9999999).".". $extension_upload);
+              $image_names[$i] = "image". $userM->id ."-".rand(0,9999999).".". $extension_upload;
+              $resultat = move_uploaded_file($_FILES['image']['tmp_name']["$i"] , "../Vues/images/".$image_names[$i]);
 
               if ($resultat) {
 
@@ -108,6 +111,7 @@ if(isset($_SESSION['utilisateurM'])){
 
     }
 
+    $annonceC = new AnnonceC();
 
     $annonceM = new AnnonceM(
     array(
@@ -117,10 +121,11 @@ if(isset($_SESSION['utilisateurM'])){
     'telephone'     => $telephone,
     'titre'       	=> $titre,
     'prix'        	=> $prix,
-    'description'   => $description
+    'description'   => $description,
+    'images'        => $annonceC->concatImagesNames($image_names)
     ));
 
-    $annonceC = new AnnonceC();
+
     $annonceC->addAnnonce($annonceM);
 
   }
