@@ -58,12 +58,16 @@ require_once("header.php");
       ?>
 
         <tr>
-          <td><?php echo $_index ?></td>
+          <td><?php echo $_index; ?></td>
           <td><?php echo $o_annonceM->titre; ?></td>
           <td><?php echo $o_annonceM->nom; ?></td>
           <td><?php echo $o_annonceM->prix; ?></td>
           <td><span class="glyphicon glyphicon-pencil"></span></td>
-          <td><span class="glyphicon glyphicon-remove"></span></td>
+          <td>
+            <a href="delete-anonce-treatement.php?idAnnonce=<?php echo $o_annonceM->id ?>">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
+          </td>
         <tr>
 
       <?php
