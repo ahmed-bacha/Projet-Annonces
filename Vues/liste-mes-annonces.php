@@ -66,7 +66,7 @@
             <td><?php echo $o_annonceM->prix; ?></td>
             <td><span class="glyphicon glyphicon-pencil"></span></td>
             <td>
-              <a class="deleteAnnonce" onclick="return false;" href="delete-anonce-treatement.php?idAnnonce=<?php echo $o_annonceM->id ?>">
+              <a class="deleteAnnonce" href="delete-anonce-treatement.php?idAnnonce=<?php echo $o_annonceM->id ?>">
                 <span class="glyphicon glyphicon-remove"></span>
               </a>
             </td>
