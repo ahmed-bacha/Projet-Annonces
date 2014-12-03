@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Jeu 20 Novembre 2014 à 09:19
+-- Généré le :  Mer 03 Décembre 2014 à 09:35
 -- Version du serveur :  5.5.38
 -- Version de PHP :  5.5.17
 
@@ -36,8 +36,21 @@ CREATE TABLE `annonceM` (
   `titre` varchar(255) NOT NULL,
   `prix` int(11) NOT NULL,
   `description` text NOT NULL,
-  `images` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `images` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `annonceM`
+--
+
+INSERT INTO `annonceM` (`id`, `idUtilisateur`, `statut`, `nom`, `prenom`, `telephone`, `titre`, `prix`, `description`, `images`) VALUES
+(1, 29, 10, 'BOUHERROU', 'NACER', '0652685419', 'titre 1', 123, 'description', NULL);
+
+INSERT INTO `annonceM` (`id`, `idUtilisateur`, `statut`, `nom`, `prenom`, `telephone`, `titre`, `prix`, `description`, `images`) VALUES
+(2, 29, 10, 'BOUHERROU', 'NACER', '0652685419', 'titre 2', 123, 'description', NULL);
+
+INSERT INTO `annonceM` (`id`, `idUtilisateur`, `statut`, `nom`, `prenom`, `telephone`, `titre`, `prix`, `description`, `images`) VALUES
+(3, 29, 10, 'BOUHERROU', 'NACER', '0652685419', 'titre 3', 123, 'description', NULL);
 
 --
 -- Index pour les tables exportées
@@ -57,7 +70,7 @@ ALTER TABLE `annonceM`
 -- AUTO_INCREMENT pour la table `annonceM`
 --
 ALTER TABLE `annonceM`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
