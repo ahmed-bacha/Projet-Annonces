@@ -36,7 +36,7 @@ require_once("header.php");
 	  </div>
 
 	  <div class="form-group col-lg-6 col-lg-offset-3">
-	  	 <button type="submit" class="btn btn-primary btn-block">Modifier le mot de passe</button>
+	  	 <a href="modif-password.php" class="btn btn-primary btn-block">Modifier le mot de passe</a>
 	  </div>
 
 	</form>
