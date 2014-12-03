@@ -59,20 +59,17 @@ class AnnonceC
 	/**
 	* Mets en forme de string les 3 liens des images (séparés par ;)
 	*
-	* @param  STRING link 1 : 1er lien image
-	* @param  STRING link 2 : 1er lien image
-	* @param  STRING link 3 : 1er lien image
-	*
+	* @param  ARRAY  : liens des images
 	* @return STRING : les 3 liens concatener
 	*/
-	public static function concatImagesNames($link1 = "", $link2 = "", $link3 = ""){
+	public static function concatImagesNames($links_array){
 
-		return implode(";", array($link1, $link2, $link3));
+		return implode(";", $links_array);
 	}
 
 	/**
 	*
-	* @return ARRAY : les 3 liens concatener
+	* @return ARRAY : les 3 liens des images
 	*/
 	public function deConcatImagesNames($o_AnnonceM){
 
@@ -88,7 +85,7 @@ class AnnonceC
 		} else {
 			return false;
 		}
-		
+
 	}
 }
 
