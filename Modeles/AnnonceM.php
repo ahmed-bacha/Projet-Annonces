@@ -1,10 +1,10 @@
-<?php 
-	
+<?php
+
 /**
  * Classe utilisateur Modele
- * 
+ *
  * @version 	1.00
- * @license 	http://www.gnu.org/copyleft/gpl.html GPL	
+ * @license 	http://www.gnu.org/copyleft/gpl.html GPL
  * @package 	Modeles
  */
 
@@ -13,7 +13,7 @@ class AnnonceM implements ModelInterface{
  	* @var objet PDO
  	*/
 	private static $db;
-	
+
 	/**
  	* @var int
  	*/
@@ -66,12 +66,12 @@ class AnnonceM implements ModelInterface{
 
 	/**
 	* Constructeur de la classe avec un tableau de paramètres
-	* Exemple : 	
+	* Exemple :
 	* @param $donnees = array(
 	*			'nom' 	=> 'user10',
 	*			'mdp' 	=> 'user10',
 	*			'email' => 'user10@telecom-st-etienne.fr'
-	* 			);	
+	* 			);
 	*/
 	public function __construct($donnees){
 		$this->hydrate($donnees);
@@ -80,15 +80,15 @@ class AnnonceM implements ModelInterface{
 
 	/**
 	* Renseigne les champs de l'objet à partir d'un tableau d'élements
-	* Exemple : 	
+	* Exemple :
 	* @param $donnees = array(
 	*			'nom' 	=> 'user10',
 	*			'mdp' 	=> 'user10',
 	*			'email' => 'user10@telecom-st-etienne.fr'
-	* 		);	
+	* 		);
 	*/
 	public function hydrate($donnees){
-		
+
 		if (isset($donnees['id'])){
     		$this->id = $donnees['id'];
   		}
@@ -141,8 +141,8 @@ class AnnonceM implements ModelInterface{
 		try {
 			// preparation de la requete
 			$q = $db->prepare(
-					'INSERT INTO 
-					annonceM (idUtilisateur, statut, nom, prenom, telephone, titre, prix, description, images) 
+					'INSERT INTO
+					annonceM (idUtilisateur, statut, nom, prenom, telephone, titre, prix, description, images)
 	 				VALUES (:idUtilisateur, :statut, :nom, :prenom, :telephone, :titre, :prix, :description, :images)'
 	 				);
 
@@ -168,7 +168,7 @@ class AnnonceM implements ModelInterface{
 
 
 	/**
-	* Supprime un utilisateur de la BDD 
+	* Supprime un utilisateur de la BDD
 	* @return bool 	: true "success" , false "failure"
 	*/
 	public function delete(){
@@ -179,8 +179,8 @@ class AnnonceM implements ModelInterface{
 		try {
 			// preparation de la requete
 			$q = $db->prepare(
-					'DELETE FROM 
-					 annonceM 
+					'DELETE FROM
+					 annonceM
 					 WHERE id = (:id)'
 	 				);
 
@@ -197,25 +197,25 @@ class AnnonceM implements ModelInterface{
 	}
 
 
-	public function update(){		
+	public function update(){
 
 		$db  = SPDO::getInstance();
 
 		try {
-            $req=$db->prepare('UPDATE annonceM 
-            					
+            $req=$db->prepare('UPDATE annonceM
+
             					SET idUtilisateur 	= :idUtilisateur,
-            						statut 			= :statut, 
+            						statut 			= :statut,
             						nom 			= :nom,
             						prenom 			= :prenom,
-            						telephone 		= :telephone, 
+            						telephone 		= :telephone,
             						titre 			= :titre,
             						prix 			= :prix,
             						description 	= :description,
             						images 			= :images
-            					
-            					WHERE id = :id'); 
-           
+
+            					WHERE id = :id');
+
 	 		$req->bindValue(':idUtilisateur'	, 	$this->idUtilisateur);
 	 		$req->bindValue(':statut'			, 	$this->statut);
 	 		$req->bindValue(':nom'				, 	$this->nom);
@@ -256,9 +256,9 @@ class AnnonceM implements ModelInterface{
 		try {
 			// preparation de la requete
 			$q = $db->prepare(
-					'SELECT * 
-					FROM annonceM 
-					WHERE id = :id' 
+					'SELECT *
+					FROM annonceM
+					WHERE id = :id'
 		 		);
 
 			// on remplace avec les vraies valeurs
@@ -279,8 +279,39 @@ class AnnonceM implements ModelInterface{
 	}
 
 	/**
+	* Retourne les annonces suivant l'id de l'utilisateur sollicité
+	* @return requete comportant toutes les requetes de l'utilisateur suivant son id
+	*/
+	public static function getAnnonceByUserId($_idUtilisateur){
+		// on récupère l'instance PDO
+		$db  = SPDO::getInstance();
+
+		//Connexion à la base de données
+		try {
+				// preparation de la requete
+				$q = $db->prepare(
+				'SELECT *
+				FROM annonceM
+				WHERE idUtilisateur = :idUtilisateur'
+			);
+
+			// on remplace avec les vraies valeurs
+			$q->bindValue(':idUtilisateur', $_idUtilisateur);
+
+			// execution de la requete
+			$q->execute();
+
+			// Retour de la requête comportant toutes les annonces fonctions de l'id utilisateur
+			return $q;
+
+		}catch (PDOException $e) {
+			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+		}
+	}
+
+	/**
 	* Setter pour tous les champs de la classe
-	* Exemple d'utilisation : 
+	* Exemple d'utilisation :
 	* $user = UtilisateurM($donnees);
 	* $user->nom = 'Pierre';
 	*/
@@ -295,7 +326,7 @@ class AnnonceM implements ModelInterface{
 
 	/**
 	* Getter pour tous les champs de la classe
-	* Exemple d'utilisation : 
+	* Exemple d'utilisation :
 	* $user = UtilisateurM($donnees);
 	* $user->nom; // retourne le nom;
 	* @return champs de la classe

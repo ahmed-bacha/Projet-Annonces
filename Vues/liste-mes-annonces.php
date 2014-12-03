@@ -44,24 +44,35 @@ require_once("header.php");
     </thead>
 
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>iMac 5K</td>
-        <td>Samy</td>
-        <td>2300,00€</td>
-        <td><span class="glyphicon glyphicon-pencil"></span></td>
-        <td><span class="glyphicon glyphicon-remove"></span></td>
-      </tr>
 
-      <tr>
-        <td>2</td>
-        <td>CGI Chargeur</td>
-        <td>Balanti</td>
-        <td>20,00€</td>
-        <td><span class="glyphicon glyphicon-pencil"></span></td>
-        <td><span class="glyphicon glyphicon-remove"></span></td>
-      </tr>
+      <?php
 
+      $o_annonceC = new AnnonceC();
+
+      $response = $o_annonceC->getAnnonceByUserId($userM->id);
+
+      $_index = 1;
+
+      while ($_donnees = $response->fetch()) {
+        $o_annonceM = new AnnonceM($_donnees);
+      ?>
+
+        <tr>
+          <td><?php echo $_index ?></td>
+          <td><?php echo $o_annonceM->titre; ?></td>
+          <td><?php echo $o_annonceM->nom; ?></td>
+          <td><?php echo $o_annonceM->prix; ?></td>
+          <td><span class="glyphicon glyphicon-pencil"></span></td>
+          <td><span class="glyphicon glyphicon-remove"></span></td>
+        <tr>
+
+      <?php
+
+        $_index += 1;
+
+      }
+
+      ?>
 
     </tbody>
   </table>

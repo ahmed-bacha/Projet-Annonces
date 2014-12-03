@@ -22,6 +22,18 @@ class AnnonceC
 		return AnnonceM::getAnnonceById($id);
 	}
 
+	/**
+	* Change le statut de l'anonce,
+	* 10 : NON_TRAITEE,
+	* 20 : ACCEPTEE,
+	* 30 : REFUSEE,
+	* @param  int id : id de l'annonce
+	*/
+	function getAnnonceByUserId($id)
+	{
+		return AnnonceM::getAnnonceByUserId($id);
+	}
+
 
 	/**
 	* Ajoute une annonce de la BDD
@@ -59,17 +71,20 @@ class AnnonceC
 	/**
 	* Mets en forme de string les 3 liens des images (séparés par ;)
 	*
-	* @param  ARRAY  : liens des images
+	* @param  STRING link 1 : 1er lien image
+	* @param  STRING link 2 : 1er lien image
+	* @param  STRING link 3 : 1er lien image
+	*
 	* @return STRING : les 3 liens concatener
 	*/
-	public static function concatImagesNames($links_array){
+	public static function concatImagesNames($link1 = "", $link2 = "", $link3 = ""){
 
-		return implode(";", $links_array);
+		return implode(";", array($link1, $link2, $link3));
 	}
 
 	/**
 	*
-	* @return ARRAY : les 3 liens des images
+	* @return ARRAY : les 3 liens concatener
 	*/
 	public function deConcatImagesNames($o_AnnonceM){
 
