@@ -32,9 +32,10 @@
 
     $o_annonceC->deleteAnnonce($o_annonceM);
 
+    echo true;
+
   }
 
-  // redirection
-  header('Location: liste-mes-annonces.php');
+  echo false;
 
 ?>
