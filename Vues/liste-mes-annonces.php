@@ -64,7 +64,11 @@
             <td><?php echo $o_annonceM->titre; ?></td>
             <td><?php echo $o_annonceM->nom; ?></td>
             <td><?php echo $o_annonceM->prix; ?></td>
-            <td><span class="glyphicon glyphicon-pencil"></span></td>
+            <td>
+              <a href="modify-anonce.php?idAnnonce=<?php echo $o_annonceM->id ?>">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+            </td>
             <td>
               <a class="deleteAnnonce" href="delete-anonce-treatement.php?idAnnonce=<?php echo $o_annonceM->id ?>">
                 <span class="glyphicon glyphicon-remove"></span>

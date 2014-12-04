@@ -77,9 +77,10 @@ class AnnonceC
 	*
 	* @return STRING : les 3 liens concatener
 	*/
-	public static function concatImagesNames($link1 = "", $link2 = "", $link3 = ""){
+	public static function concatImagesNames($_images){
 
-		return implode(";", array($link1, $link2, $link3));
+		return implode(";", $_images);
+
 	}
 
 	/**

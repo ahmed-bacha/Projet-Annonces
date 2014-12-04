@@ -87,6 +87,10 @@ if(isset($_SESSION['utilisateurM'])){
               $image_names[$i] = "image". $userM->id ."-".rand(0,9999999).".". $extension_upload;
               $resultat = move_uploaded_file($_FILES['image']['tmp_name']["$i"] , "../Vues/images/".$image_names[$i]);
 
+              // $result = json_encode($image_names);
+
+              // echo $result;
+
               if ($resultat) {
 
                 //echo "Transfert réussi";
@@ -114,16 +118,16 @@ if(isset($_SESSION['utilisateurM'])){
     $annonceC = new AnnonceC();
 
     $annonceM = new AnnonceM(
-    array(
-    'idUtilisateur' => $userM->id,
-    'nom' 	        => $nom,
-    'prenom'      	=> $prenom,
-    'telephone'     => $telephone,
-    'titre'       	=> $titre,
-    'prix'        	=> $prix,
-    'description'   => $description,
-    'images'        => $annonceC->concatImagesNames($image_names)
-    ));
+                          array(
+                                  'idUtilisateur' => $userM->id,
+                                  'nom' 	        => $nom,
+                                  'prenom'      	=> $prenom,
+                                  'telephone'     => $telephone,
+                                  'titre'       	=> $titre,
+                                  'prix'        	=> $prix,
+                                  'description'   => $description,
+                                  'images'        => $annonceC->concatImagesNames($image_names)
+                                ));
 
 
     $annonceC->addAnnonce($annonceM);

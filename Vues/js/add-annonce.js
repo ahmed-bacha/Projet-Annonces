@@ -30,8 +30,10 @@ $( document ).ready(function() {
 
         if (jQuery.isEmptyObject(result) == false) {
 
+          // alert(result);
+
           $( "#erreur" ).show();
-          ( "#success" ).hide();
+          $( "#success" ).hide();
           $('#erreur').html(result);
 
         } else {
@@ -72,6 +74,7 @@ $( document ).ready(function() {
           else
             {
               var reader = new FileReader();
+
               reader.onload = imageIsLoaded1;
 
               reader.readAsDataURL(this.files[0]);
@@ -85,10 +88,13 @@ $( document ).ready(function() {
 
     $('#img1').attr('src', e.target.result);
 
-  }
+  };
+
+  // fonction end --------------------------------------------
+
+  // fonction start ------------------------------------------
 
   $("#file2").change(function() {
-
 
     var file = this.files[0];
     console.log(file);
