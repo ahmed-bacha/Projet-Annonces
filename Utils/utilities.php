@@ -26,7 +26,7 @@ function md5ForFile($file_path){
 
   }else{
 
-    return "invalideFilePath";
+    return INVALIDE;
   }
 
 }

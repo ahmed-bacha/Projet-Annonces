@@ -14,6 +14,8 @@ define("NON_TRAITE", 10);
 define("TRAITE", 20);
 define("A_SUPPRIMER", 30);
 
+define("INVALIDE", "invalideFilePath");
+
 
 /*
 	include MODELES
