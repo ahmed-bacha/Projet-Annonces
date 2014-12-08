@@ -20,6 +20,12 @@ require_once("../Utils/includeAll.php");
 
   $_arrayImages = $o_annonceC->deConcatImagesNames($o_annonceM);
 
+  echo '<pre>';
+
+  print_r($o_annonceM);
+
+  echo '</pre>';
+
 ?>
 
 
@@ -48,8 +54,10 @@ require_once("header.php");
 <!-- Page Content -->
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-12 col-lg-offset-2 col-lg-8">
-    <form id="form" action="" method="post" enctype="multipart/form-data">
+    <form id="form" action="modify-treatement.php" method="post" enctype="multipart/form-data">
 
+      <!-- Envoyer en post l'id de l'annonce pour la récupérer -->
+      <input type="text" name="annonceId" value="<?php echo $o_annonceM->id; ?>">
 
       <!-- Champs pour les informations sur l'utilisateur -->
       <blockquote>
@@ -218,7 +226,7 @@ require_once("header.php");
   </div>
 
   <!-- Script de d'ajout d'une image -->
-  <script src="js/add-annonce.js"></script>
+  <!-- script src="js/modify-annonce.js"></script -->
 
   <!-- Footer -->
   <?php

@@ -11,8 +11,9 @@ $( document ).ready(function() {
     //disable the default form submission
     event.preventDefault();
 
-    var formData    = new FormData($(this)[0]);
-    console.log(formData.toString());
+    var formData = new FormData($(this)[0]);
+
+    // console.log(formData.toString());
 
     // ajax request---------------------------------------------
 
