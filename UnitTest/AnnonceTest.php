@@ -66,14 +66,35 @@ var_dump("UP-DATE Annonce : $response");
 
 /*-- Test GET --*/
 
-$o_annonceM  = $o_annonceC->getAnnonceById(21);
+/*-- $o_annonceM  = $o_annonceC->getAnnonceById(21);
 
 echo "<br/>";
 
 echo "<pre>";
 var_dump($o_annonceM);
-echo "</pre>";
+echo "</pre>"; --*/
 
+
+$tab_annonces = $o_annonceC->getAllAnnonces();
+
+echo sizeof($tab_annonces);
+echo "<br/>";
+
+foreach ($tab_annonces as $value) {
+	 
+     show($value[9]);
+     if ((strpos($value[9],';'))!== false){
+     		$images=explode(";",$value[9]);
+            show($images);
+     	echo "ok" ;
+     }else {
+     	echo " pas de ;";
+     }
+     
+}
+
+
+show($tab_annonces);
 
 /*-- Test DELETE --*/
 
@@ -85,7 +106,7 @@ echo "</pre>";
 
 /*-- Test concatImageNames --*/
 
-$response  = AnnonceC::concatImagesNames("image_1.jpg", "iron_man.png", "wordline.png");
+/* $response  = AnnonceC::concatImagesNames("image_1.jpg", "iron_man.png", "wordline.png");
 
 $o_annonceM->images = $response;
 

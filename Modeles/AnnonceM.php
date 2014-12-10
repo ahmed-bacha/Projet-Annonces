@@ -309,6 +309,32 @@ class AnnonceM implements ModelInterface{
 		}
 	}
 
+    /**
+    *Reourne toutes les annonces 
+    */
+    public static function getAllAnnonces(){
+		// on récupère l'instance PDO
+		$db  = SPDO::getInstance();
+
+				//Connexion à la base de données
+		try {
+				// preparation de la requete
+				$q = $db->prepare(
+				'SELECT *
+				FROM annonceM'
+			);
+				// execution de la requete
+				$q->execute();
+
+			    $_donnees = $q->fetchAll();
+   
+				return $_donnees;
+
+			}catch (PDOException $e) {
+				echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+			}
+    }
+
 	/**
 	* Setter pour tous les champs de la classe
 	* Exemple d'utilisation :

@@ -33,6 +33,11 @@ class AnnonceC
 	{
 		return AnnonceM::getAnnonceByUserId($id);
 	}
+	
+	function getAllAnnonces()
+	{
+		return AnnonceM::getAllAnnonces();
+	}
 
 
 	/**
