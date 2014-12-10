@@ -6,31 +6,25 @@
 
 require_once("../Utils/includeAll.php");
 
-var_dump("Debut MailJet");
+use Mailgun\Mailgun;
 
-// Création de l'objet Mailjet
-$smtp = new Mailjet();
+# Instantiate the client.
+$mgClient = new Mailgun('key-0b2cb3464af253c6c7317430cbe59abf');
 
-// Accès à l'api
-$smtp->apiKey 		= '4e381e55a076541fa02078f3d19f1ba3';
-$smtp->secretKey 	= '4de33fe2030272e12c31aba4554af3d6';
+$domain = "https://api.mailgun.net/v2/sandbox360b4037a0f140c6be0f136ce5c80ea7.mailgun.org";
 
-
-// Get some of your account informations
-$me = $mj->userInfos();
-
-// Display your firstname
-var_dump($me->infos->firstname);
-
+# Make the call to the client.
+$result = $mgClient->sendMessage($domain, array(
+  'from'    => 'Projet-Annonces MailGun <postmaster@sandbox360b4037a0f140c6be0f136ce5c80ea7.mailgun.org>',
+  'to'      => 'kimkero13@gmail.com',
+  'subject' => 'Hello',
+  'text'    => 'Testing some Mailgun awesomness!',
+  'html'    => '<html>Hello</html>'));
 
 
+var_dump($result);
 
-
-
-
-
-
-
+echo $result->http_response_code;
 
 
  ?>

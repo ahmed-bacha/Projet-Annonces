@@ -37,6 +37,7 @@ require_once(LOCAL_PATH."Controlleurs/AnnonceC.php");
 	include lib tiers
 */
 require_once(LOCAL_PATH."Utils/php-mailjet.class-mailjet-0.1-2.php");
+require_once(LOCAL_PATH."vendor/autoload.php");
 
 
 /*
