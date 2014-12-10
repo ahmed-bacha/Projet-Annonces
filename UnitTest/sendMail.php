@@ -41,4 +41,8 @@ $_array = array(
 echo sendEmail($_array);
 
 
+// $name = "hello.txt";
+// var_dump(getExtension(null));
+
+
  ?>

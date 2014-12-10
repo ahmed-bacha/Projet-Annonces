@@ -46,7 +46,7 @@ function sendEmail($_array){
 
 
   require_once("includeAll.php");
-  
+
   $mgClient = new Mailgun\Mailgun('key-0b2cb3464af253c6c7317430cbe59abf');
 
   $domain = "https://api.mailgun.net/v2/sandbox360b4037a0f140c6be0f136ce5c80ea7.mailgun.org";
@@ -64,6 +64,30 @@ function sendEmail($_array){
   }
 
   return false;
+}
+
+
+/**
+* Retourn l'extension de l'image ou NULL
+* @param  STRING _img_name : chemin vers le fichier ABSOLUT
+* @param  STRING : extension ou NULL
+*/
+function getExtension($_img_name){
+
+    if(!empty($_img_name)){
+      if((strpos( $_img_name, '.') !== FALSE) ){
+
+        $result = explode('.',$_img_name);
+        return $result[1];
+
+      }else{
+        return null;
+      }
+
+    }else{
+      return null;
+    }
+
 }
 
 
