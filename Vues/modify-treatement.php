@@ -1,7 +1,7 @@
 <?php
 
   //======================================================
-  // treatement to update an exiting advertisement
+  // treatement to update an exiting announce
   //======================================================
 
   //---------------------------------------
@@ -36,125 +36,175 @@
   // know all about the post
   //---------------------------------------
 
-  // echo '<pre>';
-  //
-  // print_r($_POST);
-  //
-  // echo '</pre>';
-
   extract($_POST);
 
-  // echo $annonceId;
-
   //---------------------------------------
-  // get the current user and ad
+  // get the current announce
   //---------------------------------------
 
   $o_annonceC = new AnnonceC();
 
   $o_annonceM  = $o_annonceC->getAnnonceById($annonceId);
 
-  // echo '<pre>';
-  //
-  // print_r($o_annonceM);
-  //
-  // echo '</pre>';
-
   //---------------------------------------
-  // know md5 signature of images contained in the current ad
+  // global variable declaration
   //---------------------------------------
 
-  // echo $o_annonceM->images.'<br />';
+  $_arrayOldImages = $o_annonceC->deConcatImagesNames($o_annonceM);
 
-  $_arrayImages = $o_annonceC->deConcatImagesNames($o_annonceM);
+  if (sizeOf($_arrayOldImages) < 3) {
 
-  // echo '<pre>';
-  //
-  // print_r($_arrayImages);
-  //
-  // echo '</pre>';
+    while (sizeOf($_arrayOldImages) < 3) {
 
-  // echo 'md5 signatures of images already contained in /images : <br /><br />';
-
-  for($i = 0 ; $i < sizeOf($_arrayImages) ; $i++){
-
-    $md5_file = md5_file('images/'.$_arrayImages[$i]);
-
-    // echo 'md5 file signature : '.$md5_file.'<br />';
-
-  }
-
-  // echo '<br />';
-
-  //---------------------------------------
-  // know md5 signature of new images
-  //---------------------------------------
-
-  // echo 'md5 signatures of images that will be contained in images if they are different : <br /><br />';
-
-  for($i = 0 ; $i < sizeOf($_FILES['image']['name']) ; $i++){
-
-    if(!empty($_FILES['image']['name'][$i])){
-
-      $md5_file = md5_file($_FILES['image']['tmp_name'][$i]);
-
-      // echo 'md5 file signature : '.$md5_file.'<br />';
+      array_push($_arrayOldImages, null);
 
     }
 
   }
 
+  //======================================================
+  // data array building
+  //======================================================
+
   //---------------------------------------
-  // treatement of images that we have to keep in images attribut
+  // add new image
   //---------------------------------------
 
-  $_result = array();
+  $_data = array();
 
-  $_newImagesAttribut = array();
+  for($i = 0 ; $i < 3 ; $i++){
 
-  for($i = 0 ; $i < sizeOf($_FILES['image']['name']) ; $i++){
+    $_file = getFileById($i);
 
-    $_imageState = array(
-                          'name'          => $_FILES['image']['name'][$i],
-                          'extention'     => $_FILES['image']['type'][$i],
-                          'way'           => $_FILES['image']['tmp_name'][$i],
-                          'existOnServer' => 0,
-                          'round'         => 0
-                        );
+    array_push($_data, $_file);
 
-    /**
-    * existOnServer :: 0 :: does not exist on server
-    * existOnServer :: 1 :: exists on server but informations must be changed
-    * existOnServer :: 2 :: exists on server and informations has been already changed
-    */
+  }
 
-    if(!empty($_imageState['extention'])){
+  //---------------------------------------
+  // add old image
+  //---------------------------------------
 
-      // md5 signature evaluation
-      $_md5NewFileSignature = md5_file($_imageState['way']);
+  // show($_arrayOldImages);
 
-      for($j = 0 ; $j < sizeOf($_arrayImages) ; $j++){
+  for($i = 0 ; $i < 3 ; $i++){
 
-        if(!empty($_arrayImages[$j])){
+    $_file = getFileByName($_arrayOldImages[$i]);
 
-          // md5 signature evaluation
-          $_md5OldFileSignature = md5_file('images/'.$_arrayImages[$j]);
+    array_push($_data, $_file);
 
-          if($_md5OldFileSignature == $_md5NewFileSignature){
+  }
 
-            $_imageState['existOnServer'] = 1;
+  //======================================================
+  // treatment
+  //======================================================
 
-            $_imageState['round'] = $j;
+  //---------------------------------------
+  // final key treatment
+  //---------------------------------------
 
-          } else {
+  $_newData = array();
 
-            // echo 'the two images does not correspond anyway<br />';
+  $_oldData = array();
+
+  // $_newData filling
+  foreach ($_data as $_value){
+
+    if($_value['state'] == 'new'){
+
+      array_push($_newData, $_value);
+
+    }
+
+  }
+
+  // $_oldData filling
+  foreach ($_data as $_value){
+
+    if($_value['state'] == 'old'){
+
+      array_push($_oldData, $_value);
+
+    }
+
+  }
+
+  // final key treatment
+  for($i = 0 ; $i < 3 ; $i++){
+
+    if(!is_null($_newData[$i]['extention'])){
+
+      $_newData[$i]['final'] = true;
+
+    } else {
+
+      if(!is_null($_oldData[$i]['extention'])){
+
+        $_oldData[$i]['final'] = true;
+
+      }
+
+    }
+
+  }
+
+  $_data = array();
+
+  $_data = array_merge($_newData, $_oldData);
+
+  //---------------------------------------
+  // toLoad key treatment
+  //---------------------------------------
+
+  $_newData = array();
+
+  $_oldData = array();
+
+  // $_newData filling
+  foreach ($_data as $_value){
+
+    if($_value['state'] == 'new'){
+
+      array_push($_newData, $_value);
+
+    }
+
+  }
+
+  // $_oldData filling
+  foreach ($_data as $_value){
+
+    if($_value['state'] == 'old'){
+
+      array_push($_oldData, $_value);
+
+    }
+
+  }
+
+  $_finalNewData = array();
+
+  // toLoad treatment
+  foreach ($_newData as $_newValue){
+
+    if(!is_null($_newValue['extention'])){
+
+      $_toLoad = false;
+
+      foreach ($_oldData as $_oldValue){
+
+        if(!is_null($_newValue['extention'])){
+
+          if(($_oldValue['md5'] != $_newValue['md5']) && ($_toLoad == false)){
+
+            $_newValue['toLoad'] = $_toLoad = true;
+
+            array_push($_finalNewData, $_newValue);
 
           }
 
         } else {
 
-          // echo 'the old image is empty.<br />';
+          array_push($_finalNewData, $_newValue);
 
         }
 
@@ -162,169 +212,239 @@
 
     } else {
 
-      // echo 'the new image is empty.<br />';
+      array_push($_finalNewData, $_newValue);
 
-      if(!empty($_arrayImages[$i])){
+    }
 
-        // echo 'In revanche, the old image is not empty !<br />';
+  }
 
-        // image name
-        $_imageState['name'] = $_arrayImages[$i];
+  $_data = array();
 
-        // image extension
-        $_ext = explode('.', $_imageState['name']);
+  $_data = array_merge($_finalNewData, $_oldData);
 
-        $_imageState['extention'] = $_ext[1];
+  //---------------------------------------
+  // toDelete key treatment
+  //---------------------------------------
 
-        // image way
-        $_imageState['way'] = 'images/'.$_imageState['name'];
+  $_images = array();
 
-        // image existence
-        $_imageState['existOnServer'] = 2;
+  $_oldData = array();
 
-      } else {
+  // $_images filling
+  foreach ($_data as $_value){
 
-        // echo 'The two images are empty ! <br />';
+    if($_value['final'] == true){
+
+      array_push($_images, $_value);
+
+    }
+
+  }
+
+  // $_oldData filling
+  foreach ($_data as $_value){
+
+    if($_value['state'] == 'old'){
+
+      array_push($_oldData, $_value);
+
+    }
+
+  }
+
+  $_finalOldData = array();
+
+  // toDelete treatment
+  foreach ($_oldData as $_oldValue){
+
+    if(!is_null($_oldValue['extention'])){
+
+      foreach ($_images as $_imagesValue) {
+
+        if($_imagesValue['md5'] != $_oldValue['md5']){
+
+          if($_oldValue['final'] == false){
+
+            $_oldValue['toDelete'] = true;
+
+          }
+
+        }
+
+      }
+
+      array_push($_finalOldData, $_oldValue);
+
+    } else {
+
+      array_push($_finalOldData, $_oldValue);
+
+    }
+
+  }
+
+  $_data = array();
+
+  $_data = array_merge($_finalNewData, $_finalOldData);
+
+  //---------------------------------------
+  // final treatment
+  //---------------------------------------
+
+  $_attribut = array();
+
+  foreach ($_data as $_value) {
+
+    if(!is_null($_value['extention'])){
+
+      if($_value['final'] == true){
+
+        if($_value['state'] == 'new'){
+
+          $_value['name'] = "image".$o_utilisateurM->id.'-'.rand(0,9999999).'.'. $_value['extention'];
+
+          if($_value['toLoad'] == true){
+
+            upLoadFile($_value);
+
+          }
+
+          array_push($_attribut, $_value['name']);
+
+        }
+
+        if($_value['state'] == 'old'){
+
+          array_push($_attribut, $_value['name']);
+
+        }
+
+      }
+
+      if($_value['final'] == false){
+
+        if($_value['toDelete'] == true){
+
+          deleteFile($_value);
+
+        }
 
       }
 
     }
 
-    if($_imageState['existOnServer'] == 1){
-
-      // image name
-      $_imageState['name'] = $_arrayImages[$_imageState['round']];
-
-      // image extention
-      $_ext = explode('.', $_imageState['name']);
-
-      $_imageState['extention'] = $_ext[1];
-
-      //image way
-      $_imageState['way'] = 'images/'.$_imageState['name'];
-
-    }
-
-    if($_imageState['existOnServer'] == 0) {
-
-      // image to upload
-      $_image = array();
-
-      // get the image index in $_FILES according its name
-      $_arrayIndex = array_keys($_FILES['image']['name'], $_imageState['name']);
-
-      // index in $_FILES of the image to upload
-      $_index = $_arrayIndex[0];
-
-      $_keys = array_keys($_FILES['image']);
-
-      foreach ($_keys as $_value) {
-
-        $_image[$_value] = $_FILES['image'][$_value][$_index];
-
-      }
-
-      $_idUser = $o_utilisateurM->id;
-
-      $_image['name'] = modifyFileName($_image, $_idUser);
-
-      upLoadFile($_image);
-
-      $_imageState['name'] = $_image['name'];
-
-    }
-
-    array_push($_result, $_imageState);
-
   }
 
   //---------------------------------------
-  // result display
+  // show result
   //---------------------------------------
 
-  // for($i = 0 ; $i < sizeOf($_result) ; $i++){
-  //
-  //   echo '<pre>';
-  //
-  //   print_r($_result[$i]);
-  //
-  //   echo '</pre>';
-  //
-  // }
-
-  //---------------------------------------
-  // build the new images attributs
-  //---------------------------------------
-
-  for($i = 0 ; $i < sizeOf($_result) ; $i++){
-
-    array_push($_newImagesAttribut, $_result[$i]['name']);
-
-  }
-
-  $_arrayObsoleteImages   = array();
-
-  $_arrayMd5OldImage      = array();
-
-  $_arrayMd5NewImage      = array();
-
-  $_allKeys               = array(0, 1, 2);
-
-  for($i = 0 ; $i < 3 ; $i++){
-
-    if(file_exists('images/'.$_arrayImages[$i])){
-
-      $_md5OldCurrentImage = md5_file('images/'.$_arrayImages[$i]);
-
-      array_push($_arrayMd5OldImage, $_md5OldCurrentImage);
-
-    }
-
-    if(file_exists('images/'.$_newImagesAttribut[$i])){
-
-      $_md5NewCurrentImage = md5_file('images/'.$_newImagesAttribut[$i]);
-
-      array_push($_arrayMd5NewImage, $_md5NewCurrentImage);
-
-    }
-
-  }
-
-  for($i = 0 ; $i < 3 ; $i++){
-
-    $_key  = array_search($_arrayMd5OldImage[$i], $_arrayMd5NewImage);
-
-    unset($_allKeys[$_key]);
-
-  }
-
-  foreach($_allKeys as $_value){
-
-    unlink('images/'.$_arrayImages[$_value]);
-
-  }
-
-  // echo '<pre>';
-  //
-  // print_r($_arrayMd5NewImage);
-  //
-  // print_r($_arrayMd5OldImage);
-  //
-  // print_r($_allKeys);
-  //
-  // echo '</pre>';
-
-  // echo 'new images attributs : <br />';
-  //
-  // echo '<pre>';
-  //
-  // print_r($_newImagesAttribut);
-  //
-  // echo '</pre>';
-
-  $o_annonceM->images = implode(";", $_newImagesAttribut);
+  $o_annonceM->images  = implode(';', $_attribut);
 
   $o_annonceC->updateAnnonce($o_annonceM);
+
+  //---------------------------------------
+  // function to get a $_file by $_index
+  //---------------------------------------
+
+  function getFileById($_index){
+
+    $_file = array();
+
+    if(!empty($_FILES['image']['tmp_name'][$_index])){
+
+      $_file['name']      = $_FILES['image']['name'][$_index];
+
+      $_file['extention'] = getExtension($_file['name']);
+
+      $_file['path']      = $_FILES['image']['tmp_name'][$_index];
+
+      $_file['size']      = $_FILES['image']['size'][$_index];
+
+      $_file['md5']       = md5ForFile($_file['path']);
+
+
+    } else {
+
+      $_file['name']      = null;
+
+      $_file['extention'] = null;
+
+      $_file['path']      = null;
+
+      $_file['size']      = null;
+
+      $_file['md5']       = null;
+
+    }
+
+    $_file['state']     = 'new';
+
+    $_file['toLoad']    = false;
+
+    $_file['toDelete']  = false;
+
+    $_file['final']     = false;
+
+    return $_file;
+
+  }
+
+  //---------------------------------------
+  // function to get a $_file by $_filename
+  //---------------------------------------
+
+  function getFileByName($_filename){
+
+    $_file = array();
+
+    if(!is_null($_filename)){
+
+      $_file['name']      = $_filename;
+
+      $_file['extention'] = getExtension($_filename);
+
+      $_file['path']      = 'images/'.$_filename;
+
+      $_file['size']      = filesize($_file['path']);
+
+      $_file['md5']       = md5ForFile('images/'.$_filename);
+
+    } else {
+
+      $_file['name']      = null;
+
+      $_file['extention'] = null;
+
+      $_file['path']      = null;
+
+      $_file['size']      = 0;
+
+      $_file['md5']       = null;
+
+    }
+
+    $_file['state']     = 'old';
+
+    $_file['toLoad']    = false;
+
+    $_file['toDelete']  = false;
+
+    $_file['final']     = false;
+
+    return $_file;
+
+  }
+
+  //---------------------------------------
+  // function to delete
+  //---------------------------------------
+
+  function deleteFile($_file){
+
+    unlink('images/'.$_file['name']);
+
+  }
 
   //---------------------------------------
   // function to upload a file on server
@@ -340,55 +460,27 @@
 
     if (!empty($_file['name'])) {
 
-      if ($_file['error'] == 0) {
+      if ($_file['size'] < $maxsize) {
 
-        if ($_file['size'] < $maxsize) {
+        $extension_upload = $_file['extention'];
 
-          $extension_upload = strtolower(substr(strrchr($_file['name'],'.'), 1));
+        if (in_array($extension_upload,$extensions_valides)){
 
-          if ( in_array($extension_upload,$extensions_valides) ){
+          $resultat = move_uploaded_file($_file['path'] , "../Vues/images/".$_file['name']);
 
-            // $image_names[$i] = "image". $userM->id ."-".rand(0,9999999).".". $extension_upload;
+        } else {
 
-            $resultat = move_uploaded_file($_file['tmp_name'] , "../Vues/images/".$_file['name']);
+          $_error = "Extension incorrecte";
 
-          } else{
-
-            $_error = "Extension incorrecte";
-          }
-
-        }else{
-
-          $_error = "Le fichier est trop gros";
         }
 
-      }else{
+      } else {
 
-        $_error = "Erreur lors du transfert";
+        $_error = "Le fichier est trop gros";
 
       }
 
     }
-
-    // echo $_error.'<br />';
-    //
-    // echo 'the file '.$_file['name'].' had been uploaded ! <br />';
-
-  }
-
-  //---------------------------------------
-  // function to modify name of the file
-  //---------------------------------------
-
-  function modifyFileName($_file, $_idUser){
-
-    $_fileName = $_file['name'];
-
-    $_fileArray = explode('.', $_fileName);
-
-    $_fileName = 'image'.$_idUser.'-'.rand(0,9999999).'.'.$_fileArray[1];
-
-    return $_fileName;
 
   }
 
