@@ -4,26 +4,34 @@ $title = "Home Page";
 require_once("header.php");
  ?>
 
-<!-- Page Content -->
-<div class="well col-lg-5 col-lg-offset-3">
+ <script src="js/sign-up.js"></script>
 
-<?php
+ <!-- Page Content -->
+ <div class="well col-lg-5 col-lg-offset-3">
 
-	 if(isset($_GET['err']) && !empty($_GET['err'])){
-		$erreur = json_decode($_GET['err']);
+   <?php
 
-?>
-   <div class="alert alert-danger" role="alert">
-   	<?php
-   		foreach ($erreur as $value){
-    		echo "<p>$value</p>";
-		}
-   	 ?>
-	</div>
-<?php
-	 }
- ?>
-    <form role="form" method="POST" action="sign-up-traitement.php">
+   if(isset($_GET['err']) && !empty($_GET['err'])){
+     $erreur = json_decode($_GET['err']);
+     ?>
+     <div id ="err" class="alert alert-danger" role="alert">
+       <?php
+       foreach ($erreur as $value){
+         echo "<p>$value</p>";
+       }
+       ?>
+     </div>
+
+     <?php
+   }else{
+     ?>
+     <div id ="erreur" class="alert alert-danger" role="alert">
+     </div>
+     <?php
+   }
+   ?>
+
+    <form id="form" action="sign-up-traitement.php" method="POST" enctype="multipart/form-data">
 
 		<div class="form-group">
 			<label for="nom">Nom</label>
