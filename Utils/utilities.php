@@ -91,5 +91,52 @@ function getExtension($_img_name){
 }
 
 
+/**
+* Retourn le lien de l'image ABSOLUT
+* @param  STRING _img_name : nom de l'image
+* @param  STRING : lien de l'image ou NULL
+*/
+function generateImageLink($_img_name){
+
+  if(!empty($_img_name)){
+
+    if((strpos( $_img_name, '.') !== FALSE) ){
+
+      return LOCAL_PATH.'images/'.$_img_name;
+
+    }else{
+      return null;
+    }
+
+  }else{
+    return null;
+  }
+
+}
+
+
+/**
+*
+*/
+function deconcatImages($_images){
+
+  if(!empty($_images)){
+
+    if((strpos( $_images, ';') !== FALSE) ){
+
+      $_array = explode(";", $_images);
+
+      return $_array;
+
+    }else{
+      return $_images;
+    }
+
+  }else{
+    return null;
+  }
+
+}
+
 
  ?>

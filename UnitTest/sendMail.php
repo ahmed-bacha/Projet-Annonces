@@ -38,11 +38,11 @@ $_array = array(
     'message'     => 'Hi from TSE, hello <b>Team4J</b>'
 );
 
-echo sendEmail($_array);
+//echo sendEmail($_array);
 
 
-// $name = "hello.txt";
-// var_dump(getExtension(null));
+$name = "hello.txt";
+var_dump(generateImageLink($name));
 
 
  ?>
