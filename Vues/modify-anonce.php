@@ -219,7 +219,7 @@ require_once("header.php");
         <div class="row">
           <div class="col-xs-12 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
             <p>
-              <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block">Modifer</button>
+              <button type="submit" name="submit" id="submit" class="btn btn-primary btn-lg btn-block">Modifer</button>
             </p>
           </div>
         </div>
@@ -258,6 +258,8 @@ require_once("header.php");
       var prix        = $('input[name="prix"]');
 
       var description = $('textarea[name="description"]');
+
+      var submit      = $('button[name="submit"]');
 
       //--------------------------------
       // initial state
@@ -362,6 +364,8 @@ require_once("header.php");
 
         element.next().addClass('glyphicon-ok').show();
 
+        able(submit);
+
       }
 
       function setKo(element){
@@ -370,17 +374,23 @@ require_once("header.php");
 
         element.next().addClass('glyphicon-remove').show();
 
+        disable(submit);
+
       }
 
       function setOkTextarea(element){
 
         element.closest('div').addClass('has-success');
 
+        able(submit);
+
       }
 
       function setKoTextarea(element){
 
         element.closest('div').addClass('has-error');
+
+        disable(submit);
 
       }
 
@@ -506,6 +516,18 @@ require_once("header.php");
           showError(element);
 
         }
+
+      }
+
+      function disable(button){
+
+        button.prop("disabled", true);
+
+      }
+
+      function able(button){
+
+        button.prop("disabled", false);
 
       }
 
