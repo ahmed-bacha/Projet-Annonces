@@ -20,12 +20,6 @@ require_once("../Utils/includeAll.php");
 
   $_arrayImages = $o_annonceC->deConcatImagesNames($o_annonceM);
 
-  echo '<pre>';
-
-  print_r($o_annonceM);
-
-  echo '</pre>';
-
 ?>
 
 
@@ -39,14 +33,14 @@ require_once("header.php");
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-12 col-lg-offset-2 col-lg-4">
-    <div id ="erreur" class="alert alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert">
     </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-12 col-lg-offset-2 col-lg-4">
-    <div id ="success" class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert">
     </div>
   </div>
 </div>
@@ -57,7 +51,7 @@ require_once("header.php");
     <form id="form" action="modify-treatement.php" method="post" enctype="multipart/form-data">
 
       <!-- Envoyer en post l'id de l'annonce pour la récupérer -->
-      <input type="text" name="annonceId" value="<?php echo $o_annonceM->id; ?>">
+      <input type="text" hidden="true" name="annonceId" value="<?php echo $o_annonceM->id; ?>">
 
       <!-- Champs pour les informations sur l'utilisateur -->
       <blockquote>
@@ -70,13 +64,15 @@ require_once("header.php");
             <label for="exampleInputPassword1">
               Nom
             </label>
-            <div class="input-group">
+            <div class="input-group has-feedback">
               <span class="input-group-addon">
                 <span class="glyphicon glyphicon-user"></span>
               </span>
               <input id="nom" type="text" name="nom" class="form-control" value="<?php echo $o_annonceM->nom ?>" placeholder="Nom">
+              <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
             </div>
           </div>
+          <div class="alert alert-danger text-center" role="alert" hidden="true">Indiquer votre nom</div>
         </div>
       </div>
 
@@ -86,13 +82,15 @@ require_once("header.php");
             <label for="exampleInputPassword1">
               Prénom
             </label>
-            <div class="input-group">
+            <div class="input-group" >
               <span class="input-group-addon">
                 <span class="glyphicon glyphicon-user"></span>
               </span>
               <input id="prenom" type="text" name="prenom" class="form-control" value="<?php echo $o_annonceM->prenom ?>" placeholder="Prénom">
+              <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
             </div>
           </div>
+          <div class="alert alert-danger text-center" role="alert" hidden="true">Indiquer votre prenom</div>
         </div>
       </div>
 
@@ -107,8 +105,10 @@ require_once("header.php");
                 <span class="glyphicon glyphicon-earphone"></span>
               </span>
               <input id="telephone" type="tel" name="telephone" class="form-control" value="<?php echo $o_annonceM->telephone ?>" placeholder="Téléphone">
+              <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
             </div>
           </div>
+          <div class="alert alert-danger text-center" role="alert" hidden="true">format incorrect</div>
         </div>
       </div>
 
@@ -226,7 +226,171 @@ require_once("header.php");
   </div>
 
   <!-- Script de d'ajout d'une image -->
+
   <!-- script src="js/modify-annonce.js"></script -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <script>
+
+    $(function(){
+
+      $('.alert-danger').hide();
+
+      $('.alert-success').hide();
+
+      //--------------------------------
+      // global variable declaration
+      //--------------------------------
+
+      var nom         = $('input[name="nom"]');
+
+      var prenom      = $('input[name="prenom"]');
+
+      var telephone   = $('input[name="telephone"]');
+
+      //--------------------------------
+      // treatment
+      //--------------------------------
+
+      nom.blur(function(){
+
+        treatField($(this));
+
+      });
+
+      nom.focus(function(){
+
+        setStandard($(this));
+
+      });
+
+      prenom.blur(function(){
+
+        treatField($(this));
+
+      });
+
+      prenom.focus(function(){
+
+        setStandard($(this));
+
+      });
+
+      telephone.blur(function(){
+
+        treatPhoneField($(this));
+
+      });
+
+      telephone.focus(function(){
+
+        setStandard($(this));
+
+      });
+
+
+      //--------------------------------
+      // function called during treatment
+      //--------------------------------
+
+      function setOk(element){
+
+        element.closest('div').addClass('has-success');
+
+        element.next().addClass('glyphicon-ok').show();
+
+      }
+
+      function setKo(element){
+
+        element.closest('div').addClass('has-error');
+
+        element.next().addClass('glyphicon-remove').show();
+
+      }
+
+      function setStandard(element){
+
+        element.closest('div').removeClass().addClass('input-group has-feedback');
+
+        element.next().removeClass().addClass('glyphicon form-control-feedback').hide();
+
+      }
+
+      function showError(element){
+
+        element.closest('.form-group').next().slideDown();
+
+      }
+
+      function hideError(element){
+
+        element.closest('.form-group').next().slideUp();
+
+      }
+
+      function notNull(element){
+
+        var elementLength = element.val().length;
+
+        var result = false;
+
+        if(elementLength != 0){
+
+          result = true;
+
+        }
+
+        return result;
+
+      }
+
+      function treatField(element){
+
+        if(notNull(element)){
+
+          setOk(element);
+
+          hideError(element);
+
+        } else {
+
+          setKo(element);
+
+          showError(element);
+
+        }
+
+      }
+
+      function treatPhoneField(element){
+
+        var phone   = element.val();
+
+        var regexp  = /[0-9]{10}/;
+
+        var result  = regexp.test(phone);
+
+        if(result){
+
+          setOk(element);
+
+          hideError(element);
+
+        } else {
+
+          setKo(element);
+
+          showError(element);
+
+        }
+
+      }
+
+    });
+
+  </script>
 
   <!-- Footer -->
   <?php
