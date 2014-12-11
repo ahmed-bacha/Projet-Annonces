@@ -126,8 +126,10 @@ require_once("header.php");
             <div class="input-group">
               <span class="input-group-addon"><span class="glyphicon  glyphicon-pencil"></span></span>
               <input id="titre" type="text" name="titre" class="form-control" value="<?php echo $o_annonceM->titre ?>" placeholder="Titre de l'annonce">
+              <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
             </div>
           </div>
+          <div class="alert alert-danger text-center" role="alert" hidden="true">Indiquer le titre de votre annonce</div>
         </div>
       </div>
 
@@ -137,9 +139,11 @@ require_once("header.php");
             <label for="exampleInputPassword1">Prix de l'annonce</label>
             <div class="input-group">
               <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
-              <input id="prix" type="number" step="0.01" name="prix" class="form-control" value="<?php echo $o_annonceM->prix ?>" placeholder="Prix de l'annonce">
+              <input id="prix" type="text" name="prix" class="form-control" value="<?php echo $o_annonceM->prix ?>" placeholder="Prix de l'annonce">
+              <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
             </div>
           </div>
+          <div class="alert alert-danger text-center" role="alert" hidden="true">Indiquer un prix en chiffre</div>
         </div>
       </div>
 
@@ -149,6 +153,7 @@ require_once("header.php");
         </label>
         <textarea id="description" class="form-control" name="description" placeholder="Saisir une description de l'annonce" rows="3"><?php echo $o_annonceM->description ?></textarea>
       </div>
+      <div class="alert alert-danger text-center" role="alert" hidden="true">Indiquer un prix en chiffre</div>
 
       <div class="form-group">
         <label for="exampleInputEmail1">
@@ -200,7 +205,6 @@ require_once("header.php");
                 <p>
                   <input type="file" class="form-control" data-badge="false" name="image[]" id="file3">
                 </p>
-
               </div>
             </div>
           </div>
@@ -249,6 +253,28 @@ require_once("header.php");
 
       var telephone   = $('input[name="telephone"]');
 
+      var titre       = $('input[name="titre"]');
+
+      var prix        = $('input[name="prix"]');
+
+      var description = $('textarea[name="description"]');
+
+      //--------------------------------
+      // initial state
+      //--------------------------------
+
+      treatField(nom);
+
+      treatField(prenom);
+
+      treatPhoneField(telephone);
+
+      treatField(titre);
+
+      treatPriceField(prix);
+
+      treatDescriptionField(description);
+
       //--------------------------------
       // treatment
       //--------------------------------
@@ -289,6 +315,42 @@ require_once("header.php");
 
       });
 
+      titre.blur(function(){
+
+        treatField($(this));
+
+      });
+
+      titre.focus(function(){
+
+        setStandard($(this));
+
+      });
+
+      prix.blur(function(){
+
+        treatPriceField($(this));
+
+      });
+
+      prix.focus(function(){
+
+        setStandard($(this));
+
+      });
+
+      description.blur(function(){
+
+        treatDescriptionField($(this));
+
+      });
+
+      description.focus(function(){
+
+        setStandardTextarea($(this));
+
+      });
+
 
       //--------------------------------
       // function called during treatment
@@ -310,6 +372,18 @@ require_once("header.php");
 
       }
 
+      function setOkTextarea(element){
+
+        element.closest('div').addClass('has-success');
+
+      }
+
+      function setKoTextarea(element){
+
+        element.closest('div').addClass('has-error');
+
+      }
+
       function setStandard(element){
 
         element.closest('div').removeClass().addClass('input-group has-feedback');
@@ -317,6 +391,13 @@ require_once("header.php");
         element.next().removeClass().addClass('glyphicon form-control-feedback').hide();
 
       }
+
+      function setStandardTextarea(element){
+
+        element.closest('div').removeClass().addClass('form-group has-feedback');
+
+      }
+
 
       function showError(element){
 
@@ -381,6 +462,46 @@ require_once("header.php");
         } else {
 
           setKo(element);
+
+          showError(element);
+
+        }
+
+      }
+
+      function treatPriceField(element){
+
+        var elementVal = element.val();
+
+        var elementLength = elementVal.length;
+
+        if(($.isNumeric(elementVal)) && elementLength != 0){
+
+          setOk(element);
+
+          hideError(element);
+
+        } else {
+
+          setKo(element);
+
+          showError(element);
+
+        }
+
+      }
+
+      function treatDescriptionField(element){
+
+        if(notNull(element)){
+
+          setOkTextarea(element);
+
+          hideError(element);
+
+        } else {
+
+          setKoTextarea(element);
 
           showError(element);
 
