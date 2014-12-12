@@ -20,6 +20,8 @@ require_once("header.php");
 
 ?>
 
+<script src="js/add-annonce.js"></script>
+
 <div class="row">
    <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-12 col-lg-offset-2 col-lg-4">
 	   <div id ="erreur" class="alert alert-danger" role="alert">
@@ -206,7 +208,6 @@ require_once("header.php");
 	</div>
 </div>
 
-<script src="js/add-annonce.js"></script>
 
 <!-- Footer -->
 <?php
