@@ -40,7 +40,7 @@ require_once("header.php");
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-md-12 col-lg-offset-2 col-lg-4">
-    <div class="alert alert-success" role="alert">
+    <div id="messageTreatment" class="alert alert-success text-center" role="alert">
     </div>
   </div>
 </div>
@@ -662,6 +662,46 @@ require_once("header.php");
       });
 
       // fonction end --------------------------------------------
+
+      //--------------------------------
+      // Ajax request to post data on modify-treatement.php
+      //--------------------------------
+
+      $('form').submit(function(){
+
+        var formData = new FormData($(this)[0]);
+
+        $.ajax({
+
+          url:          'modify-treatement.php',
+
+          type:         'POST',
+
+          data:         formData,
+
+          mimeType:     'multipart/form-data',
+
+          contentType:  false,
+
+          async:        false,
+
+          cache:        false,
+
+          processData:  false,
+
+          success: function(reponse, statut){
+
+            $('form').slideUp('slow');
+
+            $('#messageTreatment').append(reponse).slideDown();
+
+          }
+
+        });
+
+        return false;
+
+      });
 
     });
 

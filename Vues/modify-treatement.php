@@ -28,9 +28,9 @@
   // script to see php errors
   //---------------------------------------
 
-  error_reporting(E_ALL);
-
-  ini_set('display_errors','On');
+  // error_reporting(E_ALL);
+  //
+  // ini_set('display_errors','On');
 
   //---------------------------------------
   // know all about the post
@@ -45,6 +45,22 @@
   $o_annonceC = new AnnonceC();
 
   $o_annonceM  = $o_annonceC->getAnnonceById($annonceId);
+
+  //======================================================
+  // $_POST treatment
+  //======================================================
+
+  $o_annonceM->nom          = $nom;
+
+  $o_annonceM->prenom       = $prenom;
+
+  $o_annonceM->telephone    = $telephone;
+
+  $o_annonceM->titre        = $titre;
+
+  $o_annonceM->prix         = $prix;
+
+  $o_annonceM->description  = $description;
 
   //---------------------------------------
   // global variable declaration
@@ -343,6 +359,8 @@
 
   $o_annonceC->updateAnnonce($o_annonceM);
 
+  echo 'correctly updated !';
+
   //---------------------------------------
   // function to get a $_file by $_index
   //---------------------------------------
@@ -484,6 +502,6 @@
 
   }
 
-  header("Location: liste-mes-annonces.php");
+  // header("Location: liste-mes-annonces.php");
 
 ?>
