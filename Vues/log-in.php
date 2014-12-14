@@ -17,7 +17,7 @@ require_once("header.php");
   if(isset($_GET['err']) && !empty($_GET['err'])){
     $erreur = json_decode($_GET['err']);
     ?>
-    <div id ="err" class="alert alert-danger" role="alert">
+    <div id ="err" class="alert alert-danger" hidden="true" role="alert">
       <?php
       foreach ($erreur as $value){
         echo "<p>$value</p>";
@@ -26,9 +26,9 @@ require_once("header.php");
     </div>
 
     <?php
-  }else{
+  }else {
     ?>
-      <div id ="erreur" class="alert alert-danger" role="alert">
+      <div id ="erreur" class="alert alert-danger" hidden="true" role="alert">
       </div>
     <?php
   }
@@ -39,25 +39,31 @@ require_once("header.php");
 
 	  <div class="form-group" >
 	    <label for="mail">Adresse email</label>
-	    <div class="input-group">
+	    <div id="divEmail" class="input-group">
 	      <div class="input-group-addon">@</div>
 	      <input id="email" name="email" class="form-control" type="email" placeholder="sam@hotmail.com">
+        <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
 	    </div>
 	  </div>
 
+    <div class="alert alert-danger text-center" role="alert" hidden="true">Email non valide</div>
+
 	  <div class="form-group">
 	    <label for="password">Mot de passe</label>
-	   	<div class="input-group">
+	   	<div id="divPassword" class="input-group">
 	      <div class="input-group-addon">
 	      	<span class="glyphicon glyphicon-lock"></span>
 	      </div>
 	      <input id="password" name="password" type="password" class="form-control" id="password" placeholder="*********">
+        <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
 	    </div>
 
 	  </div>
 
+    <div class="alert alert-danger text-center" role="alert" hidden="true">MDP non valide ( min 5 caractères )</div>
+
 	  <div class="form-group col-lg-6 col-lg-offset-3">
-	  	 <button id="submit" type="submit" class="btn btn-primary btn-block">Valider</button>
+	  	 <button name="submit" id="submit" type="submit" class="btn btn-primary btn-block">Valider</button>
 	  </div>
 
 	</form>

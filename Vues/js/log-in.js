@@ -56,3 +56,183 @@ $( document ).ready(function() {
   });
 
 });
+
+
+
+$(function(){
+
+  var email      = $('input[name="email"]');
+
+  var password       = $('input[name="password"]');
+
+  var submit      = $('button[name="submit"]');
+
+
+  email.blur(function(){
+
+    treatEmailField($(this));
+
+  });
+
+  email.focus(function(){
+
+    setStandard($(this));
+
+  });
+
+  password.blur(function(){
+
+    treatMdpField($(this))
+  });
+
+  password.focus(function(){
+
+    setStandard($(this));
+
+  });
+
+  stateSubmitButton();
+
+  //--------------------------------
+  // function called during treatment
+  //--------------------------------
+
+  function setOk(element){
+
+    element.closest('div').addClass('has-success');
+
+    element.next().addClass('glyphicon-ok').show();
+
+    stateSubmitButton();
+
+  }
+
+  function setKo(element){
+
+    element.closest('div').addClass('has-error');
+
+    element.next().addClass('glyphicon-remove').show();
+
+    stateSubmitButton();
+
+  }
+
+  function setStandard(element){
+
+    element.closest('div').removeClass().addClass('input-group has-feedback');
+
+    element.next().removeClass().addClass('glyphicon form-control-feedback').hide();
+
+  }
+
+
+  function showError(element){
+
+    element.closest('.form-group').next().slideDown();
+
+  }
+
+  function hideError(element){
+
+    element.closest('.form-group').next().slideUp();
+
+  }
+
+  function notNull(element){
+
+    var elementLength = element.val().length;
+
+    var result = false;
+
+    if(elementLength != 0){
+
+      result = true;
+
+    }
+
+    return result;
+
+  }
+
+  function treatField(element){
+
+    if(notNull(element)){
+
+      setOk(element);
+
+      hideError(element);
+
+    } else {
+
+      setKo(element);
+
+      showError(element);
+
+    }
+
+  }
+
+  function treatEmailField(element){
+
+    var email   = element.val();
+
+    var regexp  = /([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/;
+
+    var result  = regexp.test(email);
+
+    if(result){
+
+      setOk(element);
+
+      hideError(element);
+
+    } else {
+
+      setKo(element);
+
+      showError(element);
+
+    }
+
+  }
+
+  function treatMdpField(element){
+
+    if(element.val().length > 5){
+
+      setOk(element);
+
+      hideError(element);
+
+    } else {
+
+      setKo(element);
+
+      showError(element);
+
+    }
+
+  }
+
+  function disable(button){
+
+    button.prop("disabled", true);
+
+  }
+
+  function able(button){
+
+    button.prop("disabled", false);
+
+  }
+
+  function stateSubmitButton(){
+    if ($('#divEmail').hasClass('has-success') && $('#divPassword').hasClass('has-success')) {
+      console.log("has success");
+      able(submit);
+    } else {
+      console.log("not success")
+      disable(submit);
+    }
+  }
+});
