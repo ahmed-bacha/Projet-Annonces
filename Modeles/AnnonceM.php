@@ -321,7 +321,7 @@ class AnnonceM implements ModelInterface{
 				// preparation de la requete
 				$q = $db->prepare(
 				'SELECT *
-				FROM annonceM'
+				FROM annonceM order by id desc'
 			);
 				// execution de la requete
 				$q->execute();

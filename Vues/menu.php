@@ -36,10 +36,9 @@
             </a>
           <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="single-annonce.php">Annonces</a>
+                <a href="liste-annonces.php">Annonces</a>
                 <a href="reponse-annonce.php">Reponse annonce</a>
                 <a href="add-annonce.php">Add annonce</a>
-                <a href="detail-annonce.php">Detail annonce</a>
                 <a href="test-upload-image.php">Test Upload image</a>
             </li>
           </ul>
