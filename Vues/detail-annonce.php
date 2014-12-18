@@ -1,5 +1,5 @@
 <!-- Header -->
-<?php
+<?php 
 $title = "Home Page";
 require_once("header.php");
 
@@ -7,19 +7,27 @@ require_once("../Utils/includeAll.php");
  ?>
 
 
-<?php
+<?php 
 
 
 // affichage du tableau des données
 //var_dump($_POST);
 //extract($_POST);
 
-$details_annonce = extract($_POST['annonce']);
+extract($_GET);
 
-if(!empty($details_annonce))
-	{
 
- 		$names_img = deconcatImages($details_annonce[9]);
+$o_annonceC = new AnnonceC();
+
+$o_annonceM  = $o_annonceC->getAnnonceById($idAnnonce);
+
+
+$o_utilisateurC = new utilisateurC();
+
+$o_utilisateurM = $o_utilisateurC->getUserById($o_annonceM->idUtilisateur);
+
+
+$names_img = $o_annonceC->deconcatImages($o_annonceM);
 
  ?>
 
@@ -27,47 +35,51 @@ if(!empty($details_annonce))
 	<div class="col-lg-8">
 
 		<div class="panel panel-success">
-
+          
 			<!-- titre annonce -->
 			<div class="panel-heading panel-success text-center">
-			   <?php echo  $details_annonce[6] ?>
+			   <?php echo $o_annonceM->titre  ?>
 			</div>
 				<!-- corps de l'annonce -->
 
 			<div class="panel-body text-center">
-				<?php
+				<?php  					
 				     if (!empty($names_img))
 				     {
 				     	?>
-						<!-- l'image principale -->
+						
 						<div id="img">
-							<?php
+							<?php  					
 								if (sizeof($names_img) > 1)
 									{
 										?>
-										<!-- les autres images -->
-										<a href="#"><img class="img-thumbnail img-responsive " src=" <?php echo "images/".$names_img[0] ?> " data-src="holder.js/100x100" alt=""></a>
-
+										<!-- l'image principale -->
+										<img class="img-thumbnail img-responsive " src=" <?php echo "images/".$names_img[0] ?> " data-src="holder.js/100x100" alt="">
+												
 										<br>
 										<div class="row">
                                             <?php
-										       for ( $i=0; $i<3; $i++)
+										       for ( $i=0; $i<3; $i++) 
 										       {
 
 										       		if (!empty($names_img[$i+1]))
 				     							    {
-									        ?>
-											       <!-- l'image principale -->
-											       <div id="img1" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					    						 		<div class="thumbnail">
+									        ?>      
+									               <br>
+											       <!-- les autes images -->
+											       <div id="img1" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					    						 		<div >
 					      								<a href="#"><img class="img-thumbnail img-responsive " src=" <?php echo "images/".$names_img[$i+1] ?> " data-src="holder.js/100x100" alt=""></a>
-
+												
 					    								</div>
 													</div>
-
-							                         <?php
-                                       			    }
+												
+							                         <?php 
+                                       			    } 
                                                 }
+
+                                              
+
 									} else  {
                                             ?>
                                             <!-- l'image principale -->
@@ -77,66 +89,69 @@ if(!empty($details_annonce))
 									       }
 							       ?>
 
-						                </div>
+						                </div>	
 
 						 </div>
+                        
+  
 
-					<?php
+
+					<?php 
 					}else {
 							?>
 
 						      <a href="#"><img class="img-thumbnail img-responsive " src="holder.js/300x300" alt=""></a>
-						<?php
+						<?php 
 					}
 					?>
-
+		
              		<br>
-				     <div>
-					     <p>  <?php echo $details_annonce[8] ?>
+				     <div class="text-center">
+					     <p>  <?php echo $o_annonceM->description ?>
 					      <hr>
 					     <!-- prix -->
-					      <button class="btn btn-primary btn-lg"> <?php echo $details_annonce[7] ?> </button>
+					      <button class="btn btn-primary btn-lg"> <?php echo $o_annonceM->prix?> </button>
 				     </div>
 
 			</div>
-
-        </div>
+	
+      	    	
 
     </div>
 
      		<!-- Block informations annonceur -->
-	<div>
-		<div class="col-lg-4">
+	
+	<div class="col-lg-4">
 			<div class="panel panel-success">
 
 			<div class="panel-heading panel-success text-center">
-				Informations
-
+				Informations 
+				
 			</div>
-
+            
 			<div class="input-group">
 	      		<div class="input-group-addon">
+	      			<?php echo $o_utilisateurM->nom; ?>
+					&nbsp;
+					&nbsp;
+					&nbsp;
 	      			<span class="glyphicon glyphicon-envelope"></span>
-	      			<a href="#">nassrehdfkhd@ggg.fr</a>
+	      			<a href="#"><?php echo $o_utilisateurM->email ?></a> 
 	      		</div>
 	      		<div class="input-group-addon">
 	      			<span class="glyphicon glyphicon-phone-alt"></span>
-	      			0678987635
+	      			<?php echo $o_annonceM->telephone ?>
 	      		</div>
-
+	      		
 	    	</div>
 
 			</div>
-		</div>
-
 	</div>
 
-</div>
-<?php
-}
-?>
+</div>	
 
 <!-- Footer -->
-<?php
-require_once("footer.php");
+<?php 
+require_once("footer.php"); 
 ?>
+

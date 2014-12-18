@@ -51,7 +51,7 @@ foreach($liste_annonces as $o_annonceM){
 					<div class="panel-body text-center">
 						<br>
 
-						<div style="min-height: 300px;max-height: 300px;">
+						<div style="min-height: 200px;max-height: 250px;">
 
 							<?php
 
