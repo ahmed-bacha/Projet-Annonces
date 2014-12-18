@@ -310,7 +310,7 @@ class AnnonceM implements ModelInterface{
 	}
 
     /**
-    *Reourne toutes les annonces 
+    *Reourne toutes les annonces
     */
     public static function getAllAnnonces(){
 		// on récupère l'instance PDO
@@ -325,10 +325,17 @@ class AnnonceM implements ModelInterface{
 			);
 				// execution de la requete
 				$q->execute();
+				$response = array();
 
-			    $_donnees = $q->fetchAll();
-   
-				return $_donnees;
+				while ($_donnees = $q->fetch()) {
+
+					$o_annonceM = new AnnonceM($_donnees);
+
+					array_push($response, $o_annonceM);
+
+				}
+
+				return $response;
 
 			}catch (PDOException $e) {
 				echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
