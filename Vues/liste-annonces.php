@@ -1,7 +1,7 @@
-<?php 
+<?php
 require_once("../Utils/includeAll.php");
 
-// On démarre la session 
+// On démarre la session
 session_start();
 
 
@@ -13,32 +13,33 @@ if(isset($_SESSION['utilisateurM'])){
 
 
 <!-- Header -->
-<?php 
+<?php
 
 $title = "Exemple d'une annonce";
 require_once("header.php");
 
  ?>
- 
+
 <!-- Page Content -->
 
-<?php 
+<?php
 
-$o_annonceC = new AnnonceC();
+$o_annonceC 	= new AnnonceC();
 $tab_annonces = $o_annonceC->getAllAnnonces();
-$k=0;
-$size=variant_int(sizeof($tab_annonces)/3);
+$k	= 0;
+
+$size = intval(sizeof($tab_annonces)/3);
 for($i=0; $i<$size+1; $i++){
 
 ?>
     <form role="form" method="POST" action="detail-annonce.php">
 	<!-- ligne  -->
     <div class="row col-lg-12">
-	<?php 
+	<?php
 			for( $j=$k; $j<$k+3;$j++)
-			{	
+			{
 				if(!empty($tab_annonces[$j][6]))
-				{ 
+				{
 				?>
 				<!-- bloc annonce  -->
 			<div class="col-lg-4 ">
@@ -55,7 +56,7 @@ for($i=0; $i<$size+1; $i++){
 					<div class="panel-body text-center">
 						<br>
 						<div>
-							<?php 
+							<?php
 
 					$names_img = deconcatImages($tab_annonces[$j][9]);
 					if (!empty($names_img))
@@ -63,18 +64,18 @@ for($i=0; $i<$size+1; $i++){
 
 						if (sizeof($names_img) == 1)
 						{
-						 
+
 						 		$chemain_img="images/".$names_img;
 
-							?> 
+							?>
 								<img type="input" class="img-thumbnail img-responsive" src= "<?php echo $chemain_img; ?>" alt="">
-	                             
-	                           
-	                            
+
+
+
 					    	<?php
 						}else {
 	                          	$chemain_img="images/".$names_img[0];
-							?> 
+							?>
 								<img class="img-thumbnail img-responsive" src= "<?php echo $chemain_img; ?>" alt="">
 	                <?php
 						}
@@ -88,24 +89,24 @@ for($i=0; $i<$size+1; $i++){
 						</div>
 
 						<div>
-									<?php 
+									<?php
 							echo $tab_annonces[$j][8];
 						?>
 							<hr>
 							<!-- prix -->
 
-							<button type="submit" name = "annonce" class="btn btn-primary btn-lg"  value='<?php echo serialize($tab_annonces[$j]); ?>'>							<!-- <input type="hidden" name = "annonce" value="<?php  $j;?>"> -->	
-								<?php 
+							<button type="submit" name = "annonce" class="btn btn-primary btn-lg"  value='<?php echo serialize($tab_annonces[$j]); ?>'>							<!-- <input type="hidden" name = "annonce" value="<?php  $j;?>"> -->
+								<?php
 							echo $tab_annonces[$j][7];
 						?>
 							</button >
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- fin bloc annonce  -->
-			<?php 
+			<?php
 			}
 			}
 		$k=$k+3;
@@ -116,6 +117,6 @@ for($i=0; $i<$size+1; $i++){
 }
  ?>
 <!-- Footer -->
-<?php 
-require_once("footer.php"); 
+<?php
+require_once("footer.php");
 ?>
