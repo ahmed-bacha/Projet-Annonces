@@ -33,7 +33,7 @@ class AnnonceC
 	{
 		return AnnonceM::getAnnonceByUserId($id);
 	}
-	
+
 	function getAllAnnonces()
 	{
 		return AnnonceM::getAllAnnonces();
@@ -92,9 +92,25 @@ class AnnonceC
 	*
 	* @return ARRAY : les 3 liens concatener
 	*/
-	public function deConcatImagesNames($o_AnnonceM){
+	public function deconcatImages($o_AnnonceM){
 
-		return explode(";", $o_AnnonceM->images);
+		$_images = $o_AnnonceM->images;
+
+		if(!empty($_images)){
+
+			if((strpos( $_images, ';') !== FALSE) ){
+
+				$_array = explode(";", $_images);
+
+				return $_array;
+
+			}else{
+				return $_images;
+			}
+
+		}else{
+			return null;
+		}
 
 	}
 

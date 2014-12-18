@@ -8,7 +8,7 @@
 function show($_array){
 
     echo '<pre>';
-    print_r($_array);
+    var_dump($_array);
     echo '</pre>';
 
 }
@@ -102,34 +102,10 @@ function generateImageLink($_img_name){
 
     if((strpos( $_img_name, '.') !== FALSE) ){
 
-      return LOCAL_PATH.'images/'.$_img_name;
+      return 'images/'.$_img_name;
 
     }else{
       return null;
-    }
-
-  }else{
-    return null;
-  }
-
-}
-
-
-/**
-*
-*/
-function deconcatImages($_images){
-
-  if(!empty($_images)){
-
-    if((strpos( $_images, ';') !== FALSE) ){
-
-      $_array = explode(";", $_images);
-
-      return $_array;
-
-    }else{
-      return $_images;
     }
 
   }else{
