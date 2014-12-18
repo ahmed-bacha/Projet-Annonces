@@ -18,7 +18,7 @@ require_once("../Utils/includeAll.php");
 
   $o_annonceM  = $o_annonceC->getAnnonceById($idAnnonce);
 
-  $_arrayImages = $o_annonceC->deConcatImagesNames($o_annonceM);
+  $_arrayImages = $o_annonceC->deconcatImages($o_annonceM);
 
 ?>
 
