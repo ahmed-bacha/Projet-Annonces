@@ -165,7 +165,7 @@ require_once("header.php");
 
               <!-- element croix  -->
               <div class="delete-icon">
-                <span id="delete-icon-1" class="glyphicon glyphicon-remove-sign"></span>
+                <span id="delete-icon-1" class="glyphicon glyphicon-remove-sign" value="<?php echo $o_annonceM->id; ?>" alt="<?php echo $_arrayImages[0] ?>"></span>
               </div>
 
               <img id="img1" data-src="holder.js/200x200" alt="img1" src="images/<?php echo $_arrayImages[0] ?>" />
@@ -182,7 +182,7 @@ require_once("header.php");
 
               <!-- element croix  -->
               <div class="delete-icon">
-                <span id="delete-icon-2" class="glyphicon glyphicon-remove-sign"></span>
+                <span id="delete-icon-2" class="glyphicon glyphicon-remove-sign" value="<?php echo $o_annonceM->id; ?>" alt="<?php echo $_arrayImages[1] ?>"></span>
               </div>
               <img id="img2" data-src="holder.js/200x200" alt="img2" src="images/<?php echo $_arrayImages[1] ?>" />
               <div class="caption">
@@ -198,7 +198,7 @@ require_once("header.php");
 
               <!-- element croix  -->
               <div class="delete-icon">
-                <span id="delete-icon-3" class="glyphicon glyphicon-remove-sign"></span>
+                <span id="delete-icon-3" class="glyphicon glyphicon-remove-sign" value="<?php echo $o_annonceM->id; ?>" alt="<?php echo $_arrayImages[2] ?>"></span>
               </div>
               <img id="img3" data-src="holder.js/200x200" alt="img3" src="images/<?php echo $_arrayImages[2] ?>" />
               <div class="caption">
@@ -641,7 +641,11 @@ require_once("header.php");
 
         $('#file1').val('');
 
-        $('#img1').attr('src',"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjExMy4wMTU2MjUiIHk9IjE1MCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxOXB4O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjMwMHgzMDA8L3RleHQ+PC9nPjwvc3ZnPg==");
+        var id_annonce = $(this).attr('value');
+
+        var nom_image  = $(this).attr('alt');
+
+        //$('#img1').attr('src',"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjExMy4wMTU2MjUiIHk9IjE1MCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxOXB4O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjMwMHgzMDA8L3RleHQ+PC9nPjwvc3ZnPg==");
 
       });
 
