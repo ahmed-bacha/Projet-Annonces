@@ -424,7 +424,7 @@
 
       $_file['path']      = 'images/'.$_filename;
 
-      $_file['size']      = filesize($_file['path']);
+      $_file['size']      =  (file_exists($_file['path'])) ? filesize($_file['path']) : null ;
 
       $_file['md5']       = md5ForFile('images/'.$_filename);
 
@@ -460,7 +460,7 @@
 
   function deleteFile($_file){
 
-    unlink('images/'.$_file['name']);
+    return (file_exists('images/'.$_file['name'])) ? unlink('images/'.$_file['name']) : false ;
 
   }
 

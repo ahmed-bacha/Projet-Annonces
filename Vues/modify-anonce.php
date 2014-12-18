@@ -18,7 +18,7 @@ $o_annonceC = new AnnonceC();
 
 $o_annonceM  = $o_annonceC->getAnnonceById($idAnnonce);
 
-$_arrayImages = $o_annonceC->deconcatImages($o_annonceM);
+$_arrayImages = $o_annonceC->deConcatImagesNames($o_annonceM);
 
 ?>
 
@@ -743,4 +743,3 @@ require_once("header.php");
   <?php
   require_once("footer.php");
   ?>
-  

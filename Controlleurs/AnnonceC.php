@@ -114,6 +114,15 @@ class AnnonceC
 
 	}
 
+	/*
+	* @return ARRAY : les 3 liens concatener
+	*/
+	public function deConcatImagesNames($o_AnnonceM){
+
+			return explode(";", $o_AnnonceM->images);
+
+	}
+
 	//fonction pour vérifier la conformité d'un numéro de tel Français
 	static function verifTelFr($chaine){
 		$regex = "#^0[1-68]([-. ]?[0-9]{2}){4}$#";
