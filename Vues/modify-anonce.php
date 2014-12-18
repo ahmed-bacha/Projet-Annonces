@@ -1,24 +1,24 @@
 <?php
 require_once("../Utils/includeAll.php");
 
-  // On démarre la session
-  session_start();
+// On démarre la session
+session_start();
 
-  if(isset($_SESSION['utilisateurM'])){
+if(isset($_SESSION['utilisateurM'])){
 
-    $userM = $_SESSION['utilisateurM'];
+  $userM = $_SESSION['utilisateurM'];
 
-  }
+}
 
-  // Récupération des données liée à l'anonce
+// Récupération des données liée à l'anonce
 
-  extract($_GET);
+extract($_GET);
 
-  $o_annonceC = new AnnonceC();
+$o_annonceC = new AnnonceC();
 
-  $o_annonceM  = $o_annonceC->getAnnonceById($idAnnonce);
+$o_annonceM  = $o_annonceC->getAnnonceById($idAnnonce);
 
-  $_arrayImages = $o_annonceC->deconcatImages($o_annonceM);
+$_arrayImages = $o_annonceC->deconcatImages($o_annonceM);
 
 ?>
 
@@ -546,11 +546,11 @@ require_once("header.php");
         var match= ["image/jpeg","image/png","image/jpg"];
 
         if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]))) {
-            return false;
+          return false;
         } else {
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded1;
-            reader.readAsDataURL(this.files[0]);
+          var reader = new FileReader();
+          reader.onload = imageIsLoaded1;
+          reader.readAsDataURL(this.files[0]);
         }
 
       });
@@ -561,7 +561,7 @@ require_once("header.php");
 
         $('#img1').attr('src', e.target.result);
 
-        };
+      };
 
       // fonction end --------------------------------------------
 
@@ -637,35 +637,63 @@ require_once("header.php");
 
       // fonction end --------------------------------------------
 
-      $("#delete-icon-1").click(function() {
+      $("#delete-icon-1").click(function(){
 
-        $('#file1').val('');
-
-        var id_annonce = $(this).attr('value');
-
-        var nom_image  = $(this).attr('alt');
-
-        //$('#img1').attr('src',"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjExMy4wMTU2MjUiIHk9IjE1MCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxOXB4O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjMwMHgzMDA8L3RleHQ+PC9nPjwvc3ZnPg==");
+        deleteInAttribut($(this), $('#file1'), $('#img1'));
 
       });
 
-      $("#delete-icon-2").click(function() {
+      $("#delete-icon-2").click(function(){
 
-        $('#file2').val('');
-
-        $('#img2').attr('src',"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjExMy4wMTU2MjUiIHk9IjE1MCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxOXB4O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjMwMHgzMDA8L3RleHQ+PC9nPjwvc3ZnPg==");
+        deleteInAttribut($(this), $('#file2'), $('#img2'));
 
       });
 
-      $("#delete-icon-3").click(function() {
+      $("#delete-icon-3").click(function(){
 
-        $('#file3').val('');
-
-        $('#img3').attr('src',"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjExMy4wMTU2MjUiIHk9IjE1MCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxOXB4O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjMwMHgzMDA8L3RleHQ+PC9nPjwvc3ZnPg==");
+        deleteInAttribut($(this), $('#file3'), $('#img3'));
 
       });
 
       // fonction end --------------------------------------------
+
+      function deleteInAttribut(element, file, img) {
+
+        $.post(
+
+        "deleteImageFromAttribut.php",
+
+        {
+
+          id  : element.attr('value'),
+
+          nom : element.attr('alt'),
+
+        }
+
+        ).done(
+
+        function(data){
+
+          // alert(data);
+
+          img.attr('src',"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjExMy4wMTU2MjUiIHk9IjE1MCIgc3R5bGU9ImZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxOXB4O2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjMwMHgzMDA8L3RleHQ+PC9nPjwvc3ZnPg==");
+
+          file.val('');
+
+        }
+
+        ).fail(
+
+        function(){
+
+          alert("echec ! ");
+
+        }
+
+        )
+
+      }
 
       //--------------------------------
       // Ajax request to post data on modify-treatement.php
@@ -715,3 +743,4 @@ require_once("header.php");
   <?php
   require_once("footer.php");
   ?>
+  
