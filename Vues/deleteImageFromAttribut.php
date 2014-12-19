@@ -44,15 +44,15 @@
 
     $_key = array_search($nom, $_arrayImages);
 
-    unset($_arrayImages[$key]);
-
-    unlink('images/'.$nom);
+    unset($_arrayImages[$_key]);
 
     $_stringImages = implode(';' , $_arrayImages);
 
     $o_annonceM->images  = $_stringImages;
 
     $o_annonceC->updateAnnonce($o_annonceM);
+
+    unlink('images/'.$nom);
 
     echo "ok";
 
