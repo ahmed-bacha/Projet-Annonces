@@ -7,18 +7,6 @@
 	require_once("../Utils/includeAll.php");
 
 	//-------------------------
-	// session
-	//-------------------------
-
-	session_start();
-
-	if(isset($_SESSION['utilisateurM'])){
-
-		$userM = $_SESSION['utilisateurM'];
-
-	}
-
-	//-------------------------
 	// header inclusion
 	//-------------------------
 
