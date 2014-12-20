@@ -305,18 +305,6 @@
 $(function() {
 
     //---------------------------------------
-    // princical image treatment
-    //---------------------------------------
-
-    $('.change-image-panel').click(function() {
-
-      $('.big-image-panel').attr('src', $(this).attr('src'));
-
-      // $('.big-image-panel').fadeIn('fast');
-
-    });
-
-    //---------------------------------------
     // formulaire response treatment
     //---------------------------------------
 
