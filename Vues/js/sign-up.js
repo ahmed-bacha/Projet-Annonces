@@ -132,7 +132,7 @@ $(function(){
 
     element.next().addClass('glyphicon-ok').show();
 
-    stateSubmitButton(submit);
+    stateSubmitButton();
 
   }
 
@@ -142,7 +142,7 @@ $(function(){
 
     element.next().addClass('glyphicon-remove').show();
 
-    stateSubmitButton(submit);
+    stateSubmitButton();
 
   }
 
@@ -278,13 +278,9 @@ $(function(){
   function stateSubmitButton(){
     if ($('#divNom').hasClass('has-success') && $('#divEmail').hasClass('has-success') && $('#divMdp1').hasClass('has-success') && $('#divMdp2').hasClass('has-success')) {
 
-        console.log("has success");
-
         able(submit);
 
       } else {
-
-        console.log("not success")
 
         disable(submit);
 
