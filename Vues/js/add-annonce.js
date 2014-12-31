@@ -197,4 +197,309 @@ $( document ).ready(function() {
 
 });
 
+
+$(function(){
+
+  $('.alert-danger').hide();
+
+  $('.alert-success').hide();
+
+  //--------------------------------
+  // global variable declaration
+  //--------------------------------
+
+  var nom         = $('input[name="nom"]');
+
+  var prenom      = $('input[name="prenom"]');
+
+  var telephone   = $('input[name="telephone"]');
+
+  var titre       = $('input[name="titre"]');
+
+  var prix        = $('input[name="prix"]');
+
+  var description = $('textarea[name="description"]');
+
+  var submit      = $('button[name="submit"]');
+
+
+  //--------------------------------
+  // treatment
+  //--------------------------------
+
+  nom.blur(function(){
+
+    treatField($(this));
+
+  });
+
+  nom.focus(function(){
+    setStandard($(this));
+
+  });
+
+  prenom.blur(function(){
+
+    treatField($(this));
+
+  });
+
+  prenom.focus(function(){
+
+    setStandard($(this));
+
+  });
+
+  telephone.blur(function(){
+
+    treatPhoneField($(this));
+
+  });
+
+  telephone.focus(function(){
+
+    setStandard($(this));
+
+  });
+
+  titre.blur(function(){
+
+    treatField($(this));
+
+  });
+
+  titre.focus(function(){
+
+    setStandard($(this));
+
+  });
+
+  prix.blur(function(){
+
+    treatPriceField($(this));
+
+  });
+
+  prix.focus(function(){
+
+    setStandard($(this));
+
+  });
+
+  description.blur(function(){
+
+    treatDescriptionField($(this));
+
+  });
+
+  description.focus(function(){
+
+    setStandardTextarea($(this));
+
+  });
+
+  stateSubmitButton();
+
+
+  //--------------------------------
+  // function called during treatment
+  //--------------------------------
+
+  function setOk(element){
+
+    element.closest('div').addClass('has-success');
+
+    element.next().addClass('glyphicon-ok').show();
+
+    stateSubmitButton();
+
+  }
+
+  function setKo(element){
+
+    element.closest('div').addClass('has-error');
+
+    element.next().addClass('glyphicon-remove').show();
+
+    stateSubmitButton();
+
+  }
+
+  function setOkTextarea(element){
+
+    element.closest('div').addClass('has-success');
+
+    able(submit);
+
+  }
+
+  function setKoTextarea(element){
+
+    element.closest('div').addClass('has-error');
+
+    disable(submit);
+
+  }
+
+  function setStandard(element){
+
+    element.closest('div').removeClass().addClass('input-group has-feedback');
+
+    element.next().removeClass().addClass('glyphicon form-control-feedback').hide();
+
+  }
+
+  function setStandardTextarea(element){
+
+    element.closest('div').removeClass().addClass('form-group has-feedback');
+
+  }
+
+
+  function showError(element){
+
+    element.closest('.form-group').next().slideDown();
+
+  }
+
+  function hideError(element){
+
+    element.closest('.form-group').next().slideUp();
+
+  }
+
+  function notNull(element){
+
+    var elementLength = element.val().length;
+
+    var result = false;
+
+    if(elementLength != 0){
+
+      result = true;
+
+    }
+
+    return result;
+
+  }
+
+  function treatField(element){
+
+    if(notNull(element)){
+
+      setOk(element);
+
+      hideError(element);
+
+    } else {
+
+      setKo(element);
+
+      showError(element);
+
+    }
+
+  }
+
+  function treatPhoneField(element){
+
+    var phone   = element.val();
+
+    var regexp  = /[0-9]{10}/;
+
+    var result  = regexp.test(phone);
+
+    if(result){
+
+      setOk(element);
+
+      hideError(element);
+
+    } else {
+
+      setKo(element);
+
+      showError(element);
+
+    }
+
+  }
+
+  function treatPriceField(element){
+
+    var elementVal = element.val();
+
+    var elementLength = elementVal.length;
+
+    if(($.isNumeric(elementVal)) && elementLength != 0){
+
+      setOk(element);
+
+      hideError(element);
+
+    } else {
+
+      setKo(element);
+
+      showError(element);
+
+    }
+
+  }
+
+  function treatDescriptionField(element){
+
+    if(notNull(element)){
+
+      setOkTextarea(element);
+
+      hideError(element);
+
+    } else {
+
+      setKoTextarea(element);
+
+      showError(element);
+
+    }
+
+  }
+
+  function disable(button){
+
+    button.prop("disabled", true);
+
+  }
+
+  function able(button){
+
+    button.prop("disabled", false);
+
+  }
+
+
+  function stateSubmitButton(){
+    if (  $('#nom').hasClass('has-success')        &&
+      $('#prenom').hasClass('has-success')     &&
+      $('#telephone').hasClass('has-success')  &&
+      $('#titre').hasClass('has-success')      &&
+      $('#prix').hasClass('has-success')       &&
+      $('#description').hasClass('has-success') ) {
+
+
+        console.log("has success");
+        able(submit);
+
+      } else {
+        console.log("no success");
+        disable(submit);
+
+      }
+    }
+
+
+
+  });
+
 // JQuery end --------------------------------------------
