@@ -101,12 +101,24 @@
 }
 
 .cont-image-caroussel{
-  margin : auto;
-  height : 280px;
-  width : 350px;
-  padding : 15px;
+  margin             : auto;
+  height             : 280px;
+  width              : 350px;
+  padding            : 15px;
 }
 
 .carousel-inner{
-  background-color : rgba(0, 0, 0, 1.0);
+  background-color   : rgba(0, 0, 0, 1.0);
+}
+
+.style-pagination{
+  background-color   : rgb(236, 240, 241);
+}
+
+.style-pagination ul li a{
+  background-color   : rgba(102, 123, 144,1.0);
+}
+
+.style-pagination ul li a:hover{
+  background-color   : rgba(52, 73, 94,1.0);
 }
