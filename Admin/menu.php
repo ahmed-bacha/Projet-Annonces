@@ -39,7 +39,7 @@
 
       <!-- Link 01 -->
       <li>
-        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+        <a href="dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
       </li>
 
       <li>
