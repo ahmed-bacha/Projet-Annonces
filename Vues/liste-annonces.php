@@ -20,7 +20,7 @@
 
 	$o_annonceC 		= new AnnonceC();
 
-	$liste_annonces = $o_annonceC->getAllAnnonces();
+	// $liste_annonces = $o_annonceC->getAllAnnonces();
 
 ?>
 
@@ -28,6 +28,10 @@
 <div class="row">
 
 <?php
+
+	$_currentIndex = 1;
+
+	$liste_annonces = AnnonceM::getFollowingAnnonces($_currentIndex);
 
 	foreach($liste_annonces as $o_annonceM){
 
@@ -117,18 +121,28 @@
 	}
 
 ?>
+		</div>
 	</div>
 
-	<div class="panel panel-default">
-			<nav class="nav-panel" >
-				<ul class="pager">
-					<li><a href="#">Previous</a></li>
-					<li><a href="#">Next</a></li>
-				</ul>
-			</nav>
-	</div>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<nav role="navigation" class="text-center style-pagination">
+		<ul class="pagination">
+			<li>
+				<a href="#" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<?php echo $_currentIndex ?>
+				</a>
+			</li>
+			<li>
+				<a href="#" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
 
 <script>
 

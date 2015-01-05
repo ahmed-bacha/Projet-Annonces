@@ -205,14 +205,14 @@ class AnnonceM implements ModelInterface{
             $req=$db->prepare('UPDATE annonceM
 
             					SET idUtilisateur 	= :idUtilisateur,
-            						statut 			= :statut,
-            						nom 			= :nom,
-            						prenom 			= :prenom,
-            						telephone 		= :telephone,
-            						titre 			= :titre,
-            						prix 			= :prix,
-            						description 	= :description,
-            						images 			= :images
+            							statut 					= :statut,
+            							nom 						= :nom,
+            							prenom 					= :prenom,
+            							telephone 			= :telephone,
+            							titre 					= :titre,
+            							prix 						= :prix,
+            							description 		= :description,
+            							images 					= :images
 
             					WHERE id = :id');
 
@@ -309,38 +309,132 @@ class AnnonceM implements ModelInterface{
 		}
 	}
 
-    /**
-    *Reourne toutes les annonces
-    */
-    public static function getAllAnnonces(){
-		// on récupère l'instance PDO
+  /**
+  *Reourne toutes les annonces
+  */
+  public static function getAllAnnonces(){
+	// on récupère l'instance PDO
+	$db  = SPDO::getInstance();
+
+	//Connexion à la base de données
+	try {
+		// preparation de la requete
+		$q = $db->prepare(
+
+			'SELECT *
+			FROM annonceM order by id desc'
+
+		);
+
+		// execution de la requete
+
+		$q->execute();
+
+		$response = array();
+
+		while ($_donnees = $q->fetch()) {
+
+			$o_annonceM = new AnnonceM($_donnees);
+
+			array_push($response, $o_annonceM);
+
+		}
+
+		return $response;
+
+		} catch (PDOException $e) {
+
+			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+
+		}
+
+  }
+
+
+	//------------------------------------------------------------
+	// methods dedicated to pagination
+	//------------------------------------------------------------
+
+	/**
+	* Retourne les 12 annonces suivants la page
+	*/
+
+	public static function getFollowingAnnonces($_indexPage){
+
 		$db  = SPDO::getInstance();
 
-				//Connexion à la base de données
 		try {
-				// preparation de la requete
-				$q = $db->prepare(
-				'SELECT *
-				FROM annonceM order by id desc'
-			);
-				// execution de la requete
-				$q->execute();
-				$response = array();
 
-				while ($_donnees = $q->fetch()) {
+			$_foot = 15*($_indexPage - 1);
 
-					$o_annonceM = new AnnonceM($_donnees);
+			$_query = 'SELECT * FROM annonceM LIMIT 15 OFFSET '.$_foot.';';
 
-					array_push($response, $o_annonceM);
+			$q = $db->prepare($_query);
 
-				}
+			$q->execute();
 
-				return $response;
+			$_response = array();
 
-			}catch (PDOException $e) {
-				echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+			while ($_donnees = $q->fetch(PDO::FETCH_ASSOC)) {
+
+				$o_annonceM = new AnnonceM($_donnees);
+
+				array_push($_response, $o_annonceM);
+
 			}
-    }
+
+			return $_response;
+
+		} catch (PDOException $e) {
+
+			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+
+		}
+
+	}
+
+	/**
+	* Retourne les 12 annonces précédentes
+	*/
+	// public static function getPreviousAnnonces($_lastAnnonceId){
+	//
+	// 	$db  = SPDO::getInstance();
+	//
+	// 	try {
+	//
+	// 		$q = $db->prepare(
+	//
+	// 			'SELECT *
+	// 			FROM table
+	// 			LIMIT 10 OFFSET 5;'
+	//
+	// 		);
+	//
+	// 		$q->execute();
+	//
+	// 		$response = array();
+	//
+	// 		while ($_donnees = $q->fetch()) {
+	//
+	// 			$o_annonceM = new AnnonceM($_donnees);
+	//
+	// 			array_push($response, $o_annonceM);
+	//
+	// 		}
+	//
+	// 		return $response;
+	//
+	// 	} catch (PDOException $e) {
+	//
+	// 		echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+	//
+	// 	}
+	//
+	// }
+
+	//------------------------------------------------------------
+	// end of methods dedicated to pagination
+	//------------------------------------------------------------
 
 	/**
 	* Setter pour tous les champs de la classe
