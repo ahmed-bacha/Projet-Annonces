@@ -262,6 +262,22 @@ require_once("header.php");
       var submit      = $('button[name="submit"]');
 
       //--------------------------------
+      // variable to validate the modification
+      //--------------------------------
+
+      var b_nom           = true;
+
+      var b_prenom        = true;
+
+      var b_telephone     = true;
+
+      var b_titre         = true;
+
+      var b_prix          = true;
+
+      var b_description   = true;
+
+      //--------------------------------
       // initial state
       //--------------------------------
 
@@ -283,7 +299,7 @@ require_once("header.php");
 
       nom.blur(function(){
 
-        treatField($(this));
+        b_nom = treatField($(this));
 
       });
 
@@ -295,7 +311,9 @@ require_once("header.php");
 
       prenom.blur(function(){
 
-        treatField($(this));
+        b_prenom = treatField($(this));
+
+        changeSubmitState();
 
       });
 
@@ -307,7 +325,9 @@ require_once("header.php");
 
       telephone.blur(function(){
 
-        treatPhoneField($(this));
+        b_telephone = treatPhoneField($(this));
+
+        changeSubmitState();
 
       });
 
@@ -319,7 +339,9 @@ require_once("header.php");
 
       titre.blur(function(){
 
-        treatField($(this));
+        b_titre = treatField($(this));
+
+        changeSubmitState();
 
       });
 
@@ -331,7 +353,9 @@ require_once("header.php");
 
       prix.blur(function(){
 
-        treatPriceField($(this));
+        b_prix = treatPriceField($(this));
+
+        changeSubmitState();
 
       });
 
@@ -343,7 +367,9 @@ require_once("header.php");
 
       description.blur(function(){
 
-        treatDescriptionField($(this));
+        b_description = treatDescriptionField($(this));
+
+        changeSubmitState();
 
       });
 
@@ -364,8 +390,6 @@ require_once("header.php");
 
         element.next().addClass('glyphicon-ok').show();
 
-        able(submit);
-
       }
 
       function setKo(element){
@@ -374,23 +398,17 @@ require_once("header.php");
 
         element.next().addClass('glyphicon-remove').show();
 
-        disable(submit);
-
       }
 
       function setOkTextarea(element){
 
         element.closest('div').addClass('has-success');
 
-        able(submit);
-
       }
 
       function setKoTextarea(element){
 
         element.closest('div').addClass('has-error');
-
-        disable(submit);
 
       }
 
@@ -439,11 +457,15 @@ require_once("header.php");
 
       function treatField(element){
 
+        var b_result = false;
+
         if(notNull(element)){
 
           setOk(element);
 
           hideError(element);
+
+          b_result = true;
 
         } else {
 
@@ -452,6 +474,8 @@ require_once("header.php");
           showError(element);
 
         }
+
+        return b_result;
 
       }
 
@@ -463,11 +487,15 @@ require_once("header.php");
 
         var result  = regexp.test(phone);
 
+        var b_result = false;
+
         if(result){
 
           setOk(element);
 
           hideError(element);
+
+          b_result = true;
 
         } else {
 
@@ -477,9 +505,13 @@ require_once("header.php");
 
         }
 
+        return b_result;
+
       }
 
       function treatPriceField(element){
+
+        var b_result = false;
 
         var elementVal = element.val();
 
@@ -491,6 +523,8 @@ require_once("header.php");
 
           hideError(element);
 
+          b_result = true;
+
         } else {
 
           setKo(element);
@@ -499,15 +533,21 @@ require_once("header.php");
 
         }
 
+        return b_result;
+
       }
 
       function treatDescriptionField(element){
+
+        var b_result = false;
 
         if(notNull(element)){
 
           setOkTextarea(element);
 
           hideError(element);
+
+          b_result = true;
 
         } else {
 
@@ -517,17 +557,37 @@ require_once("header.php");
 
         }
 
-      }
-
-      function disable(button){
-
-        button.prop("disabled", true);
+        return b_result;
 
       }
 
-      function able(button){
+      function changeSubmitState(){
 
-        button.prop("disabled", false);
+        var b_state         = true;
+
+        var b_result        = false;
+
+        var t_boolVariable  = [b_nom, b_prenom, b_telephone, b_titre, b_prix, b_description];
+
+        $.each(t_boolVariable, function(index, value){
+
+          if (value == false) {
+
+              b_result = true;
+
+          }
+
+        });
+
+        if (b_result) {
+
+          submit.prop('disabled', true);
+
+        } else {
+
+          submit.prop('disabled', false);
+
+        }
 
       }
 
