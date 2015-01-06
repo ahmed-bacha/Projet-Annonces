@@ -4,9 +4,20 @@
 // On inclue toutes les classes du projet
 require_once("../Utils/includeAll.php");
 
+// On démarre la session
+session_start();
+
+
+if(isset($_SESSION['Admin'])){
+  $adminM = $_SESSION['Admin'];
+}
+?>
+
+<?php
 
 $title = "Admin DashBoard Page";
 require_once("header.php");
+
 ?>
 
 <!-- *** Page Content Here *** -->
