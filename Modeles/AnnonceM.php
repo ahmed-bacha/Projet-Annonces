@@ -365,9 +365,9 @@ class AnnonceM implements ModelInterface{
 
 		try {
 
-			$_foot = 15*($_indexPage - 1);
+			$_foot = 12*($_indexPage - 1);
 
-			$_query = 'SELECT * FROM annonceM LIMIT 15 OFFSET '.$_foot.';';
+			$_query = 'SELECT * FROM annonceM LIMIT 12 OFFSET '.$_foot.';';
 
 			$q = $db->prepare($_query);
 
@@ -394,43 +394,65 @@ class AnnonceM implements ModelInterface{
 	}
 
 	/**
-	* Retourne les 12 annonces précédentes
+	* to return the object to a json
 	*/
-	// public static function getPreviousAnnonces($_lastAnnonceId){
-	//
-	// 	$db  = SPDO::getInstance();
-	//
-	// 	try {
-	//
-	// 		$q = $db->prepare(
-	//
-	// 			'SELECT *
-	// 			FROM table
-	// 			LIMIT 10 OFFSET 5;'
-	//
-	// 		);
-	//
-	// 		$q->execute();
-	//
-	// 		$response = array();
-	//
-	// 		while ($_donnees = $q->fetch()) {
-	//
-	// 			$o_annonceM = new AnnonceM($_donnees);
-	//
-	// 			array_push($response, $o_annonceM);
-	//
-	// 		}
-	//
-	// 		return $response;
-	//
-	// 	} catch (PDOException $e) {
-	//
-	// 		echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
-	//
-	// 	}
-	//
-	// }
+
+	public function toArray() {
+
+		return array(
+
+			'id' 							=> $this->id,
+
+			'titre' 					=> $this->titre,
+
+			'prix' 						=> $this->prix,
+
+			'images' 					=> $this->images
+
+		);
+
+	}
+
+	/**
+	* to return number of pages
+	*/
+
+	public static function returnPageNumber() {
+
+		$db  = SPDO::getInstance();
+
+		try {
+
+			$_query = ' SELECT MAX(id), MIN(id) FROM annonceM AS total; ';
+
+			$q = $db->prepare($_query);
+
+			$q->execute();
+
+			$_result = $q->fetch(PDO::FETCH_ASSOC);
+
+			$_maxAnnonce 	= $_result['MAX(id)'];
+
+			$_maxAnnonce 	= intval($_maxAnnonce);
+
+			$_minAnnonce 	= $_result['MIN(id)'];
+
+			$_minAnnonce 	= intval($_minAnnonce);
+
+			$_nbAnnonce 	= $_maxAnnonce - $_minAnnonce;
+
+			$_maxPage 		= ceil(($_maxAnnonce - $_minAnnonce)/12);
+
+			return $_maxPage;
+
+		} catch (PDOException $e) {
+
+			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+
+		}
+
+	}
+
 
 	//------------------------------------------------------------
 	// end of methods dedicated to pagination

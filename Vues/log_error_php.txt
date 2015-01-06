@@ -1,1 +1,2 @@
 [03-Dec-2014 12:00:58 Europe/Berlin] PHP Notice:  Use of undefined constant e_all - assumed 'e_all' in /Applications/MAMP/htdocs/Projet-Annonces/Vues/delete-anonce-treatement.php on line 10
+[06-Jan-2015 21:38:22 Europe/Berlin] PHP Notice:  Use of undefined constant e_all - assumed 'e_all' in /Applications/MAMP/htdocs/Projet-Annonces/Vues/pagination-treatment.php on line 34
