@@ -9,21 +9,41 @@ extract($_POST);
 
 $erreur = array();
 
+$adminC = new AdminC();
+
 // Test variables POST
-if (isset($user) && !empty($user) && $user == "admin" &&
-    isset($password) && !empty($password) && $password == "admin") {
+if (isset($user) && !empty($user) &&
+    isset($password) && !empty($password) ) {
 
-    session_start();
+      if($adminC->checkAdmin($user,$password)){
 
-    $_SESSION['Admin']    = true;
+        $adminM = $adminC->getAdmin($user,$password);
 
-    header("Location: dashboard.php");
+        session_start();
+
+        $_SESSION['Admin'] = $adminM;
+
+        ?>
+
+        <script charset="utf-8">
+        document.location.href = '/Projet-annonces/Admin/dashboard.php';
+        </script>
+
+        <?php
+
+      }else{
+
+        $erreur[] = "Login ou mot de passe incorrects";
+      }
+
 
 }else{
 
-  $erreur[] = "Utilisateur ou mot de passe incorrects";
-  show($erreur);
+  $erreur[] = "Login ou mot de passe incorrects";
 }
 
+for ($i=0; $i < sizeof($erreur); $i++) {
+  echo $erreur["$i"]."<br>";
+}
 
 ?>

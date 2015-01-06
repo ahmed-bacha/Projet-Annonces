@@ -32,12 +32,16 @@
         </div>
 
         <div class="panel-body">
-
+          <!--
             <mark>
               User : Admin - Password : Admin <br>
               Le Logout Fonctionne dans l'espace Admin (en haut à droite)
             </mark>
-
+          -->
+            <div class="form-group col-lg-6 col-lg-offset-3" >
+              <div id ="erreur" class="alert alert-danger" role="alert">
+              </div>
+            </div>
           <form id="form" action="admin-login-traitement.php" method="POST">
 
             <!--  User Field -->
@@ -94,6 +98,71 @@
 
   <!-- Bootstrap Core JavaScript -->
   <script src="../Vues/js/bootstrap.min.js"></script>
+
+
+  <script charset="utf-8">
+
+  $( document ).ready(function() {
+
+    $( "#erreur" ).hide();
+
+    $("form#form").submit(function(event){
+
+      //disable the default form submission
+
+      event.preventDefault();
+
+      var formData    = $("#form").serialize();
+      console.log(formData);
+      console.log($('#user').val());
+      console.log($('#password').val());
+
+      if (jQuery.isEmptyObject($('#password').val()) == false && jQuery.isEmptyObject($('#user').val()) == false ) {
+        $.ajax({
+          url: 'admin-login-traitement.php',
+          type: 'POST',
+          data: $("#form").serialize(),
+          mimeType:"multipart/form-data",
+          async: false,
+          cache: false,
+          processData: false,
+
+          success: function(result)
+        {
+          if (jQuery.isEmptyObject(result) == false) {
+
+            // alert(result);
+
+            $( "#erreur" ).show();
+            $('#erreur').html(result);
+
+          } else {
+
+            $( "#erreur" ).hide();
+
+          }
+
+
+          console.log(result);
+        }
+
+      });
+
+    }else{
+      $( "#erreur" ).show();
+      $('#erreur').html("Login ou mot de passe incorrects")
+    }
+
+
+
+    return false;
+  });
+
+});
+
+
+
+  </script>
 
 </body>
 
