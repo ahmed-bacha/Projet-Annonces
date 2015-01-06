@@ -1,6 +1,4 @@
-<!-- Header -->
 <?php
-
 // On inclue toutes les classes du projet
 require_once("../Utils/includeAll.php");
 
@@ -10,7 +8,10 @@ session_start();
 
 if(isset($_SESSION['Admin'])){
   $adminM = $_SESSION['Admin'];
+}else{
+  header("location: index.php");
 }
+
 ?>
 
 <?php
@@ -37,7 +38,7 @@ require_once("header.php");
 
       // liste des annonces en BDD
       show(AnnonceM::getAllAnnonces());
-
+      echo "test".$adminM->login;
       ?>
 
     </ol>

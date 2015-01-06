@@ -13,6 +13,12 @@
   <!-- Bootstrap Core CSS -->
   <link href="../Vues/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- jQuery -->
+  <script src="../Vues/js/jquery.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../Vues/js/bootstrap.min.js"></script>
+
   <!-- Custom CSS -->
   <link href="../Vues/css/sb-admin.css" rel="stylesheet">
 

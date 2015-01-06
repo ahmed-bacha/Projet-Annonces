@@ -17,7 +17,7 @@
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-user"></i>
-        Administrator
+        <?php echo $adminM->login; ?>
         <b class="caret"></b>
       </a>
       <ul class="dropdown-menu">
@@ -45,15 +45,29 @@
       <li>
         <a href="#" data-toggle="collapse" data-target="#demo">
           <i class="fa fa-fw fa-arrows-v">
-          </i> Dropdown
+          </i> Administration
           <i class="fa fa-fw fa-caret-down"></i></a>
         <ul id="demo" class="collapse">
+          <?php
+          if(AdminC::isAdministrateur($adminM->login, $adminM->mdp) == true){
+            ?>
+            <li>
+              <a href="admin-inscription.php">Inscription Admin </a>
+            </li>
+            <li>
+              <a href="admin-liste.php">Liste Admin </a>
+            </li>
+          <?php
+          }else{
+          ?>
+
           <li>
             <a href="#">Dropdown Item</a>
           </li>
-          <li>
-            <a href="#">Dropdown Item</a>
-          </li>
+
+          <?php
+          }
+          ?>
         </ul>
       </li>
 

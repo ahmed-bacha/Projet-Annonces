@@ -7,6 +7,8 @@ session_start();
 
 if(isset($_SESSION['utilisateurM'])){
   $userM = $_SESSION['utilisateurM'];
+}else{
+  header("location: log-in.php");
 }
 
 ?>

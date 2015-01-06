@@ -3,13 +3,23 @@
 // inclure les controlleurs et les modeles
 require_once("../Utils/includeAll.php");
 
+$adminC = new AdminC();
+
+$donnees = array(
+  'login' 	=> 'admin',
+  'mdp' 	  => 'admin');
+
+$admin = new AdminM($donnees);
+
+$adminC->testAdministrateurExist($admin);
+
 // Extraction des variables POST
 extract($_POST);
 
 
 $erreur = array();
 
-$adminC = new AdminC();
+
 
 // Test variables POST
 if (isset($user) && !empty($user) &&
