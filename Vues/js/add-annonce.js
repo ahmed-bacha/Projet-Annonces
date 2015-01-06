@@ -480,19 +480,17 @@ $(function(){
 
 
   function stateSubmitButton(){
-    if (  $('#nom').hasClass('has-success')        &&
+    if (  $('#nom').hasClass('has-success')    &&
       $('#prenom').hasClass('has-success')     &&
       $('#telephone').hasClass('has-success')  &&
       $('#titre').hasClass('has-success')      &&
       $('#prix').hasClass('has-success')       &&
       $('#description').hasClass('has-success') ) {
 
-
-        console.log("has success");
         able(submit);
 
       } else {
-        console.log("no success");
+
         disable(submit);
 
       }

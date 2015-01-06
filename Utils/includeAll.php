@@ -25,13 +25,14 @@ require_once(LOCAL_PATH."Modeles/ModelInterface.php");
 
 require_once(LOCAL_PATH."Modeles/UtilisateurM.php");
 require_once(LOCAL_PATH."Modeles/AnnonceM.php");
+require_once(LOCAL_PATH."Modeles/AdminM.php");
 
 /*
 	include CONTROLLEURS
 */
 require_once(LOCAL_PATH."Controlleurs/UtilisateurC.php");
 require_once(LOCAL_PATH."Controlleurs/AnnonceC.php");
-
+require_once(LOCAL_PATH."Controlleurs/AdminC.php");
 
 /*
 	include lib tiers
