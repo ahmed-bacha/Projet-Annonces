@@ -20,7 +20,7 @@
 
     if($password1 == $password2){
 
-      if($adminC->checkAdmin($user,$password1) == true){
+      if($adminC->checkAdmin($login,$password1) == true){
 
         $donnees = array(
           'login' 	=> $login,
