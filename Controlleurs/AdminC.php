@@ -97,24 +97,29 @@ class AdminC
     return $adminM->update();
   }
 
-  function testAdministrateurExist($admin)
+  function getAllAdmin()
   {
-
-    if(AdminM::check($admin->login, $admin->mdp) == false)
-    {
-
-      SELF::controlAndSave($admin);
-      return false;
-    }else{
-
-      return true;
-    }
-
+    return AdminM::getAllAdmin();
   }
+
+  function testAdministrateurExist()
+  {
+    $donnees = array(
+      'login' 	=> 'admin',
+      'mdp' 	  => 'admin');
+
+      $admin = new AdminM($donnees);
+
+    if(!AdminM::checkByLogin($admin->login))
+    {
+      SELF::controlAndSave($admin);
+    }
+  }
+
 
   static function isAdministrateur($login, $pass)
   {
-    if($login == "admin" && $pass == "admin"){
+    if($login == "admin"){
       return true;
     }else{
       return false;

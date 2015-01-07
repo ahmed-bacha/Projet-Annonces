@@ -13,17 +13,14 @@
   <!-- Bootstrap Core CSS -->
   <link href="../Vues/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- jQuery -->
-  <script src="../Vues/js/jquery.js"></script>
-
-  <!-- Bootstrap Core JavaScript -->
-  <script src="../Vues/js/bootstrap.min.js"></script>
-
   <!-- Custom CSS -->
   <link href="../Vues/css/sb-admin.css" rel="stylesheet">
 
   <!-- Custom Fonts -->
   <link href="../Vues/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- JQuery library inclusion -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 </head>
 

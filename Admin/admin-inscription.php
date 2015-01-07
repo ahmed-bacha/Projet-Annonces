@@ -11,6 +11,9 @@ if(isset($_SESSION['Admin'])){
 }else{
   header("location: index.php");
 }
+if(!AdminC::isAdministrateur($adminM->login, $adminM->mdp)){
+  header("location: dashboard.php");
+}
 
 ?>
 
@@ -33,6 +36,11 @@ require_once("header.php");
 
 <div class="form-group col-lg-6 col-lg-offset-3" >
   <div id ="erreur" class="alert alert-danger" role="alert" >
+  </div>
+</div>
+<div class="form-group col-lg-6 col-lg-offset-3" >
+  <div id ="success" class="alert alert-success" role="alert" >
+    inscription effectuée
   </div>
 </div>
 
@@ -99,17 +107,13 @@ require_once("header.php");
 </form>
 
 
-<!-- jQuery -->
-<script src="../Vues/js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="../Vues/js/bootstrap.min.js"></script>
 
 <script charset="utf-8">
 
 $(document).ready(function() {
 
   $( "#erreur" ).hide();
+  $( "#success" ).hide();
 
   $("form#form").submit(function(event){
 
@@ -137,19 +141,15 @@ $(document).ready(function() {
       {
         if (jQuery.isEmptyObject(result) == false) {
 
-          // alert(result);
-
           $( "#erreur" ).show();
           $('#erreur').html(result);
 
         } else {
-
+          $( "#success" ).show();
           $( "#erreur" ).hide();
-
+          $( "#submit" ).prop("disabled", true);
         }
 
-
-        console.log(result);
       }
 
     });

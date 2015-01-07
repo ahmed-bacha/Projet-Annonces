@@ -24,6 +24,9 @@
         <li>
           <a href="admin-logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
         </li>
+        <li>
+          <a href="admin-compte.php"><i class="fa fa-fw fa-cog"></i> Mon compte</a>
+        </li>
       </ul>
     </li>
   </ul>
@@ -42,34 +45,27 @@
         <a href="dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
       </li>
 
+      <?php
+      if(AdminC::isAdministrateur($adminM->login, $adminM->mdp) == true){
+        ?>
       <li>
         <a href="#" data-toggle="collapse" data-target="#demo">
           <i class="fa fa-fw fa-arrows-v">
           </i> Administration
           <i class="fa fa-fw fa-caret-down"></i></a>
         <ul id="demo" class="collapse">
-          <?php
-          if(AdminC::isAdministrateur($adminM->login, $adminM->mdp) == true){
-            ?>
             <li>
               <a href="admin-inscription.php">Inscription Admin </a>
             </li>
             <li>
               <a href="admin-liste.php">Liste Admin </a>
             </li>
-          <?php
-          }else{
-          ?>
-
-          <li>
-            <a href="#">Dropdown Item</a>
-          </li>
-
-          <?php
-          }
-          ?>
         </ul>
       </li>
+      <?php
+    }else{
+    }
+    ?>
 
     </ul>
   </div>

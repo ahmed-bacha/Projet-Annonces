@@ -242,6 +242,48 @@ class AdminM implements ModelInterface
   }
 
 
+  /**
+  * Test si un admin existe déjà dans la BDD
+  * @return bool 	: true "admin existe" , false "admin inexistant"
+  */
+  public static function checkByLogin($_login){
+
+    // on récupère l'instance PDO
+    $db  = SPDO::getInstance();
+
+    try {
+      // preparation de la requete
+      $q = $db->prepare(
+      'SELECT id FROM
+      AdminM
+      WHERE login = (:login) '
+    );
+
+    // on remplace avec les vraies valeurs
+    $q->bindValue(':login', $_login);
+
+
+    // execution de la requete
+    $q->execute();
+
+    // on compte le nombre de ligne provenant du résultat de la requête
+    $result = $q->rowCount();
+    $q->closeCursor();
+
+    // Teste si le résultat de la requête est vide
+    if (empty($result)) {
+      return false;
+    }
+    else{
+      return true;
+    }
+
+  }catch (PDOException $e) {
+    echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+  }
+}
+
+
 
   /**
   * Retourne un admin
@@ -326,6 +368,45 @@ class AdminM implements ModelInterface
       return null;
     }
   }
+
+
+  public static function getAllAdmin(){
+    // on récupère l'instance PDO
+    $db  = SPDO::getInstance();
+
+    //Connexion à la base de données
+    try {
+      // preparation de la requete
+      $q = $db->prepare(
+
+      'SELECT *
+      FROM AdminM order by id asc'
+
+    );
+
+    // execution de la requete
+
+    $q->execute();
+
+    $response = array();
+
+    while ($_donnees = $q->fetch()) {
+
+      $admin = new AdminM($_donnees);
+
+      array_push($response, $admin);
+
+    }
+
+    return $response;
+
+  } catch (PDOException $e) {
+
+    echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+
+  }
+
+}
 
 
   /**

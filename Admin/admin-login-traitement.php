@@ -2,16 +2,12 @@
 
 // inclure les controlleurs et les modeles
 require_once("../Utils/includeAll.php");
+// On démarre la session
 
 $adminC = new AdminC();
 
-$donnees = array(
-  'login' 	=> 'admin',
-  'mdp' 	  => 'admin');
 
-$admin = new AdminM($donnees);
-
-$adminC->testAdministrateurExist($admin);
+$adminC->testAdministrateurExist();
 
 // Extraction des variables POST
 extract($_POST);

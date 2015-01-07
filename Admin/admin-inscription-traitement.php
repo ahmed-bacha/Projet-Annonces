@@ -1,7 +1,19 @@
 <?php
   // inclure les controlleurs et les modeles
   require_once("../Utils/includeAll.php");
+  // On démarre la session
+  session_start();
 
+
+  if(isset($_SESSION['Admin'])){
+    $adminM = $_SESSION['Admin'];
+  }else{
+    header("location: index.php");
+  }
+  if(!AdminC::isAdministrateur($adminM->login, $adminM->mdp)){
+    header("location: dashboard.php");
+  }
+  
   $adminC = new AdminC();
 
   // Extraction des variables POST
