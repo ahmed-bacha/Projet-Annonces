@@ -312,35 +312,56 @@ class AnnonceM implements ModelInterface{
   /**
   *Reourne toutes les annonces
   */
-  public static function getAllAnnonces(){
-	// on récupère l'instance PDO
-	$db  = SPDO::getInstance();
+  public static function getAllAnnonces ($_statut) {
 
-	//Connexion à la base de données
-	try {
-		// preparation de la requete
-		$q = $db->prepare(
+		$db  = SPDO::getInstance();
 
-			'SELECT *
-			FROM annonceM order by id desc'
+		try {
 
-		);
+			$_response = array();
 
-		// execution de la requete
+			$_constantArray = array(
+																NON_TRAITE,
+																TRAITE,
+																A_SUPPRIMER
+															);
 
-		$q->execute();
+			if(isset($_statut) AND in_array($_statut, $_constantArray)){
 
-		$response = array();
+				$q = $db->prepare(
 
-		while ($_donnees = $q->fetch()) {
+					'SELECT *
+					FROM annonceM
+					WHERE statut = :statut
+					ORDER BY id DESC ; '
 
-			$o_annonceM = new AnnonceM($_donnees);
+				);
 
-			array_push($response, $o_annonceM);
+				$q->bindValue(':statut', $_statut);
 
-		}
+			} else {
 
-		return $response;
+				$q = $db->prepare(
+
+					'SELECT *
+					FROM annonceM
+					ORDER BY id DESC ; '
+
+				);
+
+			}
+
+			$q->execute();
+
+			while ($_donnees = $q->fetch()) {
+
+				$o_annonceM = new AnnonceM($_donnees);
+
+				array_push($_response, $o_annonceM);
+
+			}
+
+			return $_response;
 
 		} catch (PDOException $e) {
 
@@ -349,7 +370,6 @@ class AnnonceM implements ModelInterface{
 		}
 
   }
-
 
 	//------------------------------------------------------------
 	// methods dedicated to pagination

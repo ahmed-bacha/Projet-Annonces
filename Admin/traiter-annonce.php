@@ -45,7 +45,7 @@ require_once("header.php");
 
             <?php
 
-            $tab_annonces = AnnonceM::getAllAnnonces();
+            $tab_annonces = AnnonceM::getAllAnnonces(NON_TRAITE);
 
             foreach ($tab_annonces as $o_annonceM) {
 
