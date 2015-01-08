@@ -71,8 +71,6 @@
 		// function to activate a fontion
 		//-------------------------------------
 
-		$('#bloc-liste-annonces').empty();
-
 		$.get( "pagination-treatment.php", function( data ) {
 
 			var t_data = $.parseJSON(data);
