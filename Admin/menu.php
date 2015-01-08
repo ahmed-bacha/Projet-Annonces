@@ -46,25 +46,27 @@
       </li>
 
       <li>
-        <a href="#" data-toggle="collapse" data-target="#demo">
-          <i class="fa fa-fw fa-list">
-          </i> Gestion des annonces
+        <a href="#" data-toggle="collapse" data-target="#annonces">
+          <i class="fa fa-fw fa-list"></i>
+          Gestion des annonces
+          <i class="fa fa-fw fa-caret-down"></i>
         </a>
-          <ul id="demo" class="collapse">
+          <ul id="annonces" class="collapse">
             <li>
               <a href="traiter-annonce.php">Traiter les annonces </a>
             </li>
           </ul>
-        </li>
+      </li>
 
       <?php
       if(AdminC::isAdministrateur($adminM->login, $adminM->mdp) == true){
         ?>
       <li>
         <a href="#" data-toggle="collapse" data-target="#demo">
-          <i class="fa fa-fw fa-arrows-v">
-          </i> Administration
-          <i class="fa fa-fw fa-caret-down"></i></a>
+          <i class="fa fa-fw fa-arrows-v"></i>
+          Administration
+          <i class="fa fa-fw fa-caret-down"></i>
+        </a>
         <ul id="demo" class="collapse">
             <li>
               <a href="admin-inscription.php">Inscription Admin </a>
