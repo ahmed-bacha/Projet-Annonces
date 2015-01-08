@@ -60,7 +60,7 @@ require_once("header.php");
               <!-- non treated div start -->
 
               <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-md-offset-1">
-                <div class="panel panel-yellow">
+                <div class="panel panel-yellow total">
                   <div class="panel-heading">
                     <div class="row">
                       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -279,15 +279,21 @@ require_once("header.php");
 
     <!-- all conteneurs panel start -->
 
-    </div>
-    </div>
   </div>
 </div>
 
-<nav class="navbar navbar-default fixed-navbar">
-  <div class="container container-fluid" id="wrap" style="padding-top: 60px;">
-    <div class="navbar-header">
-
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+        <a href="#" class="navbar-brand toTreat" ><i class="fa fa-gears fa-fw"></i> annonces à traiter : </a>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+        <a href="#" class="navbar-brand validated" ><i class="fa fa-check fa-fw"></i> annonces validées : </a>
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+        <a href="#" class="navbar-brand deleted" ><i class="fa fa-close fa-fw"></i> annonces supprimées : </a>
+      </div>
     </div>
   </div>
 </nav>
@@ -297,6 +303,24 @@ require_once("header.php");
 <script charset="utf-8">
 
   $(function(){
+
+    function annonceTreatmentState(){
+
+      var toTreat     = $('.panel-yellow.total').length;
+
+      var validated   = $('.panel-green.total').length;
+
+      var deleted     = $('.panel-red.total').length;
+
+      $('.toTreat').empty().append('<i class="fa fa-gears fa-fw"></i>'+' annonces à traiter : '+toTreat);
+
+      $('.validated').empty().append('<i class="fa fa-check fa-fw"></i>'+'annonces validées : '+validated);
+
+      $('.deleted').empty().append('<i class="fa fa-close fa-fw"></i>'+'annonces supprimées : '+deleted);
+
+    }
+
+    annonceTreatmentState();
 
     //-----------------------
     // function to slide up or down the announce detail
@@ -380,6 +404,8 @@ require_once("header.php");
 
           }
 
+          annonceTreatmentState();
+
         }
 
       });
@@ -427,6 +453,8 @@ require_once("header.php");
           link.prev().slideUp();
 
         }
+
+        annonceTreatmentState();
 
       });
 
