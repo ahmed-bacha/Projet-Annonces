@@ -67,12 +67,12 @@ require_once("header.php");
                         <i class="fa fa-gears fa-3x"><small> à traiter</small></i>
                       </div>
                       <div class="ol-xs-12 col-sm-6 col-md-6 col-lg-6 text-right">
-                        <button type="button" class="btn btn-danger">
+                        <button value="<?php echo $o_annonceM->id ?>" type="button" class="btn btn-danger">
                           <i class="fa fa-close fa-1x">
                             <small> Supprimer</small>
                           </i>
                         </button>
-                        <button type="button" class="btn btn-success">
+                        <button value="<?php echo $o_annonceM->id ?>" type="button" class="btn btn-success">
                           <i class="fa fa-check fa-1x">
                             <small> Valider</small>
                           </i>
@@ -329,6 +329,16 @@ require_once("header.php");
 
     $('.btn-success').click(function () {
 
+      var idAnnonce   = $(this).attr('value');
+
+      var validation  = 1;
+
+      $.get( 'validation-annonce-treatment.php?_idAnnonce='+idAnnonce+'&_validation='+validation , function( data ) {
+
+        // alert(data);
+
+      });
+
       $(this).closest('.panel.panel-yellow').find('.panel.panel-yellow').addClass('panel-green').removeClass('panel-yellow');
 
       $(this).closest('.panel.panel-yellow').find('i:first').removeClass('fa-gears').addClass('fa-check').text(' validée');
@@ -364,6 +374,16 @@ require_once("header.php");
     //-----------------------
 
     $('.btn-danger').click(function () {
+
+      var idAnnonce   = $(this).attr('value');
+
+      var validation  = 0;
+
+      $.get( 'validation-annonce-treatment.php?_idAnnonce='+idAnnonce+'_validation='+validation , function( data ) {
+
+        // alert(data);
+
+      });
 
       $(this).closest('.panel.panel-yellow').find('.panel.panel-yellow').addClass('panel-red').removeClass('panel-yellow');
 
