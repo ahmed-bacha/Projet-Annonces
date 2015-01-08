@@ -33,6 +33,16 @@ require_once("header.php");
 </div>
 <!-- /.row -->
 
+<div class="col-lg-12">
+  <div class="input-group">
+    <input id="search" type="text" class="form-control" placeholder="Search for...">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="button">Go!</button>
+    </span>
+  </div><!-- /input-group -->
+</div><!-- /.col-lg-6 -->
+
+
 <!--  Page tables -->
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -108,6 +118,38 @@ require_once("header.php");
   </div>
 </div>
 <!--  /.Page tables -->
+
+<script charset="utf-8">
+
+$( "#search" ).keyup(function() {
+
+  // event.preventDefault();
+
+  $.ajax({
+    url: 'search-traitement.php',
+    type: 'POST',
+    data: "search="+$("#search").val(),
+    mimeType:"multipart/form-data",
+    async: false,
+    cache: false,
+    processData: false,
+
+    success: function(result)
+  {
+    console.log(result);
+  }
+
+});
+
+
+
+
+
+});
+
+</script>
+
+
 
 
 <!-- Footer -->
