@@ -1,3 +1,4 @@
+<div class="row">
 <nav role="navigation" class="navbar navbar-default">
 
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -13,6 +14,7 @@
         <a href="#" class="text-center navbar-brand">TSE Annonces</a>
 
     </div>
+
 
 
     <!-- Collection of nav links, forms, and other content for toggling -->
@@ -52,21 +54,26 @@
 
             <li class="dropdown">
               <a href="<?php echo 'profile.php?id='.$userM->id?>" class="dropdown-toggle" data-toggle="dropdown">
-                <?php  echo 'Bonjour : <i>'.$userM->nom.'</i>'; ?>
+                <?php  echo '<span class="user">'.$userM->nom.'</span>'; ?>
                 <span class="caret"></span>
               </a>
+
               <ul class="dropdown-menu" role="menu">
                 <li>
                   <a href="profile.php">Mon profile</a>
                   <a href="liste-mes-annonces.php">Liste de mes annonces</a>
                   <a href="add-annonce.php">Ajouter une annonce</a>
                 </li>
+
+                <li class="divider"></li>
+
+                <li>
+                  <a href="log-out.php">Logout</a>
+                </li>
               </ul>
+
             </li>
 
-            <li>
-                <a href="log-out.php">Logout</a>
-            </li>
         <?php
 
         }else{
@@ -82,6 +89,7 @@
          ?>
         </ul>
     </div>
+</div>
 
     <!-- Activation de la fonction DropDown du menu -->
     <script type="text/javascript">

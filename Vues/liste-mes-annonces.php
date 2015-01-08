@@ -25,13 +25,18 @@
   <!-- Page Content -->
   <div class="col-lg-12">
 
-    <div class="well">
-      <p>
-        <i><?php echo $userM->nom; ?></i>
-        <strong><?php echo $userM->email ?></strong>
-      </p>
-    </div>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <h4>Mes annonces</h4>
+      </div>
+      <div class="panel-body">
+        <p>
+          Liste de toutes vos annonces non traitées, traitées et qui seront supprimées (non acceptées).
+        </p>
+      </div>
 
+      <!-- Table -->
     <table class="table table-striped">
 
       <thead>
@@ -40,6 +45,7 @@
           <th>Titre de l'annonce</th>
           <th>Nom</th>
           <th>Prix</th>
+          <th>Status</th>
           <th>Editer</th>
           <th>Supprimer</th>
         </tr>
@@ -64,6 +70,9 @@
             <td><?php echo $o_annonceM->titre; ?></td>
             <td><?php echo $o_annonceM->nom; ?></td>
             <td><?php echo $o_annonceM->prix; ?></td>
+            <td>
+                <?php echo AnnonceC::statusVal($o_annonceM->statut); ?>
+            </td>
             <td>
               <a href="modify-anonce.php?idAnnonce=<?php echo $o_annonceM->id ?>">
                 <span class="glyphicon glyphicon-pencil"></span>

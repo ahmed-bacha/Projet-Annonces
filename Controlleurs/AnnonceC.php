@@ -114,6 +114,30 @@ class AnnonceC
 
 	}
 
+
+	/**
+	* Convertie la valeur d'un statut d'annonce en STRING
+	* @param  INT 	statut 	: statut d'une annonce
+	* @return STRING 				: les 3 liens concatener
+	*/
+	public static function statusVal($statut){
+
+		if($statut == NON_TRAITE){
+			return '<span class="label label-warning">Non traitée</span>';
+		}
+
+		if($statut == TRAITE){
+			return '<span class="label label-success">Traitée</span>';
+		}
+
+		if($statut == A_SUPPRIMER){
+			return '<span class="label label-danger">A supprimer</span>';
+		}
+
+	}
+
+
+
 	/*
 	* @return ARRAY : les 3 liens concatener
 	*/
