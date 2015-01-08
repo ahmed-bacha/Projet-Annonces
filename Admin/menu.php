@@ -63,7 +63,7 @@
         ?>
       <li>
         <a href="#" data-toggle="collapse" data-target="#demo">
-          <i class="fa fa-fw fa-arrows-v"></i>
+          <i class="fa fa-fw fa fa-user"></i>
           Administration
           <i class="fa fa-fw fa-caret-down"></i>
         </a>
