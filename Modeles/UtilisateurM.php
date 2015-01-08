@@ -1,20 +1,20 @@
-<?php 
-	
+<?php
+
 /**
  * Classe utilisateur Modele
- * 
+ *
  * @version 	1.00
- * @license 	http://www.gnu.org/copyleft/gpl.html GPL	
+ * @license 	http://www.gnu.org/copyleft/gpl.html GPL
  * @package 	Modeles
  */
 
-class UtilisateurM implements ModelInterface  
+class UtilisateurM implements ModelInterface
 {
 	/**
  	* @var objet PDO
  	*/
 	private static $db;
-	
+
 	/**
  	* @var int
  	*/
@@ -37,12 +37,12 @@ class UtilisateurM implements ModelInterface
 
 	/**
 	* Constructeur de la classe avec un tableau de paramètres
-	* Exemple : 	
+	* Exemple :
 	* @param $donnees = array(
 	*			'nom' 	=> 'user10',
 	*			'mdp' 	=> 'user10',
 	*			'email' => 'user10@telecom-st-etienne.fr'
-	* 			);	
+	* 			);
 	*/
 	public function __construct($donnees){
 		$this->hydrate($donnees);
@@ -51,15 +51,15 @@ class UtilisateurM implements ModelInterface
 
 	/**
 	* Renseigne les champs de l'objet à partir d'un tableau d'élements
-	* Exemple : 	
+	* Exemple :
 	* @param $donnees = array(
 	*			'nom' 	=> 'user10',
 	*			'mdp' 	=> 'user10',
 	*			'email' => 'user10@telecom-st-etienne.fr'
-	* 			);	
+	* 			);
 	*/
 	public function hydrate($donnees){
-		
+
 		if (isset($donnees['id'])){
     		$this->id = $donnees['id'];
   		}
@@ -90,8 +90,8 @@ class UtilisateurM implements ModelInterface
 		try {
 			// preparation de la requete
 			$q = $db->prepare(
-					'INSERT INTO 
-					UtilisateurM (nom, mdp, email) 
+					'INSERT INTO
+					UtilisateurM (nom, mdp, email)
 	 				VALUES (:nom, :mdp, :email)'
 	 				);
 
@@ -111,7 +111,7 @@ class UtilisateurM implements ModelInterface
 
 
 	/**
-	* Supprime un utilisateur de la BDD 
+	* Supprime un utilisateur de la BDD
 	* @return bool 	: true "success" , false "failure"
 	*/
 	public function delete(){
@@ -122,8 +122,8 @@ class UtilisateurM implements ModelInterface
 		try {
 			// preparation de la requete
 			$q = $db->prepare(
-					'DELETE FROM 
-					 UtilisateurM 
+					'DELETE FROM
+					 UtilisateurM
 					 WHERE id = (:id)'
 	 				);
 
@@ -141,17 +141,17 @@ class UtilisateurM implements ModelInterface
 
 
 	public function update(){
-			
+
 	{
 		$db  = SPDO::getInstance();
 
 		try {
-            $req=$db->prepare('UPDATE UtilisateurM 
+            $req=$db->prepare('UPDATE UtilisateurM
             					SET nom = :nom,
-            					mdp = :mdp, 
-            					email = :email 
-            					WHERE id = :id'); 
-           
+            					mdp = :mdp,
+            					email = :email
+            					WHERE id = :id');
+
             $req->bindValue(':id',    $this->id);
             $req->bindValue(':nom',   $this->nom);
 	 		$req->bindValue(':mdp',   $this->mdp);
@@ -169,7 +169,7 @@ class UtilisateurM implements ModelInterface
 
 
 	/**
-	* Teste si un utilisateur existe déjà dans la BDD 
+	* Teste si un utilisateur existe déjà dans la BDD
 	* @return bool 	: true "utilisateur existe" , false "utilisateur inexistant"
 	*/
 	public static function check($email,$pass){
@@ -180,8 +180,8 @@ class UtilisateurM implements ModelInterface
 		try {
 			// preparation de la requete
 			$q = $db->prepare(
-					'SELECT id FROM  
-					 UtilisateurM 
+					'SELECT id FROM
+					 UtilisateurM
 					 WHERE email = (:email) AND mdp = (:pass)'
 	 				);
 
@@ -203,7 +203,7 @@ class UtilisateurM implements ModelInterface
 			else{
 				return true;
 			}
-		 		
+
 		}catch (PDOException $e) {
 			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
 		}
@@ -212,7 +212,7 @@ class UtilisateurM implements ModelInterface
 
 
 	/**
-	* Teste si un utilisateur existe déjà dans la BDD 
+	* Teste si un utilisateur existe déjà dans la BDD
 	* @return bool 	: true "utilisateur existe" , false "utilisateur inexistant"
 	*/
 	public static function checkById($_id){
@@ -223,8 +223,8 @@ class UtilisateurM implements ModelInterface
 		try {
 			// preparation de la requete
 			$q = $db->prepare(
-					'SELECT id FROM  
-					 UtilisateurM 
+					'SELECT id FROM
+					 UtilisateurM
 					 WHERE id = (:id) '
 	 				);
 
@@ -246,7 +246,7 @@ class UtilisateurM implements ModelInterface
 			else{
 				return true;
 			}
-		 		
+
 		}catch (PDOException $e) {
 			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
 		}
@@ -269,8 +269,8 @@ class UtilisateurM implements ModelInterface
 			try {
 				// preparation de la requete
 				$q = $db->prepare(
-						'SELECT * FROM  
-						 UtilisateurM 
+						'SELECT * FROM
+						 UtilisateurM
 						 WHERE email = :email AND mdp = :mdp
 						 LIMIT 1'
 		 				);
@@ -293,7 +293,7 @@ class UtilisateurM implements ModelInterface
 			}
 		} else {
 			return null;
-		}	
+		}
 	}
 
 
@@ -313,9 +313,9 @@ class UtilisateurM implements ModelInterface
 			try {
 				// preparation de la requete
 				$q = $db->prepare(
-						'SELECT * FROM  
-						 UtilisateurM 
-						 WHERE id = :id' 
+						'SELECT * FROM
+						 UtilisateurM
+						 WHERE id = :id'
 		 				);
 
 				// on remplace avec les vraies valeurs
@@ -335,13 +335,56 @@ class UtilisateurM implements ModelInterface
 			}
 		} else {
 			return null;
-		}	
+		}
+	}
+
+
+	/**
+	*	Retourne la liste de tous les utilisateurs
+	*/
+	public static function getAllUsers(){
+
+		// on récupère l'instance PDO
+		$db  = SPDO::getInstance();
+
+		//Connexion à la base de données
+		try {
+
+		// preparation de la requete
+		$q = $db->prepare(
+											'SELECT *
+											FROM utilisateurM
+											ORDER BY id DESC'
+										 );
+
+		// execution de la requete
+
+		$q->execute();
+
+		$result = array();
+
+		while ($_line = $q->fetch(PDO::FETCH_ASSOC)) {
+
+			$o_utilisateurM = new UtilisateurM($_line);
+
+			array_push($result, $o_utilisateurM);
+
+		}
+
+		return $result;
+
+		} catch (PDOException $e) {
+
+				echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+
+		}
+
 	}
 
 
 	/**
 	* Setter pour tous les champs de la classe
-	* Exemple d'utilisation : 
+	* Exemple d'utilisation :
 	* $user = UtilisateurM($donnees);
 	* $user->nom = 'Pierre';
 	*/
@@ -356,7 +399,7 @@ class UtilisateurM implements ModelInterface
 
 	/**
 	* Getter pour tous les champs de la classe
-	* Exemple d'utilisation : 
+	* Exemple d'utilisation :
 	* $user = UtilisateurM($donnees);
 	* $user->nom; // retourne le nom;
 	* @return champs de la classe

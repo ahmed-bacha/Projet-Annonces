@@ -46,6 +46,25 @@
       </li>
 
       <li>
+        <a href="#" data-toggle="collapse" data-target="#utilisateurs">
+          <i class="fa fa-fw fa-list"></i>
+          Gestion des utilisateurs
+          <i class="fa fa-fw fa-caret-down"></i>
+        </a>
+        <ul id="utilisateurs" class="collapse">
+
+          <li>
+            <a href="liste-utilisateurs.php">Liste des utilisateurs </a>
+          </li>
+
+          <li>
+            <a href="recherche-utilisateurs.php">Recherche d'un utilisateur </a>
+          </li>
+
+        </ul>
+      </li>
+
+      <li>
         <a href="#" data-toggle="collapse" data-target="#annonces">
           <i class="fa fa-fw fa-list"></i>
           Gestion des annonces

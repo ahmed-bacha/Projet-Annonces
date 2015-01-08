@@ -140,6 +140,15 @@ class UtilisateurC
 		return $utilisateurM->update();
 	}
 
+	/**
+	* Liste des utilisateurs présents en BDD
+	* @return 	ARRAY 			: Objet UtilisateurM
+	*/
+	static function getAllUsers()
+	{
+		return $utilisateurM::getAllUsers();
+	}
+
 
 }
 
