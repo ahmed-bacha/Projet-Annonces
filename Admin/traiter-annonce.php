@@ -279,8 +279,19 @@ require_once("header.php");
 
     <!-- all conteneurs panel start -->
 
+    </div>
+    </div>
   </div>
 </div>
+
+<nav class="navbar navbar-default fixed-navbar">
+  <div class="container container-fluid" id="wrap" style="padding-top: 60px;">
+    <div class="navbar-header">
+
+    </div>
+  </div>
+</nav>
+
 <!-- /.row -->
 
 <script charset="utf-8">
@@ -333,39 +344,45 @@ require_once("header.php");
 
       var validation  = 1;
 
+      var currentElement = $(this);
+
       $.get( 'validation-annonce-treatment.php?_idAnnonce='+idAnnonce+'&_validation='+validation , function( data ) {
 
-        // alert(data);
+        data = parseInt(data);
+
+        if(data){
+
+          currentElement.closest('.panel.panel-yellow').find('.panel.panel-yellow').addClass('panel-green').removeClass('panel-yellow');
+
+          currentElement.closest('.panel.panel-yellow').find('i:first').removeClass('fa-gears').addClass('fa-check').text(' validée');
+
+          currentElement.closest('.panel.panel-yellow').addClass('panel-green').removeClass('panel-yellow');
+
+          currentElement.prev().fadeOut();
+
+          currentElement.fadeOut();
+
+          currentElement.closest('.panel.panel-green').find('.panel-body.annonce-content').slideUp();
+
+          currentElement.closest('.panel.panel-green').find('.annonce-content-link');
+
+          var link = currentElement.closest('.panel.panel-green').find('.annonce-content-link');
+
+          if(link.find('p').hasClass('slideUp')){
+
+            link.find('p').removeClass('slideUp');
+
+            link.find('p').addClass('slideDown');
+
+            link.find('p').empty().append('Voir le détail de l\'annonce '+'<i class="fa fa-arrow-circle-down"></i>');
+
+            link.prev().slideUp();
+
+          }
+
+        }
 
       });
-
-      $(this).closest('.panel.panel-yellow').find('.panel.panel-yellow').addClass('panel-green').removeClass('panel-yellow');
-
-      $(this).closest('.panel.panel-yellow').find('i:first').removeClass('fa-gears').addClass('fa-check').text(' validée');
-
-      $(this).closest('.panel.panel-yellow').addClass('panel-green').removeClass('panel-yellow');
-
-      $(this).prev().fadeOut();
-
-      $(this).fadeOut();
-
-      $(this).closest('.panel.panel-green').find('.panel-body.annonce-content').slideUp();
-
-      $(this).closest('.panel.panel-green').find('.annonce-content-link');
-
-      var link = $(this).closest('.panel.panel-green').find('.annonce-content-link');
-
-      if(link.find('p').hasClass('slideUp')){
-
-        link.find('p').removeClass('slideUp');
-
-        link.find('p').addClass('slideDown');
-
-        link.find('p').empty().append('Voir le détail de l\'annonce '+'<i class="fa fa-arrow-circle-down"></i>');
-
-        link.prev().slideUp();
-
-      }
 
     });
 
@@ -379,42 +396,41 @@ require_once("header.php");
 
       var validation  = 0;
 
+      var currentElement = $(this);
+
       $.get( 'validation-annonce-treatment.php?_idAnnonce='+idAnnonce+'_validation='+validation , function( data ) {
 
-        // alert(data);
+        currentElement.closest('.panel.panel-yellow').find('.panel.panel-yellow').addClass('panel-red').removeClass('panel-yellow');
+
+        currentElement.closest('.panel.panel-yellow').find('i:first').removeClass('fa-gears').addClass('fa-close').text(' supprimée');
+
+        currentElement.closest('.panel.panel-yellow').addClass('panel-red').removeClass('panel-yellow');
+
+        currentElement.next().fadeOut();
+
+        currentElement.fadeOut();
+
+        currentElement.closest('.panel.panel-red').find('.panel-body.annonce-content').slideUp();
+
+        currentElement.closest('.panel.panel-red').find('.annonce-content-link');
+
+        var link = currentElement.closest('.panel.panel-red').find('.annonce-content-link');
+
+        if(link.find('p').hasClass('slideUp')){
+
+          link.find('p').removeClass('slideUp');
+
+          link.find('p').addClass('slideDown');
+
+          link.find('p').empty().append('Voir le détail de l\'annonce '+'<i class="fa fa-arrow-circle-down"></i>');
+
+          link.prev().slideUp();
+
+        }
 
       });
 
-      $(this).closest('.panel.panel-yellow').find('.panel.panel-yellow').addClass('panel-red').removeClass('panel-yellow');
-
-      $(this).closest('.panel.panel-yellow').find('i:first').removeClass('fa-gears').addClass('fa-close').text(' supprimée');
-
-      $(this).closest('.panel.panel-yellow').addClass('panel-red').removeClass('panel-yellow');
-
-      $(this).next().fadeOut();
-
-      $(this).fadeOut();
-
-      $(this).closest('.panel.panel-red').find('.panel-body.annonce-content').slideUp();
-
-      $(this).closest('.panel.panel-red').find('.annonce-content-link');
-
-      var link = $(this).closest('.panel.panel-red').find('.annonce-content-link');
-
-      if(link.find('p').hasClass('slideUp')){
-
-        link.find('p').removeClass('slideUp');
-
-        link.find('p').addClass('slideDown');
-
-        link.find('p').empty().append('Voir le détail de l\'annonce '+'<i class="fa fa-arrow-circle-down"></i>');
-
-        link.prev().slideUp();
-
-      }
-
     });
-
 
   });
 

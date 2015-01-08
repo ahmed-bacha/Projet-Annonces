@@ -10,9 +10,6 @@
 
   <title><?php echo $title; ?></title>
 
-  <!-- Custom CSS -->
-  <link href="css/custom.css" rel="stylesheet">
-
   <!-- Bootstrap Core CSS -->
   <link href="../Vues/css/bootstrap.min.css" rel="stylesheet">
 
@@ -21,6 +18,9 @@
 
   <!-- Custom Fonts -->
   <link href="../Vues/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom CSS -->
+  <link href="css/custom.css" rel="stylesheet">
 
   <!-- JQuery library inclusion -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

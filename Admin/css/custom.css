@@ -7,3 +7,7 @@
   min-height : 150px;
   max-height : 150px;
 }
+
+.fixed-navbar{
+  border-radius : 0px;
+}
