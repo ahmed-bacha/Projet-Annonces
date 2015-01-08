@@ -28,6 +28,7 @@ require_once("header.php");
       Dashboard
       <small>Home de la page Admin</small>
     </h1>
+
     <ol class="breadcrumb">
 
       <li>
@@ -42,6 +43,7 @@ require_once("header.php");
       ?>
 
     </ol>
+
   </div>
 </div>
 <!-- /.row -->

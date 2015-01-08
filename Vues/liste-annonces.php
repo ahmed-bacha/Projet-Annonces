@@ -85,7 +85,7 @@
 
 					var annonce = t_data[i];
 
-					$('#bloc-liste-annonces').append('<a href="detail-annonce.php" >'+
+					$('#bloc-liste-annonces').append('<a href="detail-annonce.php?idAnnonce='+annonce['id']+'" >'+
 																						'<div class="col-lg-4 ">'+
 																							'<div class="panel annonce-panel">'+
 																								'<div class="panel-heading annonce-heading">'+

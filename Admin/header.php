@@ -10,6 +10,9 @@
 
   <title><?php echo $title; ?></title>
 
+  <!-- Custom CSS -->
+  <link href="css/custom.css" rel="stylesheet">
+
   <!-- Bootstrap Core CSS -->
   <link href="../Vues/css/bootstrap.min.css" rel="stylesheet">
 

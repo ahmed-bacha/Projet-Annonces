@@ -45,6 +45,18 @@
         <a href="dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
       </li>
 
+      <li>
+        <a href="#" data-toggle="collapse" data-target="#demo">
+          <i class="fa fa-fw fa-list">
+          </i> Gestion des annonces
+        </a>
+          <ul id="demo" class="collapse">
+            <li>
+              <a href="traiter-annonce.php">Traiter les annonces </a>
+            </li>
+          </ul>
+        </li>
+
       <?php
       if(AdminC::isAdministrateur($adminM->login, $adminM->mdp) == true){
         ?>
