@@ -40,7 +40,7 @@
             </mark>
           -->
             <div class="form-group col-lg-6 col-lg-offset-3" >
-              <div id ="erreur" class="alert alert-danger" role="alert">
+              <div id ="erreur" class="alert alert-danger" role="alert" hidden="true">
               </div>
             </div>
           <form id="form" action="admin-login-traitement.php" method="POST">
@@ -132,13 +132,13 @@
         {
           if (jQuery.isEmptyObject(result) == false) {
 
-            // alert(result);
-
             $( "#erreur" ).show();
             $('#erreur').html(result);
 
-          } else {
+            console.log("tu passes ici");
 
+          } else {
+            document.location.href = '/Projet-annonces/Admin/dashboard.php';
             $( "#erreur" ).hide();
 
           }

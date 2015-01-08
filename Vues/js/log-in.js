@@ -34,7 +34,7 @@ $( document ).ready(function() {
             $('#erreur').html(result);
 
           } else {
-
+            document.location.href = '/Projet-annonces/Vues/liste-annonces.php';
             $( "#erreur" ).hide();
 
           }

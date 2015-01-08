@@ -31,13 +31,7 @@ if (UtilisateurC::validateEmail($email) && UtilisateurC::validatePassword($passw
 		$_SESSION['utilisateurM']    = $utilisateurM;
 
 		// header("Location: single-annonce.php");
-		?>
 
-		<script charset="utf-8">
-		document.location.href = '/Projet-annonces/Vues/single-annonce.php';
-		</script>
-
-<?php
 	}
 	else{
 
@@ -47,7 +41,7 @@ if (UtilisateurC::validateEmail($email) && UtilisateurC::validatePassword($passw
 }else{
 
 	$erreur[] = "Email ou mot de passe incorrects";
-	
+
 }
 
 for ($i=0; $i < sizeof($erreur); $i++) {

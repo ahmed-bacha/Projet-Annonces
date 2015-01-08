@@ -29,13 +29,6 @@ if (isset($user) && !empty($user) &&
 
         $_SESSION['Admin'] = $adminM;
 
-        ?>
-
-        <script charset="utf-8">
-        document.location.href = '/Projet-annonces/Admin/dashboard.php';
-        </script>
-
-        <?php
 
       }else{
 
@@ -47,9 +40,9 @@ if (isset($user) && !empty($user) &&
 
   $erreur[] = "Login ou mot de passe incorrects";
 }
-
-for ($i=0; $i < sizeof($erreur); $i++) {
-  echo $erreur["$i"]."<br>";
+if($erreur){
+  for ($i=0; $i < sizeof($erreur); $i++) {
+    echo $erreur["$i"]."<br>";
+  }
 }
-
 ?>
