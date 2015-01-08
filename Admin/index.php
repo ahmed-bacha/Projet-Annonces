@@ -16,6 +16,15 @@
   <!-- Custom Fonts -->
   <link href="../Vues/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+  <!-- jQuery -->
+  <script src="../Vues/js/jquery.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../Vues/js/bootstrap.min.js"></script>
+
+  <script src="js/admin-login.js"></script>
+
+
 </head>
 
 <body style="background:rgb(34,34,34);">
@@ -94,72 +103,6 @@
   <!-- /.container-fluid -->
 
 
-  <!-- jQuery -->
-  <script src="../Vues/js/jquery.js"></script>
-
-  <!-- Bootstrap Core JavaScript -->
-  <script src="../Vues/js/bootstrap.min.js"></script>
-
-
-  <script charset="utf-8">
-
-  $( document ).ready(function() {
-
-    $( "#erreur" ).hide();
-
-    $("form#form").submit(function(event){
-
-      //disable the default form submission
-
-      event.preventDefault();
-
-      var formData    = $("#form").serialize();
-      console.log(formData);
-      console.log($('#user').val());
-      console.log($('#password').val());
-
-      if (jQuery.isEmptyObject($('#password').val()) == false && jQuery.isEmptyObject($('#user').val()) == false ) {
-        $.ajax({
-          url: 'admin-login-traitement.php',
-          type: 'POST',
-          data: $("#form").serialize(),
-          mimeType:"multipart/form-data",
-          async: false,
-          cache: false,
-          processData: false,
-
-          success: function(result)
-        {
-          if (jQuery.isEmptyObject(result) == false) {
-
-            $( "#erreur" ).show();
-            $('#erreur').html(result);
-
-            console.log("tu passes ici");
-
-          } else {
-            document.location.href = '/Projet-annonces/Admin/dashboard.php';
-            $( "#erreur" ).hide();
-
-          }
-
-
-          console.log(result);
-        }
-
-      });
-
-    }else{
-      $( "#erreur" ).show();
-      $('#erreur').html("Login ou mot de passe incorrects")
-    }
-
-
-
-    return false;
-  });
-
-});
 
 
 
