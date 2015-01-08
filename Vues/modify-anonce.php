@@ -5,9 +5,9 @@ require_once("../Utils/includeAll.php");
 session_start();
 
 if(isset($_SESSION['utilisateurM'])){
-
   $userM = $_SESSION['utilisateurM'];
-
+}else{
+  header("location: log-in.php");
 }
 
 // Récupération des données liée à l'anonce

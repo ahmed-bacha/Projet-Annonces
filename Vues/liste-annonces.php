@@ -1,10 +1,12 @@
 <?php
-
-	//-------------------------
-	// session
-	//-------------------------
-
+	require_once("../Utils/includeAll.php");
 	session_start();
+
+	if(isset($_SESSION['utilisateurM'])){
+
+		$userM = $_SESSION['utilisateurM'];
+
+	}
 
 	$_SESSION['currentIndex'] = 1;
 
@@ -12,7 +14,7 @@
 	// all classes loading
 	//-------------------------
 
-	require_once("../Utils/includeAll.php");
+
 
 	//-------------------------
 	// header inclusion

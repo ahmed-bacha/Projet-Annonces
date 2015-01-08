@@ -1,7 +1,12 @@
-<!-- Header -->
 <?php
-
   require_once("../Utils/includeAll.php");
+  // On démarre la session
+  session_start();
+
+
+  if(isset($_SESSION['Admin'])){
+    $adminM = $_SESSION['Admin'];
+  }
 
   $title = "Home Page";
 
