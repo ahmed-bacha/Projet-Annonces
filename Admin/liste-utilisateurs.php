@@ -19,6 +19,8 @@ $title = "Admin - Liste des utilisateurs";
 require_once("header.php");
 ?>
 
+<script src="../Vues/js/admin-delete-user.js"></script>
+
 <!-- *** Page Content Here *** -->
 <div class="row">
   <div class="col-lg-12">
@@ -37,11 +39,22 @@ require_once("header.php");
 
     <div class="row">
       <div class="col-lg-12">
+
+        <div class="alert alert-warning text-center" hidden="true" role="alert">
+          Utilisateur supprimé
+        </div>
+        <br />
+        <div class="alert alert-danger text-center" hidden="true" role="alert">
+          Une erreur inattendue s'est produite :(
+        </div>
+
+
         <div class="table-responsive text-center">
           <table class="table table-bordered table-hover table-striped">
             <thead >
               <tr class="text-center">
-                <th class="col-lg-1 text-center">#Id</th>
+                <th class="col-lg-1 text-center">#</th>
+                <th class="col-lg-1 text-center">Id</th>
                 <th class="text-center">Nom</th>
                 <th class="text-center">Email</th>
                 <th class="col-lg-2 text-center">Supprimer</th>
@@ -55,17 +68,20 @@ require_once("header.php");
 
               $liste_utilisateurs = UtilisateurM::getAllUsers();
 
+              $cpt = 1;
+
               foreach ($liste_utilisateurs as $utilisateur) {
 
               ?>
 
               <tr>
+                <td><?php  echo $cpt;  ?></td>
                 <td><?php  echo $utilisateur->id;  ?></td>
                 <td><?php  echo $utilisateur->nom; ?></td>
                 <td><?php  echo $utilisateur->email; ?></td>
 
                 <td class="text-center">
-                    <a href="supprimer-utilisateur.php?idUtilisateur=<?php echo $utilisateur->id;?>">
+                    <a class="delete-user" href="delete-utilisateur.php?idUtilisateur=<?php echo $utilisateur->id;?>">
                       <i class="fa fa-trash" style="color:red;"></i>
                     </a>
                 </td>
@@ -78,6 +94,7 @@ require_once("header.php");
               </tr>
 
               <?php
+                $cpt++;
                 }
               ?>
 

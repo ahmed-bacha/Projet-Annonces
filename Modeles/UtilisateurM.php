@@ -354,7 +354,7 @@ class UtilisateurM implements ModelInterface
 		$q = $db->prepare(
 											'SELECT *
 											FROM utilisateurM
-											ORDER BY id DESC'
+											ORDER BY nom ASC'
 										 );
 
 		// execution de la requete

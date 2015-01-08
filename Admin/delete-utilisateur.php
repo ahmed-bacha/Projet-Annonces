@@ -15,14 +15,12 @@ if(isset($_SESSION['Admin'])){
 // On extrait idUtilisateur
 extract($_GET);
 
-
-
 $o_utilisateurC = new UtilisateurC();
 
 $o_utilisateurM = $o_utilisateurC->getUserById($idUtilisateur);
 
-show($o_utilisateurM);
+$o_utilisateurC->deleteUser($o_utilisateurM);
 
-
+echo true;
 
 ?>
