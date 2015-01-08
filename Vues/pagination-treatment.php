@@ -60,7 +60,7 @@
 
           if(!empty($_value)){
 
-            $_annonceImage = $_value;
+            $_annonceImage = 'images/'.$_value;
 
             break;
 
@@ -72,13 +72,13 @@
 
       if(is_string($_imageArray)){
 
-        $_annonceImage = $_imageArray;
+        $_annonceImage = 'images/'.$_imageArray;
 
       }
 
     } else {
 
-      $_annonceImage = 'noImage.jpg';
+      $_annonceImage = 'resources-img/noImage.jpg';
 
     }
 

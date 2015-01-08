@@ -1,5 +1,11 @@
 <?php
+
+	//-------------------------
+	// all classes loading
+	//-------------------------
+
 	require_once("../Utils/includeAll.php");
+
 	session_start();
 
 	if(isset($_SESSION['utilisateurM'])){
@@ -9,12 +15,6 @@
 	}
 
 	$_SESSION['currentIndex'] = 1;
-
-	//-------------------------
-	// all classes loading
-	//-------------------------
-
-
 
 	//-------------------------
 	// header inclusion
@@ -81,11 +81,11 @@
 
 				var numeroPage = t_data[0];
 
-				var t_data = t_data[1];
+				var t_AnnonceData = t_data[1];
 
-				for(var i in t_data){
+				for(var i in t_AnnonceData){
 
-					var annonce = t_data[i];
+					var annonce = t_AnnonceData[i];
 
 					$('#bloc-liste-annonces').append('<a href="detail-annonce.php?idAnnonce='+annonce['id']+'" >'+
 																						'<div class="col-lg-4 ">'+
@@ -97,7 +97,7 @@
 																								'</div>'+
 																								'<div class="panel-body text-center annonce">'+
 																								'<div class="announceBody">'+
-																									'<img class="img-thumbnail img-responsive"  src="images/'+annonce['images']+'" alt="image">'+
+																									'<img class="img-thumbnail img-responsive"  src="'+annonce['images']+'" alt="image">'+
 																								'</div>'+
 																								'<hr>'+
 																								'<button type="submit" name = "annonce" class="btn panel-button btn-primary btn-lg text-left" >'+
@@ -111,6 +111,18 @@
 				}
 
 				$('.pagination li:first-child').hide();
+
+				var nbPage = t_data[2];
+
+				if (numeroPage == nbPage) {
+
+					$('.pagination li:last-child').hide();
+
+				} else {
+
+					$('.pagination li:last-child').show();
+
+				}
 
 			});
 
@@ -184,7 +196,7 @@
 																								'</div>'+
 																							'<div class="panel-body text-center annonce">'+
 																								'<div class="announceBody">'+
-																									'<img class="img-thumbnail img-responsive"  src="images/'+annonce['images']+'" alt="image">'+
+																									'<img class="img-thumbnail img-responsive"  src="'+annonce['images']+'" alt="image">'+
 																								'</div>'+
 																								'<hr>'+
 																								'<button type="submit" name = "annonce" class="btn panel-button btn-primary btn-lg text-left" >'+
@@ -257,7 +269,7 @@
 																								'</div>'+
 																								'<div class="panel-body text-center annonce">'+
 																									'<div class="announceBody">'+
-																										'<img class="img-thumbnail img-responsive"  src="images/'+annonce['images']+'" alt="image">'+
+																										'<img class="img-thumbnail img-responsive"  src="'+annonce['images']+'" alt="image">'+
 																									'</div>'+
 																									'<hr>'+
 																									'<button type="submit" name = "annonce" class="btn panel-button btn-primary btn-lg text-left" >'+
