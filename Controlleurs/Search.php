@@ -52,15 +52,24 @@ class Search {
 
       if($this->domain == "utilisateurs"){
 
-        $sql = 'SELECT * FROM utilisateurM WHERE nom LIKE ? OR email LIKE ?';
+        $sql = 'SELECT * FROM utilisateurM
+                WHERE nom   LIKE :searchString
+                OR email    LIKE :searchString';
+
+      }
+
+      if($this->domain == "annonces"){
+
+        $sql = 'SELECT * FROM annonceM
+                WHERE titre     LIKE :searchString
+                OR  description LIKE :searchString';
 
       }
 
       // preparation de la requete
       $q = $db->prepare($sql);
 
-      $q->bindParam(1, 	$searchString);
-      $q->bindParam(2, 	$searchString);
+      $q->bindParam(':searchString', 	$searchString);
 
       $q->execute();
 
@@ -70,6 +79,10 @@ class Search {
 
         if($this->domain == "utilisateurs"){
           $object = new UtilisateurM($_line);
+        }
+
+        if($this->domain == "annonces"){
+          $object = new AnnonceM($_line);
         }
 
         array_push($result, $object);

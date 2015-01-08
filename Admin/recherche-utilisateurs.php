@@ -17,7 +17,7 @@ if(isset($_SESSION['Admin'])){
 
 <?php
 
-$title = "Admin recherche d'un utilisateur";
+$title = "Admin recherche";
 require_once("header.php");
 
 ?>
@@ -30,6 +30,8 @@ require_once("header.php");
       <small>Description Description Description</small>
     </h1>
 
+
+    <h1> Recherche USER</h1>
     <?php
 
     $search_string = "a";
@@ -37,6 +39,21 @@ require_once("header.php");
     show($search_string);
 
     $o_search = new Search('utilisateurs');
+
+    show($o_search->searchFor($search_string));
+
+    ?>
+
+
+    <h1> Recherche ANNONCE</h1>
+
+    <?php
+
+    $search_string = "a";
+
+    show($search_string);
+
+    $o_search = new Search('annonces');
 
     show($o_search->searchFor($search_string));
 
