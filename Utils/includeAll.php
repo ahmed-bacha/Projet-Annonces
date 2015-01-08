@@ -33,6 +33,7 @@ require_once(LOCAL_PATH."Modeles/AdminM.php");
 require_once(LOCAL_PATH."Controlleurs/UtilisateurC.php");
 require_once(LOCAL_PATH."Controlleurs/AnnonceC.php");
 require_once(LOCAL_PATH."Controlleurs/AdminC.php");
+require_once(LOCAL_PATH."Controlleurs/Search.php");
 
 /*
 	include lib tiers

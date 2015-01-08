@@ -30,6 +30,17 @@ require_once("header.php");
       <small>Description Description Description</small>
     </h1>
 
+    <?php
+
+    $search_string = "a";
+
+    show($search_string);
+
+    $o_search = new Search('utilisateurs');
+
+    show($o_search->searchFor($search_string));
+
+    ?>
 
   </ol>
 
