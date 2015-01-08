@@ -1,6 +1,7 @@
 <?php
 require_once("../Utils/includeAll.php");
 
+
 // On démarre la session
 session_start();
 
@@ -17,44 +18,65 @@ require_once("header.php");
 
 ?>
 
+ <script src="js/modif-password.js"></script>
 
-<div class="well">
-  <h5>Modification du password</h5>
-</div>
+ <!-- Page Content -->
+ <div class="well col-lg-5 col-lg-offset-3">
+     <?php
 
+   if(isset($_GET['err']) && !empty($_GET['err'])){
+     $erreur = json_decode($_GET['err']);
+     ?>
+     <div id ="err" class="alert alert-danger" hidden="true" role="alert">
+       <?php
+       foreach ($erreur as $value){
+         echo "<p>$value</p>";
+       }
+       ?>
+     </div>
 
-<div class="row">
-  <div class="col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
-    <form id="form" action="modif-password-traitement.php" method="POST">
+     <?php
+   }else{
+     ?>
+     <div id ="erreur" class="alert alert-danger" hidden="true" role="alert">
+     </div>
+     <?php
+   }
+   ?>
+   <form id="form" action="modif-password-traitement.php" method="POST">
 
-      <div class="form-group">
+      <div id="divCurrent_pass" class="form-group">
         <label for="exampleInputPassword1">
           Mot de passe actuel
         </label>
-
         <div class="input-group">
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
           </span>
-          <input type="password" name="current_pass" class="form-control" placeholder="Nom">
+          <input type="password" name="current_pass" class="form-control" placeholder="Mot de passe">
+          <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
         </div>
       </div>
 
+      <div class="alert alert-danger text-center" role="alert" hidden="true">MDP non valide ( min 5 caractères )</div>
 
-      <div class="form-group">
+
+      <div id="divNew_pass" class="form-group">
         <label for="exampleInputPassword1">
           Nouveau mot de passe
         </label>
-
         <div class="input-group">
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
           </span>
-          <input type="password" name="new_pass" class="form-control" placeholder="Nom">
+          <input type="password" name="new_pass" class="form-control" placeholder="Mot de passe">
+          <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
         </div>
       </div>
+      
+      <div class="alert alert-danger text-center" role="alert" hidden="true">MDP non valide ( min 5 caractères )</div>
 
-      <div class="form-group">
+      <div id="divConfirm_new_pass" class="form-group">
         <label for="exampleInputPassword1">
           Confirmez le nouveau mot de passe
         </label>
@@ -63,9 +85,12 @@ require_once("header.php");
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
           </span>
-          <input type="password" name="confirm_new_pass" class="form-control" placeholder="Nom">
+          <input type="password" name="confirm_new_pass" class="form-control" placeholder="Mot de passe">
+          <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
         </div>
       </div>
+
+      <div class="alert alert-danger text-center" role="alert" hidden="true">MDP non valide ( min 5 caractères )</div>
 
       <div class="row">
         <div class="col-xs-offset-4 col-xs-4 col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
@@ -77,9 +102,7 @@ require_once("header.php");
 
 
     </form>
-  </div>
 </div>
-
 <!-- Footer -->
 <?php
 require_once("footer.php");
