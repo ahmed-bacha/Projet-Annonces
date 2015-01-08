@@ -5,6 +5,9 @@ require_once("../Utils/includeAll.php");
 // On démarre la session
 session_start();
 
+error_reporting(E_ALL);
+
+ini_set("display_errors", 1);
 
 if(isset($_SESSION['Admin'])){
   $adminM = $_SESSION['Admin'];

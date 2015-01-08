@@ -312,7 +312,7 @@ class AnnonceM implements ModelInterface{
   /**
   *Reourne toutes les annonces
   */
-  public static function getAllAnnonces ($_statut) {
+  public static function getAllAnnonces ($_statut = null) {
 
 		$db  = SPDO::getInstance();
 
@@ -326,7 +326,7 @@ class AnnonceM implements ModelInterface{
 																A_SUPPRIMER
 															);
 
-			if(isset($_statut) AND in_array($_statut, $_constantArray)){
+			if(!is_null($_statut) AND in_array($_statut, $_constantArray)){
 
 				$q = $db->prepare(
 
