@@ -33,15 +33,21 @@ require_once("header.php");
 </div>
 <!-- /.row -->
 
-<div class="col-lg-12">
-  <div class="input-group">
-    <input id="search" type="text" class="form-control" placeholder="Search for...">
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="button">Go!</button>
-    </span>
-  </div><!-- /input-group -->
-</div><!-- /.col-lg-6 -->
 
+<div class="container">
+  <div class="row">
+    <div id="custom-search-input">
+      <div class="input-group col-lg-4 col-lg-offset-3">
+        <input id="search" type="text" class="  search-query form-control" placeholder="Search" />
+        <span class="input-group-btn">
+          <button class="btn btn-danger" type="button">
+            <span class=" glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--  Page tables -->
 <div class="row">
@@ -60,7 +66,7 @@ require_once("header.php");
 
 
         <div class="table-responsive text-center">
-          <table class="table table-bordered table-hover table-striped">
+          <table class="table table-bordered table-hover table-striped" id="table">
             <thead >
               <tr class="text-center">
                 <th class="col-lg-1 text-center">#</th>
@@ -119,33 +125,16 @@ require_once("header.php");
 </div>
 <!--  /.Page tables -->
 
+
+
 <script charset="utf-8">
 
-$( "#search" ).keyup(function() {
-
-  // event.preventDefault();
-
-  $.ajax({
-    url: 'search-traitement.php',
-    type: 'POST',
-    data: "search="+$("#search").val(),
-    mimeType:"multipart/form-data",
-    async: false,
-    cache: false,
-    processData: false,
-
-    success: function(result)
-  {
-    console.log(result);
-  }
-
-});
-
-
-
-
-
-});
+  $( '#table' ).searchable({
+    striped: true,
+    oddRow: { 'background-color': '#f5f5f5' },
+    evenRow: { 'background-color': '#fff' },
+    searchType: 'fuzzy'
+  });
 
 </script>
 

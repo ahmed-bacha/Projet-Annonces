@@ -25,6 +25,8 @@
   <!-- JQuery library inclusion -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+  <script src="js/jquery.searchable-1.0.0.min.js"></script>
+
 </head>
 
 <body>
