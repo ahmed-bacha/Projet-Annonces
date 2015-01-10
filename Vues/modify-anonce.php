@@ -4,15 +4,15 @@ require_once("../Utils/includeAll.php");
 // On démarre la session
 session_start();
 
-if(isset($_SESSION['utilisateurM'])){
+// Récupération des données liée à l'anonce
+extract($_GET);
+
+if(isset($_SESSION['utilisateurM']) && isset($idAnnonce) && !empty($idAnnonce)){
   $userM = $_SESSION['utilisateurM'];
 }else{
   header("location: log-in.php");
 }
 
-// Récupération des données liée à l'anonce
-
-extract($_GET);
 
 $o_annonceC = new AnnonceC();
 

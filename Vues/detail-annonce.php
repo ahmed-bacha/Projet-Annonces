@@ -2,10 +2,13 @@
   require_once("../Utils/includeAll.php");
   // On démarre la session
   session_start();
+  extract($_GET);
 
 
-  if(isset($_SESSION['Admin'])){
-    $adminM = $_SESSION['Admin'];
+  if(isset($_SESSION['utilisateurM']) && isset($idAnnonce) && !empty($idAnnonce)){
+    $userM = $_SESSION['utilisateurM'];
+  }else{
+    header("location: log-in.php");
   }
 
   $title = "Home Page";
@@ -20,7 +23,7 @@
 
   ini_set('display_errors','On');
 
-  extract($_GET);
+
 
   $o_annonceC     = new AnnonceC();
 

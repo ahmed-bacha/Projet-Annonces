@@ -9,9 +9,7 @@
 	session_start();
 
 	if(isset($_SESSION['utilisateurM'])){
-
 		$userM = $_SESSION['utilisateurM'];
-
 	}
 
 	$_SESSION['currentIndex'] = 1;
