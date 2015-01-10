@@ -5,9 +5,10 @@
   extract($_GET);
 
 
-  if(isset($_SESSION['utilisateurM']) && isset($idAnnonce) && !empty($idAnnonce)){
+  if(isset($_SESSION['utilisateurM'])){
     $userM = $_SESSION['utilisateurM'];
-  }else{
+  }
+  if(empty($idAnnonce)){
     header("location: log-in.php");
   }
 
