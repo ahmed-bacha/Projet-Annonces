@@ -120,23 +120,21 @@ class AnnonceC
 	* @param  INT 	statut 	: statut d'une annonce
 	* @return STRING 				: les 3 liens concatener
 	*/
-	public static function statusVal($statut){
+	public static function statutVal($statut){
 
-		if($statut == NON_TRAITE){
+		if($statut === NON_TRAITE){
 			return '<span class="label label-warning">Non traitée</span>';
 		}
 
-		if($statut == TRAITE){
+		if($statut === TRAITE){
 			return '<span class="label label-success">Traitée</span>';
 		}
 
-		if($statut == A_SUPPRIMER){
+		if($statut === A_SUPPRIMER){
 			return '<span class="label label-danger">A supprimer</span>';
 		}
 
 	}
-
-
 
 	/*
 	* @return ARRAY : les 3 liens concatener
@@ -146,6 +144,34 @@ class AnnonceC
 			return explode(";", $o_AnnonceM->images);
 
 	}
+
+
+	/**
+	* Supprime les annonces en BDD avec un statut A_SUPPRIMER
+	* @return 	INT 			: Nombre d'annonces supprimées
+	*/
+	public  function purgeAnnonces(){
+
+		$compteur = 1;
+
+		$_allAnnonces = $this->getAllAnnonces();
+
+		foreach ($_allAnnonces as $o_annonce) {
+
+			if($o_annonce->statut == A_SUPPRIMER){
+
+				$o_annonce->delete();
+
+				$compteur++;
+
+			}
+
+		}
+
+		return $compteur;
+
+	}
+
 
 	//fonction pour vérifier la conformité d'un numéro de tel Français
 	static function verifTelFr($chaine){

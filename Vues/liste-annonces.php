@@ -69,7 +69,7 @@
 		// function to activate a fontion
 		//-------------------------------------
 
-		$.get( "pagination-treatment.php", function( data ) {
+		$.get( "pagination-treatment.php?_distance=here", function( data ) {
 
 			var t_data = $.parseJSON(data);
 

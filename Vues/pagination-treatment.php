@@ -28,17 +28,22 @@
   // treatment
   //-------------------------
 
-  if($_distance == 'merger'){
+  if($_distance != "here"){
 
-    $_SESSION['currentIndex'] -= 1;
+      if($_distance == 'merger'){
+
+        $_SESSION['currentIndex'] -= 1;
+
+      }
+
+      if($_distance == 'far'){
+
+        $_SESSION['currentIndex'] += 1;
+
+      }
 
   }
 
-  if($_distance == 'far'){
-
-    $_SESSION['currentIndex'] += 1;
-
-  }
 
   $_arrayObj = array();
 

@@ -443,25 +443,17 @@ class AnnonceM implements ModelInterface{
 
 		try {
 
-			$_query = ' SELECT MAX(id), MIN(id) FROM annonceM AS total; ';
+			$_query = ' SELECT COUNT(id) as total FROM annonceM; ';
 
 			$q = $db->prepare($_query);
 
 			$q->execute();
 
-			$_result = $q->fetch(PDO::FETCH_ASSOC);
+			$_result 		= $q->fetch(PDO::FETCH_ASSOC);
 
-			$_maxAnnonce 	= $_result['MAX(id)'];
+			$_nbAnnonce 	= $_result['total'];
 
-			$_maxAnnonce 	= intval($_maxAnnonce);
-
-			$_minAnnonce 	= $_result['MIN(id)'];
-
-			$_minAnnonce 	= intval($_minAnnonce);
-
-			$_nbAnnonce 	= $_maxAnnonce - $_minAnnonce;
-
-			$_maxPage 		= ceil(($_maxAnnonce - $_minAnnonce)/12);
+			$_maxPage 		= ceil($_nbAnnonce/12);
 
 			return $_maxPage;
 
