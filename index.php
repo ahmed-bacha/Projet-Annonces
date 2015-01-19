@@ -1,3 +1,3 @@
 <?php
-header("Location:Vues/index.php");
+header("Location:Vues/liste-annonces.php");
  ?>
