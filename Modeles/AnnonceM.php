@@ -395,7 +395,7 @@ class AnnonceM implements ModelInterface{
 
 			$_foot = 12*($_indexPage - 1);
 
-			$_query = 'SELECT * FROM annonceM LIMIT 12 OFFSET '.$_foot.';';
+			$_query = 'SELECT * FROM annonceM WHERE statut = '.TRAITE.' LIMIT 12 OFFSET '.$_foot.';';
 
 			$q = $db->prepare($_query);
 
@@ -451,7 +451,7 @@ class AnnonceM implements ModelInterface{
 
 		try {
 
-			$_query = ' SELECT COUNT(id) as total FROM annonceM; ';
+			$_query = ' SELECT COUNT(id) as total FROM annonceM WHERE statut = '.TRAITE;
 
 			$q = $db->prepare($_query);
 
@@ -471,6 +471,38 @@ class AnnonceM implements ModelInterface{
 
 		}
 
+	}
+
+
+	/**
+	* Supprime un utilisateur de la BDD
+	* @return bool 	: true "success" , false "failure"
+	*/
+	static public function deleteAnnoncesByUserId($id_utilisateur){
+
+		// on récupère l'instance PDO
+		$db  = SPDO::getInstance();
+
+		try {
+			// preparation de la requete
+			$q = $db->prepare(
+					'DELETE FROM
+					 annonceM
+					 WHERE idUtilisateur = (:id)'
+	 				);
+
+			// on remplace avec les vraies valeurs
+	 		$q->bindValue(':id',   $id_utilisateur);
+
+		 	// execution de la requete
+		 	$q->execute();
+		 	
+		 	return true;
+
+		}catch (PDOException $e) {
+			echo 'Error dans la classe ' .  __CLASS__ . '::' . __FUNCTION__ . '::' . $e->getMessage(),'error';
+			return false;
+		}
 	}
 
 

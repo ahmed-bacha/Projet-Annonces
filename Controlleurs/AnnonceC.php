@@ -146,7 +146,7 @@ class AnnonceC
 	}
 
 
-	/**
+	/**s
 	* Supprime les annonces en BDD avec un statut A_SUPPRIMER
 	* @return 	INT 			: Nombre d'annonces supprimées
 	*/
@@ -171,6 +171,20 @@ class AnnonceC
 		return $compteur;
 
 	}
+
+
+	/**
+	* Supprime une annonce de la BDD
+	* @param 	id				: objet annonceM
+	* @return 	bool 			: true "success" , false "failure"
+	*/
+	static function deleteAnnoncesByUserId($id_utilisateur){
+
+		return	AnnonceM::deleteAnnoncesByUserId($id_utilisateur);
+
+	}
+
+
 
 
 	//fonction pour vérifier la conformité d'un numéro de tel Français

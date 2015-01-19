@@ -19,6 +19,8 @@ $o_utilisateurC = new UtilisateurC();
 
 $o_utilisateurM = $o_utilisateurC->getUserById($idUtilisateur);
 
+AnnonceC::deleteAnnoncesByUserId($idUtilisateur);
+
 $o_utilisateurC->deleteUser($o_utilisateurM);
 
 echo true;
