@@ -45,7 +45,7 @@
           <th>Titre de l'annonce</th>
           <th>Nom</th>
           <th>Prix</th>
-          <th>Status</th>
+          <th>Statut</th>
           <th>Editer</th>
           <th>Supprimer</th>
         </tr>
@@ -71,7 +71,7 @@
             <td><?php echo $o_annonceM->nom; ?></td>
             <td><?php echo $o_annonceM->prix; ?></td>
             <td>
-                <?php echo AnnonceC::statusVal($o_annonceM->statut); ?>
+                <?php echo AnnonceC::statutVal($o_annonceM->statut); ?>
             </td>
             <td>
               <a href="modify-anonce.php?idAnnonce=<?php echo $o_annonceM->id ?>">

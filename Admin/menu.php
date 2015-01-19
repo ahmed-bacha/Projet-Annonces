@@ -52,7 +52,7 @@
 
       <li>
         <a href="#" data-toggle="collapse" data-target="#utilisateurs">
-          <i class="fa fa-fw fa-list"></i>
+          <i class="fa fa-users"></i>
           Gestion des utilisateurs
           <i class="fa fa-fw fa-caret-down"></i>
         </a>
@@ -63,7 +63,7 @@
           </li>
 
           <li>
-            <a href="recherche-utilisateurs.php">Recherche d'un utilisateur </a>
+            <a href="recherche-utilisateurs.php">DEMO Recherche </a>
           </li>
 
         </ul>
@@ -76,9 +76,15 @@
           <i class="fa fa-fw fa-caret-down"></i>
         </a>
           <ul id="annonces" class="collapse">
+
             <li>
               <a href="traiter-annonce.php">Traiter les annonces </a>
             </li>
+
+            <li>
+              <a href="purge-annonce.php">Purger les annonces </a>
+            </li>
+
           </ul>
       </li>
 

@@ -122,15 +122,15 @@ class AnnonceC
 	*/
 	public static function statutVal($statut){
 
-		if($statut === NON_TRAITE){
+		if($statut == NON_TRAITE){
 			return '<span class="label label-warning">Non traitée</span>';
 		}
 
-		if($statut === TRAITE){
+		if($statut == TRAITE){
 			return '<span class="label label-success">Traitée</span>';
 		}
 
-		if($statut === A_SUPPRIMER){
+		if($statut == A_SUPPRIMER){
 			return '<span class="label label-danger">A supprimer</span>';
 		}
 

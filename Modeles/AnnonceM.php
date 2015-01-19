@@ -97,7 +97,15 @@ class AnnonceM implements ModelInterface{
     		$this->idUtilisateur = $donnees['idUtilisateur'];
   		}
 
-   		$this->statut = NON_TRAITE;
+  		if (isset($donnees['statut'])){
+
+    		$this->statut = $donnees['statut'];
+
+  		}else{
+
+  			$this->statut = NON_TRAITE;
+
+  		}   		
 
     	if (isset($donnees['nom'])){
     		$this->nom = $donnees['nom'];
