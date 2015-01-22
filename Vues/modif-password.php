@@ -12,22 +12,21 @@ if(isset($_SESSION['utilisateurM'])){
 }
 
 // HEADER
-
 $title = "Exemple d'une annonce";
 require_once("header.php");
 
 ?>
 
- <script src="js/modif-password.js"></script>
+  <script src="js/modif-password.js"></script> 
 
  <!-- Page Content -->
  <div class="well col-lg-5 col-lg-offset-3">
-     <?php
+   <?php
 
    if(isset($_GET['err']) && !empty($_GET['err'])){
      $erreur = json_decode($_GET['err']);
      ?>
-     <div id ="err" class="alert alert-danger" hidden="true" role="alert">
+     <div id ="err" class="alert alert-danger"  role="alert">
        <?php
        foreach ($erreur as $value){
          echo "<p>$value</p>";
@@ -38,12 +37,12 @@ require_once("header.php");
      <?php
    }else{
      ?>
-     <div id ="erreur" class="alert alert-danger" hidden="true" role="alert">
+     <div id ="erreur" class="alert alert-danger"  role="alert">
      </div>
      <?php
    }
    ?>
-   <form id="form" action="modif-password-traitement.php" method="POST">
+   <form id="form" action="modif-password-traitement.php" method="POST" enctype="multipart/form-data">
 
       <div id="divCurrent_pass" class="form-group">
         <label for="exampleInputPassword1">
@@ -53,7 +52,7 @@ require_once("header.php");
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
           </span>
-          <input type="password" name="current_pass" class="form-control" placeholder="Mot de passe">
+          <input id="current_pass" type="password" name="current_pass" class="form-control" placeholder="Mot de passe">
           <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
         </div>
       </div>
@@ -69,7 +68,7 @@ require_once("header.php");
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
           </span>
-          <input type="password" name="new_pass" class="form-control" placeholder="Mot de passe">
+          <input id="new_pass" type="password" name="new_pass" class="form-control" placeholder="Mot de passe">
           <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
         </div>
       </div>
@@ -85,7 +84,7 @@ require_once("header.php");
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
           </span>
-          <input type="password" name="confirm_new_pass" class="form-control" placeholder="Mot de passe">
+          <input id="confirm_new_pass" type="password" name="confirm_new_pass" class="form-control" placeholder="Mot de passe">
           <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
         </div>
       </div>

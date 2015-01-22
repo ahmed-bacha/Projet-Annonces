@@ -1,7 +1,7 @@
-
 $( document ).ready(function() {
 
   $( "#erreur" ).hide();
+  $( "#success" ).hide();
 
   $("form#form").submit(function(event){
 
@@ -14,10 +14,11 @@ $( document ).ready(function() {
     console.log($('#current_pass').val());
     console.log($('#new_pass').val());
     console.log($('#confirm_new_pass').val());
+    console.log($("#form").serialize());
 
     if (jQuery.isEmptyObject($('#current_pass').val()) == false && jQuery.isEmptyObject($('#new_pass').val()) == false && jQuery.isEmptyObject($('#confirm_new_pass').val()) == false) {
       $.ajax({
-        url: 'modif-password-traitement.php',
+        url: 'modif-password-traitement-ajax.php',
         type: 'POST',
         data: $("#form").serialize(),
         mimeType:"multipart/form-data",
@@ -29,26 +30,25 @@ $( document ).ready(function() {
         {
           if (jQuery.isEmptyObject(result) == false) {
 
-            // alert(result);
-
             $( "#erreur" ).show();
             $('#erreur').html(result);
 
-          } else {
-
-            $( "#erreur" ).hide();
-
-          }
-
+          }else {
+            document.location.href = '/Projet-annonces/Vues/profile.php?err=modiff_eff';
+          $( "#success" ).show();
+          $( "#erreur" ).hide();
+          
+        }
 
           console.log(result);
         }
 
       });
 
-    }
-
-
+    }else{
+    $( "#erreur" ).show();
+   
+  }
 
     return false;
   });
@@ -61,7 +61,7 @@ $(function(){
 
   var current_pass      = $('input[name="current_pass"]');
 
-  var new_pass       = $('input[name="password"]');
+  var new_pass       = $('input[name="new_pass"]');
 
   var confirm_new_pass = $('input[name="confirm_new_pass"]');
 
@@ -183,8 +183,6 @@ $(function(){
 
   }
 
-
-
   function treatMdpField(element){
 
     if(element.val().length > 5){
@@ -225,3 +223,4 @@ $(function(){
     }
   }
 });
+

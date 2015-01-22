@@ -22,6 +22,23 @@ require_once("header.php");
 
 <!-- Page Content -->
 <div class="well col-lg-5 col-lg-offset-3">
+	<?php
+
+   if(isset($_GET['err']) && !empty($_GET['err'])){
+     
+     ?>
+     <div id ="err" class="alert alert-success"  role="alert">
+       <?php
+       
+         echo "<p> La modification du mot de passe est effectuée avec succée  </p>";
+       
+       ?>
+     </div>
+
+     <?php
+   }
+
+   ?>
 
 	<form role="form">
 
