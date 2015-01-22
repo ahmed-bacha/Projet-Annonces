@@ -2,28 +2,28 @@
 
 /**
  * Singleton implementation of PDO class
- * 
+ *
  * @version 	1.00
  * @license 	http://www.gnu.org/copyleft/gpl.html GPL
  * @author 		Michal "Techi" Vrchota <michal.vrchota@seznam.cz>
  * @package 	Modeles
  * @category 	Database
- */   
+ */
 
 class SPDO extends PDO
 {
 	/**
 	 * @var SPDO $instance
 	 */
-	 	 	
+
 	private static $instance = FALSE;
-	
+
 	/**
 	 * returns instance from anywhere
 	 *
 	 * @return SPDO
-	 */	 	 	 	
-	
+	 */
+
 	public static function getInstance()
 	{
 		if(!self::$instance)
@@ -36,17 +36,17 @@ class SPDO extends PDO
 			return self::$instance;
 		}
 	}
-	
+
 	/**
 	 * Connect to DB - same as PDO constructor
-	 * 
+	 *
 	 * @param string $dsn
 	 * @param string $username
 	 * @param string $password
 	 * @param array  $driver_options
 	 * @return SPDO
-	 */	 	 	 	 	 	 	 	
-	
+	 */
+
 	public static function connect($dsn, $username = "root", $password = "root", array $driver_options = NULL)
 	{
 		self::$instance = new PDO($dsn, $username, $password, $driver_options);
@@ -56,11 +56,6 @@ class SPDO extends PDO
 	}
 }
 
-$host 	= "localhost";
-$dbname = "annonce";
-$user 	= "root";
-$pass 	= "root";
-
-SPDO::connect("mysql:host=$host;dbname=$dbname", $user, $pass);
+SPDO::connect("mysql:host=".DB_URL.";dbname=".DB_NAME, DB_USER, DB_PASS);
 
 ?>

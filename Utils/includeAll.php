@@ -14,11 +14,48 @@ define("LOCAL_PATH", $dir."/");
 /*
 	Constantes STATUS Annonce
 */
-define("NON_TRAITE", 10);
-define("TRAITE", 20);
-define("A_SUPPRIMER", 30);
+define("NON_TRAITE", 		10);
+define("TRAITE", 				20);
+define("A_SUPPRIMER", 	30);
+define("INVALIDE", 			"invalideFilePath");
 
-define("INVALIDE", "invalideFilePath");
+/*DB variables*/
+
+require_once("context.php");
+
+switch (SERVEUR) {
+
+	case 'LOCAL':
+
+		define('DB_URL',		"localhost");
+		define('DB_USER',		"root");
+		define('DB_PASS',		"root");
+		define('DB_NAME',		"annonce");
+
+		break;
+
+	case 'SERVER':
+
+		define('DB_HOST', 		getenv('OPENSHIFT_MYSQL_DB_HOST'));
+		define('DB_PORT',		getenv('OPENSHIFT_MYSQL_DB_PORT'));
+
+
+		define('DB_URL',		DB_HOST.':'.DB_PORT);
+		define('DB_USER',		"adminhlQkwSQ");
+		define('DB_PASS',		"jZlXiTydY-3c");
+		define('DB_NAME',		"annonces");
+
+		break;
+
+	default:
+
+		define('DB_URL',		"localhost");
+		define('DB_USER',		"root");
+		define('DB_PASS',		"root");
+		define('DB_NAME',		"annonce");
+
+		break;
+}
 
 
 /*
