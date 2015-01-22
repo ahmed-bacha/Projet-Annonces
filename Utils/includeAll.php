@@ -1,7 +1,9 @@
 <?php
 
 /* ADDING errors reporting */
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+ini_set('display_errors','On'); 
+ini_set('error_reporting','E_ALL | E_STRICT'); 
+error_reporting(E_ALL);
 
 
 $dir = dirname(__DIR__);
@@ -21,7 +23,7 @@ define("INVALIDE", 			"invalideFilePath");
 
 /*DB variables*/
 
-require_once("context.php");
+require_once(LOCAL_PATH."context.php");
 
 switch (SERVEUR) {
 
@@ -32,20 +34,16 @@ switch (SERVEUR) {
 		define('DB_PASS',		"root");
 		define('DB_NAME',		"annonce");
 
-		break;
+	break;
 
 	case 'SERVER':
 
-		define('DB_HOST', 		getenv('OPENSHIFT_MYSQL_DB_HOST'));
-		define('DB_PORT',		getenv('OPENSHIFT_MYSQL_DB_PORT'));
-
-
-		define('DB_URL',		DB_HOST.':'.DB_PORT);
+		define('DB_URL',		'127.5.182.2:3306');
 		define('DB_USER',		"adminhlQkwSQ");
 		define('DB_PASS',		"jZlXiTydY-3c");
 		define('DB_NAME',		"annonces");
 
-		break;
+	break;
 
 	default:
 
@@ -54,7 +52,7 @@ switch (SERVEUR) {
 		define('DB_PASS',		"root");
 		define('DB_NAME',		"annonce");
 
-		break;
+	break;
 }
 
 
