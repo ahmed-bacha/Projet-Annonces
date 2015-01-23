@@ -1,8 +1,8 @@
 <?php
 
 /* ADDING errors reporting */
-ini_set('display_errors','On'); 
-ini_set('error_reporting','E_ALL | E_STRICT'); 
+ini_set('display_errors','On');
+ini_set('error_reporting','E_ALL | E_STRICT');
 error_reporting(E_ALL);
 
 
@@ -23,7 +23,7 @@ define("INVALIDE", 			"invalideFilePath");
 
 /*DB variables*/
 
-require_once(LOCAL_PATH."context.php");
+require_once("context.php");
 
 switch (SERVEUR) {
 
