@@ -126,9 +126,10 @@
 /*-------------------------------------------*/
 
 .header-img{
-  background-image: url('../resources-img/header.jpg');
+  background-image: url('../resources-img/long-header.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  background-position-x: center;
   width: 100%;
   min-height: 150px;
   max-height: 150px;
@@ -136,11 +137,15 @@
 }
 
 .footer-img{
-  background-image: url('../resources-img/mtf_piedpage.gif');
-  background-repeat: no-repeat;
+  background-image: url('../resources-img/long-footer.jpg');
+  background-repeat: repeat-x;
   background-size: 100% 100%;
   width: 100%;
-  min-height: 100px;
+  min-height: 60px;
   max-height: 100px;
-  margin: 0px !important;
+  margin-top: 50px !important;
+}
+
+#footer{
+  margin-top: 70px !important;
 }

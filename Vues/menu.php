@@ -1,7 +1,7 @@
 <div class="header-img row">
 
     <br>
-    <a href="#">
+    <a href="liste-annonces.php">
         <img class="col-lg-3 col-lg-offset-1" src="resources-img/logo_horiz.png" alt="">    
     </a>
     
@@ -41,33 +41,17 @@
 
             <ul class="nav navbar-nav navbar-right col-lg-3">
 
-
-            <!-- BLOC DES VUES  -->
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Vues
-                    <span class="caret"></span>
-                </a>
-              <ul class="dropdown-menu" role="menu">
-                <li>
-                    <a href="liste-annonces.php">Annonces</a>
-                    <a href="reponse-annonce.php">Reponse annonce</a>
-                    <a href="add-annonce.php">Add annonce</a>
-                    <a href="test-upload-image.php">Test Upload image</a>
-                </li>
-              </ul>
-            </li>
-
-            <!-- END BLOC DES VUES  -->
-
             <?php
             if (isset($userM)) {
                 ?>
 
+                <li>
+                    <a href="liste-annonces.php">Annonces</a>
+                </li>
+
                 <li class="dropdown">
                   <a href="<?php echo 'profile.php?id='.$userM->id?>" class="dropdown-toggle" data-toggle="dropdown">
-                    <?php  echo '<span class="user">'.$userM->nom.'</span>'; ?>
+                    <?php  echo '<span class="user">Bienvenue : '.$userM->nom.'</span>'; ?>
                     <span class="caret"></span>
                   </a>
 
