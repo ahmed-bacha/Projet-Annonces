@@ -108,15 +108,15 @@
                     <div class="panel-body">
                       <!-- premiere image -->
                       <div class="row">
-                        <div class="col-lg-4 fixed-height">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 fixed-height">
                           <img class="img-thumbnail img-responsive small-image change-image-panel" src=" <?php echo $_urlImage1 ?> " data-src="holder.js/100x100" alt="">
                         </div>
                         <!-- deuxieme image -->
-                        <div class="col-lg-4 fixed-height">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 fixed-height">
                           <img class="img-thumbnail img-responsive small-image change-image-panel" src=" <?php echo $_urlImage2 ?> " data-src="holder.js/100x100" alt="">
                         </div>
                         <!-- troisieme image -->
-                        <div class="col-lg-4 fixed-height">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 fixed-height">
                           <img class="img-thumbnail img-responsive small-image change-image-panel" src=" <?php echo $_urlImage3 ?> " data-src="holder.js/100x100" alt="">
                         </div>
                       </div>
@@ -236,7 +236,7 @@
                             <div id="divNom" class="input-group">
                               <span class="input-group-addon"><span class="glyphicon  glyphicon-pencil"></span></span>
                               <input name ="nom" id ="nom" type="text" class="form-control" placeholder="Votre nom">
-                              
+
                               <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
                             </div>
                           </div>

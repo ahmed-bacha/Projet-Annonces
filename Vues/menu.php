@@ -2,9 +2,9 @@
 
     <br>
     <a href="liste-annonces.php">
-        <img class="col-lg-3 col-lg-offset-1" src="resources-img/logo_horiz.png" alt="">    
+        <img class="col-lg-3 col-lg-offset-1" src="resources-img/logo_horiz.png" alt="">
     </a>
-    
+
 
 </div>
 
@@ -50,8 +50,13 @@
                 </li>
 
                 <li class="dropdown">
+
                   <a href="<?php echo 'profile.php?id='.$userM->id?>" class="dropdown-toggle" data-toggle="dropdown">
-                    <?php  echo '<span class="user">Bienvenue : '.$userM->nom.'</span>'; ?>
+
+                      <span class="user">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"> <?php  echo $userM->nom ?></span>
+                      </span>
+
                     <span class="caret"></span>
                   </a>
 
