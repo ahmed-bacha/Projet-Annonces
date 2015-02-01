@@ -38,6 +38,8 @@
 
 ?>
 
+<script src="js/reponse-mail.js"></script>
+
     <div class="row ">
     	<div class="col-lg-10 col-lg-offset-1">
         <div class="row ">
@@ -190,60 +192,99 @@
             </div>
             <hr>
             <div class="col-lg-12 ">
+
               <div class="panel panel-default">
+
                 <div class="panel-heading">
                   <button type="button" id="responseButton" class="btn btn-primary btn-lg">
                     Répondre
                   </button>
                 </div>
+
+
                 <div class="panel-body">
+
                   <h6 id="intruction" >Appuyer sur "Répondre" pour dérouler le formulaire de réponse</h6>
                   <hr>
-                  <form role="form" method="POST" action="mail-traitement.php">
+
+                  <form id="form" method="POST" action="mail-traitement.php">
+
+                  <div class="row">
+                     <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                       <div id ="erreur" class="alert alert-danger" role="alert">
+                       </div>
+                     </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+                      <div id ="success" class="alert alert-success" role="alert">
+                      </div>
+                    </div>
+                  </div>
+
+
                     <blockquote>
                         <h4> Répondre à l'annonce</h4>
-                      </blockquote>
+                    </blockquote>
+
                       <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-10 col-lg-offset-1">
                           <div class="form-group">
                             <label for="exampleInputNom">Nom</label>
-                            <div class="input-group">
+
+                            <div id="divNom" class="input-group">
                               <span class="input-group-addon"><span class="glyphicon  glyphicon-pencil"></span></span>
-                              <input name ="nom" type="text" class="form-control" placeholder="Votre nom">
+                              <input name ="nom" id ="nom" type="text" class="form-control" placeholder="Votre nom">
+                              
+                              <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
                             </div>
                           </div>
+                          <div class="alert alert-danger text-center" role="alert" hidden="true">Indiquer votre nom</div>
                         </div>
-                        </div>
-                        <div class="row">
+                      </div>
+
+                      <div class="row">
                           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-10 col-lg-offset-1">
                             <div class="form-group">
                               <label for="exampleInputEmail">Email</label>
-                              <div class="input-group">
+
+                              <div id="divEmail" class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon  glyphicon-envelope"></span></span>
-                                <input name="email" type="email" class="form-control" placeholder="Votre email">
+                                <input name="email" id="email" type="email" class="form-control" placeholder="Votre email">
+                                <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
                               </div>
                             </div>
+                            <div class="alert alert-danger text-center" role="alert" hidden="true">Indiquer votre email</div>
                           </div>
-                        </div>
-                        <div class="row">
+                      </div>
+
+                      <div class="row">
                           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-10 col-lg-offset-1">
-                            <div class="form-group">
+                            <div id="divText" class="form-group">
                               <label for="exampleInputText">Texte</label>
-                              <textarea name="text" class="form-control" placeholder="Votre texte" rows="2"></textarea>
+
+                              <textarea name="text" id="text" class="form-control" placeholder="Votre texte" rows="3"></textarea>
+                              <span class="glyphicon form-control-feedback" hidden="true" aria-hidden="true"></span>
                             </div>
+                            <div class="alert alert-danger text-center" role="alert" hidden="true">Veuillez entrer un message</div>
                           </div>
-                        </div>
-                        <div class="row">
+                      </div>
+
+                      <div class="row">
                           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-10 col-lg-offset-1">
+
+                            <input type="hidden" name="idAnnonce" value="<?php echo $o_annonceM->id;?>">
+
                             <div class="form-group">
-                              <div class="checkbox">
-                                <label> <input type="checkbox"name="check" value="true"> Recevoir une copie de cet email </label>
-                              </div>
-                              <button type="submit" class="btn btn-default active">Envoyer</button>
+                              <button type="submit" id="submit" name="submit" class="btn btn-primary active">Envoyer</button>
                             </div>
                           </div>
-                        </div>
+                      </div>
+
                       </form>
+
+
                     </div>
                   </div>
                 </div>
