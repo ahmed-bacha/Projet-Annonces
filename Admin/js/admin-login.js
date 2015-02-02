@@ -34,7 +34,7 @@ $( document ).ready(function() {
           console.log("tu passes ici");
 
         } else {
-          document.location.href = '/Projet-annonces/Admin/dashboard.php';
+          document.location.href = '/Projet-annonces/Admin/liste-utilisateurs.php';
           $( "#erreur" ).hide();
 
         }

@@ -47,7 +47,7 @@
 
       <!-- Link 01 -->
       <li>
-        <a href="dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
       </li>
 
       <li>
@@ -62,9 +62,11 @@
             <a href="liste-utilisateurs.php">Liste des utilisateurs </a>
           </li>
 
+        <!--           
           <li>
             <a href="recherche-utilisateurs.php">DEMO Recherche </a>
-          </li>
+          </li> 
+        -->
 
         </ul>
       </li>
@@ -79,10 +81,6 @@
 
             <li>
               <a href="traiter-annonce.php">Traiter les annonces </a>
-            </li>
-
-            <li>
-              <a href="purge-annonce.php">Purger les annonces </a>
             </li>
 
           </ul>

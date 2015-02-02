@@ -9,8 +9,14 @@
 	session_start();
 
 	if(isset($_SESSION['utilisateurM'])){
+
 		$userM = $_SESSION['utilisateurM'];
+		
+	}else{
+
+  		header('Location:log-in.php');
 	}
+
 
 	$_SESSION['currentIndex'] = 1;
 
