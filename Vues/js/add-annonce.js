@@ -41,7 +41,7 @@ $( document ).ready(function() {
 
           $( "#erreur" ).hide();
           $( "#success" ).show();
-          $( "#success" ).html("<p class=\"text-muted text-center\">Annonce créée avec succès</p>");
+          $( "#success" ).html("<p class=\"text-center\">Annonce créée avec succès</p>");
           $("form#form").slideUp("slow");
 
         }

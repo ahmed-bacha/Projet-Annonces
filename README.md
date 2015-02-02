@@ -11,7 +11,8 @@
 ---
 Dans ce projet, le but est de développer un site (style LeBonCoin) pour les étudiants de TSE afin qu'ils puissent avoir les annonces des logements disponibles (misent à disposition par l'école **nouvelle cité** ou par d'autres autres étudiants).
 
-Repository GitHub : https://github.com/ahmed-bacha/Projet-Annonces/tree/dev
+Repository GitHub (Branche #dev) :
+https://github.com/ahmed-bacha/Projet-Annonces/tree/dev
 
 ## Structure du projet 
 ---
@@ -45,11 +46,11 @@ Repository GitHub : https://github.com/ahmed-bacha/Projet-Annonces/tree/dev
 ---
 
 *  Presque toutes les vues du site (utilisateur/admin) ont de l'Ajax par dessus, donc suivent une logique
-	* un fichier pour la vue. 
-	* un fichier js pour l'Ajax.
-	* un fichier php pour le traitement.
+    * un fichier pour la vue. 
+    * un fichier js pour l'Ajax.
+    * un fichier php pour le traitement.
 
-*  Pour l'envoi des mails, on utilise l'API de MailGun (non pas de fonction mail() de php) . 
+*  Pour l'envoi des mails, on utilise l'API de MailGun (et non pas de fonction mail() de php) . 
 
 
 
