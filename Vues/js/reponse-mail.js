@@ -17,7 +17,7 @@ $( document ).ready(function() {
 
     // ajax request---------------------------------------------
 
-    $.ajax({    
+    $.ajax({
       url:          'mail-traitement.php',
       type:         'POST',
       data:         formData,
@@ -40,7 +40,7 @@ $( document ).ready(function() {
           $( "#responseButton" ).hide();
           $( "#success" ).show();
           $( "#success" ).html("<p class=\"text-center\">Email envoyé</p>");
-          $("form#form").slideUp(2000); 
+          $("form#form").slideUp(2000);
 
         }
 
@@ -226,7 +226,7 @@ $(function(){
 
     var email   = element.val();
 
-    var regexp  = /([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/;
+    var regexp  = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
     var result  = regexp.test(email);
 

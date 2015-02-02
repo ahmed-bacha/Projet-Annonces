@@ -176,7 +176,7 @@ $(function(){
 
     var email   = element.val();
 
-    var regexp  = /([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/;
+    var regexp  = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
     var result  = regexp.test(email);
 
