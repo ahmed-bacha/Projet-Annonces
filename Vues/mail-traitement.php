@@ -14,6 +14,9 @@ if(isset($_SESSION['utilisateurM'])){
 
 	$userM = $_SESSION['utilisateurM'];
 
+}else{
+
+  	header('Location:log-in.php');
 }
 
 $o_annonceC     = new AnnonceC();

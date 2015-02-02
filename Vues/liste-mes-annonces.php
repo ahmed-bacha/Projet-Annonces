@@ -9,6 +9,9 @@
 
     $userM = $_SESSION['utilisateurM'];
 
+  }else{
+
+      header('Location:log-in.php');
   }
 
 ?>
