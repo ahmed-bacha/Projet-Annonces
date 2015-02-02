@@ -24,25 +24,36 @@ require_once("header.php");
 
 ?>
 
+<?php 
+
+$o_utilisateurC = new UtilisateurC();
+
+$o_utilisateurM = $o_utilisateurC->getUserById($idUtilisateur);
+
+
+?>
+
 <!-- *** Page Content Here *** -->
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">
-      Detail d'un utilisateur
-      <small>Description Description Description</small>
+      Detail d'utilisateur
     </h1>
 
-      <?php
+    <ul class="list-group">
 
-      $o_utilisateurC = new UtilisateurC();
+      <li class="list-group-item">Id :    <?php  echo $o_utilisateurM->id; ?></li>
+      <li class="list-group-item">Nom :   <?php  echo $o_utilisateurM->nom ?></li>
+      <li class="list-group-item">Email : <?php  echo $o_utilisateurM->email; ?></li>
+        
+    </ul>
 
-      $o_utilisateurM = $o_utilisateurC->getUserById($idUtilisateur);
+    <a href="liste-utilisateurs.php" class="btn btn-success">
+      <i class="fa fa-arrow-left">
+        <small> Retour à la liste</small>
+      </i>
+    </a>
 
-      show($o_utilisateurM);
-
-      ?>
-
-    </ol>
 
   </div>
 </div>

@@ -19,6 +19,10 @@ if(isset($_SESSION['Admin'])){
 $title = "Admin DashBoard Page";
 require_once("header.php");
 
+// Purge la BDD des annonces à supprimer
+$o_annonceC = new AnnonceC();
+$o_annonceC->purgeAnnonces();
+
 ?>
 
 <!-- *** Page Content Here *** -->
