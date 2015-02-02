@@ -17,6 +17,12 @@ if(isset($_SESSION['Admin'])){
 <?php
 $title = "Admin - Liste des utilisateurs";
 require_once("header.php");
+
+
+// Purge la BDD des annonces à supprimer
+$o_annonceC = new AnnonceC();
+$o_annonceC->purgeAnnonces();
+
 ?>
 
 <script src="../Vues/js/admin-delete-user.js"></script>
