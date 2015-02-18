@@ -63,19 +63,19 @@ https://github.com/ahmed-bacha/Projet-Annonces/tree/dev
 *  Pour l'envoi des mails, on utilise l'API de MailGun (et non pas de fonction mail() de php) . 
 
 ## Deploy ! 
---
+---
 
-#### ***pre-requis***
+#### ***prerequis***
 
 Avoir un serveur Web (ex: Apache) avec php et MySQL+PhpMyAdmin installés.
 
-#### ***etape 01***
+#### ***etape 01 : Base de données***
 
-Créer une base de données nommée ***annonces***
+Créer une base de données nommée : ***annonces***
 
 Charger la base de données fournie, qui se trouve sous ***/BDD/annonces.sql*** , dans PhpMyAdmin avec un import.
 
-#### ***etape 01***
+#### ***etape 02 : variables utiles***
 
 Mettre à jour les variables globales (user/password MySQL ...) dans le fichier ***/Utils/includeAll.php***
 
@@ -86,7 +86,11 @@ Mettre à jour les variables globales (user/password MySQL ...) dans le fichier 
         define('DB_NAME',       "annonce");
 ```
 
-#### ***etape 01***
+Remarque : 
+
+en modifiant la variable ***SERVEUR*** dans /Utils/context.php, on peut configurer deux profil (LOCAL,SERVER)
+
+#### ***etape 03 : MailGun API***
 
 Activer le support pour l'envoie des emails via l'API MailGun, en cas de volonté de changement (envoie via Mail de PHP), modifier la fonction ***sendEmail()*** dans /Utils/utilities.php)
 
@@ -100,6 +104,25 @@ puis :
 
 ```shell
 php composer.phar require mailgun/mailgun-php:~1.7.2
+```
+
+#### ***etape 03 : Urls***
+
+
+* URL publique : http://< your localhost > / < Project Dir. Name > /
+
+exemple
+
+```shell
+http://localhost/Projet-Annonces/
+```
+
+* URL admin : http://< your localhost > / < Project Dir. Name > / Admin
+
+exemple
+
+```shell
+http://localhost/Projet-Annonces/Admin
 ```
 
 
