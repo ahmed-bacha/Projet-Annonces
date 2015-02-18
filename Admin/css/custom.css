@@ -1,0 +1,9 @@
+.contour{
+  border : solid 1px red;
+}
+
+.fixed-height{
+  height : 150px;
+  min-height : 150px;
+  max-height : 150px;
+}
