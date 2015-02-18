@@ -24,40 +24,34 @@ https://github.com/ahmed-bacha/Projet-Annonces/tree/dev
 ## Structure du projet 
 ---
 
+Structure du répertoire du projet avec un court descript
 ```
-├── configure
-├── configure.in
-├── Demo
-│   ├── cgi
-│   │   ├── cgi0.sh
+├── BDD
+│   ├── annonce.sql         (copie de la structure de la BDD)
+├── Admin
+│   ├── JS                  (script propres à la section admin)
+│   ├── CSS                 (styles propres à la section admin)
+│   ├── *.php               (fchiers de traitements/vues de la séction admin)
+├── Utils
+│   ├── includeAll.php      (fichier de configuration/loader du projet)
+│   ├── utilities.php       (fonctions utiles au projet)
+├── Tests
+├── Vues
+│   ├── JS                  (script de la section )
+│   ├── CSS                 (styles de la section )
+│   ├── images              (images des annones du site)
+│   ├── *.php               (fchiers de traitements/vues de la séction )
+├── Modeles                 (modeles/structure/persistance des objets métiers)
+├── Controlleurs            (controlleurs d'accès/manipulation des objets métier)
+├── readMe.md               (descriptif du projet)
+├── index.php               (redirection vers /Vues/log-in.php)
 ```
 
-
-* BDD (fichier SQL de la BDD)
-* Admin (section admin du site)
-    * /JS : javascript admin
-    * /CSS : css  admin
-    * /fonts & /font-awesome : fonts boostraps et custom
-    *  *.php : page vues/traitement en PHP 
-* Utils
-* UnitTest
-* Vues 
-    * /JS : javascript des vues
-    * /CSS : css des vues
-    * /resources-img : images du thème du site
-    * /images : dossier des images des annonces
-    * /fonts & /font-awesome : fonts boostraps et custom
-    *  *.php : page vues/traitement en PHP 
-* Modeles
-* Controlleurs
-
-   
 ## Accès
 ---
 * Le portail est accessible seulement aux utilisateurs inscrits.
 
 ![](screenshot/annonces-admin-login.jpg)
-
 
 * Les identifiants par defaut de la section **Admin**  (/Admin)
     * user : admin
@@ -75,7 +69,7 @@ https://github.com/ahmed-bacha/Projet-Annonces/tree/dev
 
 *  Pour l'envoi des mails, on utilise l'API de MailGun (et non pas de fonction mail() de php) . 
 
-## Deploy ! 
+## Deploiement ! 
 ---
 
 ***Prerequis***
@@ -86,7 +80,7 @@ Avoir un serveur Web (ex: Apache) avec php et MySQL+PhpMyAdmin installés.
 
 Créer une base de données nommée : ***annonce***
 
-Charger la base de données fournie, qui se trouve sous ***/BDD/annonces.sql*** , dans PhpMyAdmin avec un import.
+Charger la base de données fournie, qui se trouve sous ***/BDD/annonce.sql*** , dans PhpMyAdmin avec un import.
 
 ***Etape 02 : variables utiles***
 
