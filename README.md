@@ -1,4 +1,7 @@
-# Projet Architecture N-Tiers :  TSE Annonces -  Team #01
+# Projet Architecture N-Tiers :  
+
+###TSE Annonces -  Team #01
+
 ##### FI3 © 2014-2015 : 
 
 ![](screenshot/annonces-login.jpg)
@@ -20,6 +23,16 @@ https://github.com/ahmed-bacha/Projet-Annonces/tree/dev
 
 ## Structure du projet 
 ---
+
+```
+├── configure
+├── configure.in
+├── Demo
+│   ├── cgi
+│   │   ├── cgi0.sh
+```
+
+
 * BDD (fichier SQL de la BDD)
 * Admin (section admin du site)
     * /JS : javascript admin
