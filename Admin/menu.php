@@ -9,7 +9,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="dashboard.php">Annonces Admin</a>
+    <a class="navbar-brand" href="liste-utilisateurs.php">Annonces Admin</a>
   </div>
   <!-- Top Menu Items -->
   <ul class="nav navbar-right top-nav">
@@ -47,7 +47,7 @@
 
       <!-- Link 01 -->
       <li>
-        <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+        <a href="liste-utilisateurs.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
       </li>
 
       <li>

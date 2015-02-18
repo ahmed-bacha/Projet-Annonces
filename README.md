@@ -113,7 +113,7 @@ puis :
 php composer.phar require mailgun/mailgun-php:~1.7.2
 ```
 
-***Etape 04 : Urls ***
+***Etape 04 : Urls***
 
 
 * URL publique : http://< ***your localhost*** > / < ***Project Dir. Name*** > /
