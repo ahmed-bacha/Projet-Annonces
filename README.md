@@ -1,5 +1,8 @@
 # Projet TSE Annonces #01
 
+
+![](screenshot/annonces-login.jpg)
+
 ##### FI3 © 2014-2015 : 
 
 * MARIN Olivier
@@ -38,9 +41,15 @@ https://github.com/ahmed-bacha/Projet-Annonces/tree/dev
 ## Accès
 ---
 * Le portail est accessible seulement aux utilisateurs inscrits.
-* Les identifiants par defaut de la section **Admin**  
+
+![](screenshot/annonces-admin-login.jpg)
+
+
+* Les identifiants par defaut de la section **Admin**  (/Admin)
     * user : admin
     * mdp : admin
+
+![](screenshot/annonces-admin-board.jpg)
 
 ## Informations
 ---
