@@ -1,9 +1,10 @@
-# Projet TSE Annonces #01
-
+# Projet Architecture N-Tiers :  TSE Annonces -  Team #01
+##### FI3 © 2014-2015 : 
 
 ![](screenshot/annonces-login.jpg)
 
-##### FI3 © 2014-2015 : 
+
+Membres : 
 
 * MARIN Olivier
 * BOUHERROU Nacer
@@ -60,6 +61,49 @@ https://github.com/ahmed-bacha/Projet-Annonces/tree/dev
     * un fichier php pour le traitement.
 
 *  Pour l'envoi des mails, on utilise l'API de MailGun (et non pas de fonction mail() de php) . 
+
+## Deploy ! 
+--
+
+#### ***pre-requis***
+
+Avoir un serveur Web (ex: Apache) avec php et MySQL+PhpMyAdmin installés.
+
+#### ***etape 01***
+
+Créer une base de données nommée ***annonces***
+
+Charger la base de données fournie, qui se trouve sous ***/BDD/annonces.sql*** , dans PhpMyAdmin avec un import.
+
+#### ***etape 01***
+
+Mettre à jour les variables globales (user/password MySQL ...) dans le fichier ***/Utils/includeAll.php***
+
+``` php
+        define('DB_URL',        "localhost");
+        define('DB_USER',       "root");
+        define('DB_PASS',       "root");
+        define('DB_NAME',       "annonce");
+```
+
+#### ***etape 01***
+
+Activer le support pour l'envoie des emails via l'API MailGun, en cas de volonté de changement (envoie via Mail de PHP), modifier la fonction ***sendEmail()*** dans /Utils/utilities.php)
+
+
+```shell
+curl -sS https://getcomposer.org/installer | php
+```
+
+puis : 
+
+
+```shell
+php composer.phar require mailgun/mailgun-php:~1.7.2
+```
+
+
+
 
 
 
